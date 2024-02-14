@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.hw-full {
+  @apply h-full w-full;
+}
+
+.hw-screen {
+  @apply h-screen w-screen;
+}
+
+.transition-500 {
+  @apply transition-all duration-500;
+}

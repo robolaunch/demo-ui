@@ -1,42 +1,57 @@
 "use client";
 
+import { getNamespacesAPI } from "@/apis/namespace.api";
 import { getOrganizationsAPI } from "@/apis/organization.api";
 import { getRegionsAPI } from "@/apis/region.api";
-import { IOrganizationWithRegions } from "@/interfaces/organization.interface";
+import useMain from "@/hooks/useMain";
+import { INamespace } from "@/interfaces/namespace.interface";
+import {
+  IOrganization,
+  IOrganizationWithNamespaces,
+} from "@/interfaces/organization.interface";
 import Image from "next/image";
 import { CascadeSelect } from "primereact/cascadeselect";
 import { ReactElement, useEffect, useState } from "react";
 
 export default function SidebarSelect(): ReactElement {
-  const [organizationsWithRegions, setOrganizationsWithRegions] = useState<
-    IOrganizationWithRegions[]
-  >([]);
+  const [organizationsWithNamespaces, setOrganizationsWithNamespaces] =
+    useState<IOrganizationWithNamespaces[]>([]);
+
+  const { selectedState } = useMain();
 
   useEffect(() => {
-    !organizationsWithRegions?.length && handleGetFlow();
-  }, [organizationsWithRegions?.length]);
+    !organizationsWithNamespaces?.length &&
+      selectedState?.instance &&
+      handleGetFlow();
+  }, [selectedState]);
 
   async function handleGetFlow() {
-    const orgs = await getOrganizationsAPI();
+    const orgs: IOrganization[] = await getOrganizationsAPI();
 
-    const regionMapper = orgs.map(async (org) => {
-      return {
-        ...org,
-        regions: await getRegionsAPI({ orgId: org.id }),
-      };
-    });
+    console.log("orgs", orgs);
 
-    const orgsWithRegions: IOrganizationWithRegions[] =
-      await Promise.all(regionMapper);
+    const orgsWithNamespaces: IOrganizationWithNamespaces[] = await Promise.all(
+      orgs.map(async (org) => {
+        return {
+          ...org,
+          namespaces: await getNamespacesAPI({
+            orgId: org.id,
+            regionName: selectedState?.region?.name!,
+            providerRegion: selectedState?.region?.region!,
+            instanceId: selectedState?.instance?.id!,
+          }),
+        };
+      }),
+    );
 
-    orgsWithRegions.sort((a, b) => b.regions?.length - a.regions?.length);
+    console.log("orgsWithNamespaces", orgsWithNamespaces);
 
-    setOrganizationsWithRegions(orgsWithRegions);
+    setOrganizationsWithNamespaces(orgsWithNamespaces);
   }
 
   useEffect(() => {
-    console.log(organizationsWithRegions);
-  }, [organizationsWithRegions]);
+    console.log(organizationsWithNamespaces);
+  }, [organizationsWithNamespaces]);
 
   const selectTemplate = (option: {
     label: string;
@@ -64,26 +79,26 @@ export default function SidebarSelect(): ReactElement {
         onChange={(e) => {
           console.log(e);
         }}
-        options={organizationsWithRegions.map((org) => {
+        options={organizationsWithNamespaces.map((org) => {
           return {
             label: org.name,
             value: org.name,
-            regions: org.regions.map((region) => {
+            namespaces: org.namespaces.map((ns) => {
               return {
-                label: region.name,
-                value: region.name,
+                label: ns.name,
+                value: ns.name,
                 org: {
                   id: org.id,
                   name: org.name,
                 },
-                region: region,
+                namespace: ns,
               };
             }),
           };
         })}
         optionLabel="name"
         optionGroupLabel="name"
-        optionGroupChildren={["regions"]}
+        optionGroupChildren={["namespaces"]}
         className="w-full"
         itemTemplate={selectTemplate}
       />

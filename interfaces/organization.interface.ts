@@ -1,12 +1,12 @@
-import { IRegion } from "./region.interface";
+import { INamespace } from "./namespace.interface";
 
 export interface IOrganization {
   id: string;
   name: string;
 }
 
-export interface IOrganizationWithRegions extends IOrganization {
-  regions: IRegion[];
+export interface IOrganizationWithNamespaces extends IOrganization {
+  namespaces: INamespace[];
 }
 
 export interface IOrganizationBE {

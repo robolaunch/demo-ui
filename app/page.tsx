@@ -8,7 +8,7 @@ export default function MainPage() {
 
   useEffect(() => {
     router.push("/overview");
-  }, []);
+  }, [router]);
 
   return <></>;
 }

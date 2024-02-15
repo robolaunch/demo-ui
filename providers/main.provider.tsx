@@ -20,6 +20,7 @@ import "primereact/resources/themes/lara-light-cyan/theme.css";
 import "react-loading-skeleton/dist/skeleton.css";
 import { Toaster } from "sonner";
 import Version from "@/components/version/version";
+import KeycloakProvider from "./keycloak.provider";
 
 interface IMainProvider {
   children: Readonly<ReactElement | ReactElement[]>;
@@ -41,15 +42,17 @@ export default function MainProvider({
           fontFamily: "Poppins, sans-serif",
         }}
       >
-        <MainContextProvider>
-          <PrimeReactProvider>
-            <MainLayout>
-              <Toaster richColors position="top-center" />
-              <Version />
-              <Fragment>{children}</Fragment>
-            </MainLayout>
-          </PrimeReactProvider>
-        </MainContextProvider>
+        <KeycloakProvider>
+          <MainContextProvider>
+            <PrimeReactProvider>
+              <MainLayout>
+                <Toaster richColors position="top-center" />
+                <Version />
+                <Fragment>{children}</Fragment>
+              </MainLayout>
+            </PrimeReactProvider>
+          </MainContextProvider>
+        </KeycloakProvider>
       </body>
     </html>
   );

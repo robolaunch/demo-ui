@@ -3,10 +3,10 @@ import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 const axiosInterceptorOpenApi: any = axios.create({});
 
 axiosInterceptorOpenApi.interceptors.request.use((req: AxiosRequestConfig) => {
-  const { tokens } = JSON.parse(localStorage.getItem("tokens") || "{}");
+  const { token } = JSON.parse(localStorage.getItem("rl-auth") || "{}");
 
-  if (tokens?.token) {
-    req.headers!.Authorization = `Bearer ${tokens.token}`;
+  if (token) {
+    req.headers!.Authorization = `Bearer ${token}`;
   }
 
   return req;

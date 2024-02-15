@@ -9,17 +9,21 @@ interface IAppsLayout {
 }
 
 export default function AppsLayout({ children }: IAppsLayout): ReactElement {
-  const url = useParams();
+  const params = useParams();
 
   const meta = {
-    title: url?.slug ? `${url?.slug} App` : "Apps",
-    paragraph: url?.slug
+    title: params?.appName ? `${params?.appName} App` : "Apps",
+    paragraph: params?.appName
       ? "This is the app layout"
       : "This is the apps page layout",
   };
 
   return (
-    <PageLayout title={meta.title} paragraph={meta.paragraph}>
+    <PageLayout
+      title={meta.title}
+      paragraph={meta.paragraph}
+      state="applications"
+    >
       {children}
     </PageLayout>
   );

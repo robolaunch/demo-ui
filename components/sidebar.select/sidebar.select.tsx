@@ -2,16 +2,16 @@
 
 import { getNamespacesAPI } from "@/apis/namespace.api";
 import { getOrganizationsAPI } from "@/apis/organization.api";
+import { orgNameDOM } from "@/functions/organization.functions";
 import useMain from "@/hooks/useMain";
 import {
   IOrganization,
   IOrganizationWithNamespaces,
 } from "@/interfaces/organization.interface";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { CascadeSelect } from "primereact/cascadeselect";
 import { ReactElement, useEffect, useState } from "react";
-import { PiProjectorScreenLight } from "react-icons/pi";
+import { IoBusinessOutline, IoFolderOutline } from "react-icons/io5";
 
 export default function SidebarSelect(): ReactElement {
   const [organizationsWithNamespaces, setOrganizationsWithNamespaces] =
@@ -54,13 +54,9 @@ export default function SidebarSelect(): ReactElement {
     namespaces?: { label: string; value: string }[];
   }) => {
     return (
-      <div className="align-items-center flex gap-2">
-        {option.namespaces && (
-          <Image width={20} height={20} src={"/icons/org.svg"} alt="org" />
-        )}
-        {!option.namespaces && (
-          <Image width={20} height={20} src={"/icons/org.svg"} alt="org" />
-        )}
+      <div className="flex items-center gap-2">
+        {option.namespaces && <IoBusinessOutline />}
+        {!option.namespaces && <IoFolderOutline />}
         <span>{option.label}</span>
       </div>
     );
@@ -68,7 +64,7 @@ export default function SidebarSelect(): ReactElement {
 
   return (
     <div className="flex items-center py-4 pl-10">
-      <PiProjectorScreenLight size={26} />
+      <IoBusinessOutline size={22} />
       <CascadeSelect
         value={selectedState?.namespace?.name}
         placeholder="Project"
@@ -84,7 +80,7 @@ export default function SidebarSelect(): ReactElement {
         }}
         options={organizationsWithNamespaces.map((org) => {
           return {
-            label: org.name,
+            label: orgNameDOM(org.name),
             value: org.name,
             namespaces: org.namespaces.map((ns) => {
               return {

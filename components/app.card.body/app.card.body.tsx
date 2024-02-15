@@ -14,28 +14,32 @@ export default function AppCardBody({ app }: IAppCardBody): ReactElement {
       value: app.applicationConfig.application.name,
     },
     {
-      key: "Version",
+      key: "Application Version",
       value: app.applicationConfig.application.version,
     },
     {
-      key: "OS",
-      value: `Ubuntu`,
+      key: "Operating System",
+      value: `Ubuntu ${app.applicationConfig.devspace.ubuntuDistro} (${app.applicationConfig.devspace.desktop})`,
     },
     {
-      key: "Distribution",
-      value: `${app.applicationConfig.devspace.ubuntuDistro}`,
+      key: "Code Editor",
+      value: (
+        <Status
+          isReady={app.services.ide.isEnabled && app.status}
+          textWeight="text-xs"
+          iconSize={2}
+        />
+      ),
     },
     {
-      key: "Desktop",
-      value: app.applicationConfig.devspace.desktop,
-    },
-    {
-      key: "IDE",
-      value: <Status isReady={app.services.ide.isEnabled && app.status} />,
-    },
-    {
-      key: "VDI",
-      value: <Status isReady={app.services.vdi.isEnabled && app.status} />,
+      key: "Remote Desktop",
+      value: (
+        <Status
+          isReady={app.services.vdi.isEnabled && app.status}
+          textWeight="text-xs"
+          iconSize={2}
+        />
+      ),
     },
   ];
 
@@ -44,19 +48,19 @@ export default function AppCardBody({ app }: IAppCardBody): ReactElement {
       <table className="space" cellPadding={"4rem"}>
         <tbody>
           {list.map((item, index) => (
-            <tr key={index} className="text-left text-sm">
-              <td className="table-cell font-medium  text-gray-600">
+            <tr key={index} className="text-left text-xs">
+              <td className="table-cell font-medium  text-slate-600">
                 {item.key}:
               </td>
-              <td className="table-cell text-gray-500">{item.value}</td>{" "}
+              <td className="table-cell text-slate-500">{item.value}</td>{" "}
             </tr>
           ))}
         </tbody>
       </table>
       <Image
         className="flex items-start justify-end"
-        width={128}
-        height={128}
+        width={56}
+        height={56}
         src={
           "https://raw.githubusercontent.com/robolaunch/trademark/main/applications/ubuntu-logo.png"
         }

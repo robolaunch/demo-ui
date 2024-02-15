@@ -37,7 +37,7 @@ export default function Apps(): ReactElement {
   }
 
   return (
-    <div className="hw-full grid grid-cols-3 grid-rows-2">
+    <div className="hw-full grid grid-cols-3 grid-rows-3">
       {apps?.map((app, index) => {
         return (
           <div key={index} className="col-span-1 row-span-1 p-4">

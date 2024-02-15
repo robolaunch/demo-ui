@@ -13,6 +13,9 @@ import { IInstance } from "@/interfaces/instance.interface";
 import { getInstancesAPI } from "@/apis/instance.api";
 import { INamespace } from "@/interfaces/namespace.interface";
 import { getNamespacesAPI } from "@/apis/namespace.api";
+import { IAppState } from "@/interfaces/app.config.interface";
+import appStateConstant from "@/constants/appState.constant.json";
+
 export const MainContext: any = createContext<any>(null);
 
 interface IMainContext {
@@ -27,6 +30,10 @@ export default ({ children }: IMainContext) => {
 
   const [selectedState, setSelectedState] = useState<ISelectedState>(
     selectedStateContant as ISelectedState,
+  );
+
+  const [appState, setAppState] = useState<IAppState>(
+    appStateConstant as IAppState,
   );
 
   const [applications, setApplications] = useState<any[]>([
@@ -91,6 +98,8 @@ export default ({ children }: IMainContext) => {
         setSelectedState,
         applications,
         setApplications,
+        appState,
+        setAppState,
       }}
     >
       {children}

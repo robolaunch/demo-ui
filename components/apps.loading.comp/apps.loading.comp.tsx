@@ -1,10 +1,12 @@
+"use client";
+
 import { Fragment, ReactElement } from "react";
 import Skeleton from "react-loading-skeleton";
 
 export default function AppsLoading(): ReactElement {
   return (
     <Fragment>
-      {Array(6)
+      {Array(9)
         .fill(undefined)
         .map((_, index) => {
           return (

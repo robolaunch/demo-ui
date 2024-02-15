@@ -1,18 +1,41 @@
 "use client";
 
-import { ReactElement } from "react";
+import useMain from "@/hooks/useMain";
+import { ReactElement, useEffect } from "react";
 
 interface IPageLayout {
   children: ReactElement | ReactElement[];
   title: string;
   paragraph: string;
+  state: "overview" | "create" | "applications" | "help";
 }
 
 export default function PageLayout({
   children,
   title,
   paragraph,
+  state,
 }: IPageLayout): ReactElement {
+  const { setSidebarState, setAppState } = useMain();
+
+  useEffect(() => {
+    setSidebarState((prev) => {
+      return {
+        ...prev,
+        activePage: state,
+      };
+    });
+
+    setAppState((prev) => {
+      return {
+        ...prev,
+        activeTab: "overview",
+      };
+    });
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div className="hw-full animate__animated animate__fadeIn grid grid-rows-12 px-24 py-10">
       <div className="hw-full row-span-1 flex flex-col justify-between">

@@ -6,6 +6,7 @@ import { IOrganization } from "./organization.interface";
 import { IRegion } from "./region.interface";
 import { INamespace } from "./namespace.interface";
 import { IInstance } from "./instance.interface";
+import { IAppState } from "./app.config.interface";
 
 export interface IMainHook {
   sidebarState: ISidebarState;
@@ -14,6 +15,8 @@ export interface IMainHook {
   setSelectedState: Dispatch<SetStateAction<ISelectedState>>;
   applications: any[];
   setApplications: Dispatch<SetStateAction<any[]>>;
+  appState: IAppState;
+  setAppState: Dispatch<SetStateAction<IAppState>>;
 }
 
 export interface ISelectedState {

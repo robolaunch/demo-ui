@@ -7,7 +7,11 @@ interface IOverviewLayout {
 
 export default function OverviewLayout({ children }: IOverviewLayout) {
   return (
-    <PageLayout title="Overview" paragraph="This is the overview page layout">
+    <PageLayout
+      title="Overview"
+      paragraph="This is the overview page layout"
+      state="overview"
+    >
       {children}
     </PageLayout>
   );

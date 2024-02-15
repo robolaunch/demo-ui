@@ -1,3 +1,5 @@
+"use client";
+
 import AppProvider from "@/contexts/app.context";
 import { Fragment, ReactElement } from "react";
 

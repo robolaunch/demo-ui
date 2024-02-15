@@ -10,6 +10,7 @@ export default function CreateApp({ children }: ICreateApp): ReactElement {
     <PageLayout
       title="Create App"
       paragraph="This is the create app page layout"
+      state="create"
     >
       {children}
     </PageLayout>

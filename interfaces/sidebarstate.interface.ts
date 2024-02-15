@@ -1,5 +1,5 @@
 "use client";
 
 export interface ISidebarState {
-  activePage: string | null;
+  activePage: "overview" | "create" | "applications" | "help" | null;
 }

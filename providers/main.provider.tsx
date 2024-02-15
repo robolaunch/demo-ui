@@ -18,7 +18,8 @@ import { PrimeReactProvider } from "primereact/api";
 import MainContextProvider from "@/contexts/main.context";
 import "primereact/resources/themes/lara-light-cyan/theme.css";
 import "react-loading-skeleton/dist/skeleton.css";
-import { Toaster, toast } from "sonner";
+import { Toaster } from "sonner";
+import Version from "@/components/version/version";
 
 interface IMainProvider {
   children: Readonly<ReactElement | ReactElement[]>;
@@ -44,6 +45,7 @@ export default function MainProvider({
           <PrimeReactProvider>
             <MainLayout>
               <Toaster richColors position="top-center" />
+              <Version />
               <Fragment>{children}</Fragment>
             </MainLayout>
           </PrimeReactProvider>

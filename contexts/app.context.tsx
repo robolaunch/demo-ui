@@ -19,13 +19,13 @@ export default ({ children }: IAppContext) => {
   const { selectedState } = useMain();
 
   const {
-    slug: appName,
+    appName,
   }: {
-    slug: string;
+    appName: string;
   } = useParams();
 
   useEffect(() => {
-    !selectedState?.namespace?.name && handleGetApp();
+    selectedState?.namespace?.name && handleGetApp();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedState]);
 

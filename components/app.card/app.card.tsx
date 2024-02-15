@@ -30,11 +30,7 @@ export default function AppCard({ app }: IAppCard): ReactElement {
             : toast.warning("Application is not ready yet. Please wait.");
         }}
       >
-        <AppCardHeader
-          title={app.details.name}
-          description={`${app.applicationConfig.application.name} - ${app.applicationConfig.application.version}`}
-          status={app?.status}
-        />
+        <AppCardHeader title={app.details.name} status={app?.status} />
         <AppCardBody app={app} />
       </button>
     </Card>

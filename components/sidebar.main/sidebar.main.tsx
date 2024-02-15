@@ -10,7 +10,7 @@ import useMain from "@/hooks/useMain";
 import { useRouter } from "next/navigation";
 
 export default function SidebarMain(): ReactElement {
-  const { sidebarState, setSidebarState } = useMain();
+  const { sidebarState } = useMain();
 
   const router = useRouter();
 
@@ -41,10 +41,6 @@ export default function SidebarMain(): ReactElement {
             icon={item.icon}
             label={item.label}
             onClick={() => {
-              setSidebarState({
-                ...sidebarState,
-                activePage: item.label.toLowerCase(),
-              });
               router.push(`/${item.label.toLowerCase()}`);
             }}
           />

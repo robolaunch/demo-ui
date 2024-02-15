@@ -7,7 +7,11 @@ interface IHelpLayout {
 
 export default function HelpLayout({ children }: IHelpLayout): ReactElement {
   return (
-    <PageLayout title="Help" paragraph="This is the help page layout">
+    <PageLayout
+      title="Help"
+      paragraph="This is the help page layout"
+      state="help"
+    >
       {children}
     </PageLayout>
   );

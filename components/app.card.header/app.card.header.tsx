@@ -1,4 +1,4 @@
-import AppStatus from "@/components/app.status/app.status.comp";
+import Status from "@/components/status/status.comp";
 import { ReactElement } from "react";
 
 interface IAppCardHeader {
@@ -13,13 +13,13 @@ export default function AppCardHeader({
   status,
 }: IAppCardHeader): ReactElement {
   return (
-    <div className="flex w-full justify-center">
-      <div className="flex w-full flex-col">
+    <div className="flex w-full justify-between">
+      <div className="flex w-full flex-col items-start">
         <h1 className="text-base font-semibold">{title}</h1>
         <p className="text-sm text-gray-500">{description}</p>
       </div>
       <div className="col-span-1 flex">
-        <AppStatus isReady={status} />
+        <Status isReady={status} />
       </div>
     </div>
   );

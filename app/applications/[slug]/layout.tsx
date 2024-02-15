@@ -1,3 +1,4 @@
+import AppProvider from "@/contexts/app.context";
 import { Fragment, ReactElement } from "react";
 
 interface IAppLayout {
@@ -5,5 +6,9 @@ interface IAppLayout {
 }
 
 export default function AppLayout({ children }: IAppLayout): ReactElement {
-  return <Fragment>{children}</Fragment>;
+  return (
+    <Fragment>
+      <AppProvider>{children}</AppProvider>
+    </Fragment>
+  );
 }

@@ -6,6 +6,8 @@ interface ICard {
 
 export default function Card({ children }: ICard): ReactElement {
   return (
-    <div className="hw-full border border-slate-200 bg-white">{children}</div>
+    <div className="hw-full animate__animated animate__fadeIn border border-slate-200 bg-white">
+      {children}
+    </div>
   );
 }

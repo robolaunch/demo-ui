@@ -2,73 +2,29 @@
 
 import { ReactElement } from "react";
 import Image from "next/image";
-import SidebarItem from "../sidebar.item/sidebar.item.comp";
-import {
-  IoLogOutOutline,
-  IoHelpBuoyOutline,
-  IoAddCircleOutline,
-  IoAppsOutline,
-  IoGridOutline,
-} from "react-icons/io5";
-import { useRouter } from "next/navigation";
-import useMain from "@/hooks/useMain";
 import SidebarSelect from "../sidebar.select/sidebar.select";
+import SidebarMain from "../sidebar.main/sidebar.main";
+import SidebarBottom from "../sidebar.bottom.comp/sidebar.bottom.comp";
 
 export default function Sidebar(): ReactElement {
-  const router = useRouter();
-
-  const { sidebarState, setSidebarState } = useMain();
-
   return (
-    <div className="h-screen bg-white py-4">
-      <Image
-        className="mx-auto"
-        width={72}
-        height={72}
-        alt="robolaunch"
-        src={"/icons/rocket.svg"}
-      />
+    <div className="flex h-screen flex-col gap-2 bg-white py-4">
+      <div className="m-2 flex flex-col items-center">
+        <Image
+          width={72}
+          height={72}
+          alt="robolaunch"
+          src={"/icons/rocket.svg"}
+        />
+      </div>
 
-      <SidebarSelect />
+      <div className="flex h-full flex-col justify-between">
+        <SidebarSelect />
 
-      {[
-        {
-          label: "Overview",
-          icon: <IoGridOutline size={22} />,
-        },
-        {
-          label: "Create",
-          icon: <IoAddCircleOutline size={22} />,
-        },
-        {
-          label: "Applications",
-          icon: <IoAppsOutline size={22} />,
-        },
-        {
-          label: "Help",
-          icon: <IoHelpBuoyOutline size={22} />,
-        },
-        {
-          label: "Logout",
-          icon: <IoLogOutOutline size={22} />,
-        },
-      ].map((item, index) => {
-        return (
-          <SidebarItem
-            active={sidebarState.activeIndex === item.label.toLowerCase()}
-            key={index}
-            icon={item.icon}
-            label={item.label}
-            onClick={() => {
-              setSidebarState({
-                ...sidebarState,
-                activeIndex: item.label.toLowerCase(),
-              });
-              router.push(`/${item.label.toLowerCase()}`);
-            }}
-          />
-        );
-      })}
+        <SidebarMain />
+
+        <SidebarBottom />
+      </div>
     </div>
   );
 }

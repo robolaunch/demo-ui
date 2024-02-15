@@ -1,11 +1,9 @@
 "use client";
 
-import { ReactElement } from "react";
-import "@/styles/global.css";
-import MainContextProvider from "@/contexts/main.context";
-import MainLayout from "@/layouts/main.layout";
-import Head from "next/head";
 import "animate.css";
+import Head from "next/head";
+import "@/styles/global.css";
+import { Fragment, ReactElement } from "react";
 import "@fontsource/poppins/100.css";
 import "@fontsource/poppins/200.css";
 import "@fontsource/poppins/300.css";
@@ -15,8 +13,12 @@ import "@fontsource/poppins/600.css";
 import "@fontsource/poppins/700.css";
 import "@fontsource/poppins/800.css";
 import "@fontsource/poppins/900.css";
+import MainLayout from "@/layouts/main.layout";
 import { PrimeReactProvider } from "primereact/api";
+import MainContextProvider from "@/contexts/main.context";
 import "primereact/resources/themes/lara-light-cyan/theme.css";
+import "react-loading-skeleton/dist/skeleton.css";
+import { Toaster, toast } from "sonner";
 
 interface IMainProvider {
   children: Readonly<ReactElement | ReactElement[]>;
@@ -40,7 +42,10 @@ export default function MainProvider({
       >
         <MainContextProvider>
           <PrimeReactProvider>
-            <MainLayout>{children}</MainLayout>
+            <MainLayout>
+              <Toaster richColors position="top-center" />
+              <Fragment>{children}</Fragment>
+            </MainLayout>
           </PrimeReactProvider>
         </MainContextProvider>
       </body>

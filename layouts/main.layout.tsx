@@ -9,11 +9,11 @@ interface IMainLayout {
 
 export default function MainLayout({ children }: IMainLayout): ReactElement {
   return (
-    <div className="grid grid-cols-12 hw-screen bg-slate-100">
-      <div className="col-span-2 animate__animated animate__fadeInLeft">
+    <div className="hw-screen grid grid-cols-12 bg-slate-100">
+      <div className="animate__animated animate__fadeInLeft col-span-2">
         <Sidebar />
       </div>
-      <div className="col-span-10 relative">{children}</div>
+      <div className="relative col-span-10">{children}</div>
     </div>
   );
 }

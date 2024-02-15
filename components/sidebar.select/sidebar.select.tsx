@@ -2,33 +2,34 @@
 
 import { getNamespacesAPI } from "@/apis/namespace.api";
 import { getOrganizationsAPI } from "@/apis/organization.api";
-import { getRegionsAPI } from "@/apis/region.api";
 import useMain from "@/hooks/useMain";
-import { INamespace } from "@/interfaces/namespace.interface";
 import {
   IOrganization,
   IOrganizationWithNamespaces,
 } from "@/interfaces/organization.interface";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { CascadeSelect } from "primereact/cascadeselect";
 import { ReactElement, useEffect, useState } from "react";
+import { PiProjectorScreenLight } from "react-icons/pi";
 
 export default function SidebarSelect(): ReactElement {
   const [organizationsWithNamespaces, setOrganizationsWithNamespaces] =
     useState<IOrganizationWithNamespaces[]>([]);
 
-  const { selectedState } = useMain();
+  const { selectedState, setSelectedState } = useMain();
+
+  const router = useRouter();
 
   useEffect(() => {
     !organizationsWithNamespaces?.length &&
       selectedState?.instance &&
       handleGetFlow();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedState]);
 
   async function handleGetFlow() {
     const orgs: IOrganization[] = await getOrganizationsAPI();
-
-    console.log("orgs", orgs);
 
     const orgsWithNamespaces: IOrganizationWithNamespaces[] = await Promise.all(
       orgs.map(async (org) => {
@@ -44,26 +45,20 @@ export default function SidebarSelect(): ReactElement {
       }),
     );
 
-    console.log("orgsWithNamespaces", orgsWithNamespaces);
-
     setOrganizationsWithNamespaces(orgsWithNamespaces);
   }
-
-  useEffect(() => {
-    console.log(organizationsWithNamespaces);
-  }, [organizationsWithNamespaces]);
 
   const selectTemplate = (option: {
     label: string;
     value: string;
-    regions?: { label: string; value: string }[];
+    namespaces?: { label: string; value: string }[];
   }) => {
     return (
       <div className="align-items-center flex gap-2">
-        {option.regions && (
+        {option.namespaces && (
           <Image width={20} height={20} src={"/icons/org.svg"} alt="org" />
         )}
-        {!option.regions && (
+        {!option.namespaces && (
           <Image width={20} height={20} src={"/icons/org.svg"} alt="org" />
         )}
         <span>{option.label}</span>
@@ -72,12 +67,20 @@ export default function SidebarSelect(): ReactElement {
   };
 
   return (
-    <div className="card justify-content-center flex">
+    <div className="flex items-center py-4 pl-10">
+      <PiProjectorScreenLight size={26} />
       <CascadeSelect
-        value={undefined}
+        value={selectedState?.namespace?.name}
         placeholder="Project"
-        onChange={(e) => {
-          console.log(e);
+        onChange={({ value }) => {
+          setSelectedState((prev) => {
+            return {
+              ...prev,
+              organization: value.org,
+              namespace: value.namespace,
+            };
+          });
+          router.push("/applications");
         }}
         options={organizationsWithNamespaces.map((org) => {
           return {
@@ -98,8 +101,8 @@ export default function SidebarSelect(): ReactElement {
         })}
         optionLabel="name"
         optionGroupLabel="name"
-        optionGroupChildren={["namespaces"]}
         className="w-full"
+        optionGroupChildren={["namespaces"]}
         itemTemplate={selectTemplate}
       />
     </div>

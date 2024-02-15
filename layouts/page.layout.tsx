@@ -14,7 +14,7 @@ export default function PageLayout({
   paragraph,
 }: IPageLayout): ReactElement {
   return (
-    <div className="hw-full grid grid-rows-12 px-24 py-10">
+    <div className="hw-full animate__animated animate__fadeIn grid grid-rows-12 px-24 py-10">
       <div className="hw-full row-span-1 flex flex-col justify-between">
         <h1 className="text-2xl font-medium text-slate-600">{title}</h1>
         <p className="text-sm text-slate-400">{paragraph}</p>

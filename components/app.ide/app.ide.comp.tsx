@@ -3,7 +3,7 @@
 import { ReactElement } from "react";
 import Card from "../card/card.comp";
 import useApp from "@/hooks/useApp";
-import AppServiceControlBar from "../app.service.controlbar/app.service.controlbar";
+import AppServiceControlBar from "../app.service.controlbar/app.service.controlbar.comp";
 
 export default function IDE(): ReactElement {
   const { appData } = useApp();

@@ -15,7 +15,7 @@ export default function SidebarMain(): ReactElement {
   const router = useRouter();
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-4">
       {[
         {
           label: "Overview",

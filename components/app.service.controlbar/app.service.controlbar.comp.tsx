@@ -3,6 +3,8 @@ import {
   MdOutlineKeyboardArrowDown,
   MdOutlineKeyboardArrowUp,
 } from "react-icons/md";
+import FileManager from "../app.service.controlbar.filemanager/app.service.controlbar.filemanager.comp";
+import Control from "../app.service.controlbar.control/app.service.controlbar.control.comp";
 
 interface IAppServiceControlBar {
   type: "ide" | "vdi";
@@ -23,7 +25,8 @@ export default function AppServiceControlBar({
       </button>
       {isOpen && (
         <div className="flex items-center gap-6 rounded-t-lg bg-slate-200 px-6 pb-2 pt-3">
-          control bar
+          <FileManager />
+          <Control />
         </div>
       )}
     </div>

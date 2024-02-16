@@ -17,7 +17,7 @@ export default function SidebarItem({
 }: ISidebarItem): ReactElement {
   return (
     <button
-      className={`transition-500 text- flex w-full items-center gap-2 px-10 py-4 hover:bg-slate-100 ${active && "bg-slate-100"}`}
+      className={`transition-500 animate__animated animate__fadeIn flex w-full items-center gap-2 px-6 py-3 hover:bg-slate-100 ${active && "bg-slate-100"}`}
       onClick={() => onClick && onClick()}
     >
       {icon}

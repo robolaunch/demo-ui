@@ -1,8 +1,8 @@
 "use client";
 
 import { getEnvironmentsAPI } from "@/apis/environment.api";
-import AppCard from "@/components/app.card/app.card";
-import AppsLoading from "@/components/apps.loading.comp/apps.loading.comp";
+import AppCard from "@/components/app.card/app.card.comp";
+import AppsLoading from "@/components/apps.loading/apps.loading.comp";
 import useMain from "@/hooks/useMain";
 import { IEnvironment } from "@/interfaces/environment.interface";
 import { ReactElement, useEffect, useState } from "react";

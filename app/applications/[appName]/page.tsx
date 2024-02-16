@@ -1,9 +1,10 @@
 "use client";
 
-import IDE from "@/components/app.ide/app.ide";
-import VDI from "@/components/app.vdi/app.vdi";
+import IDE from "@/components/app.ide/app.ide.comp";
+import VDI from "@/components/app.vdi/app.vdi.comp";
 import { Fragment, ReactElement } from "react";
 import useMain from "@/hooks/useMain";
+import VDIProvider from "@/providers/vdi.provider";
 
 interface IAppPage {
   params: {
@@ -23,7 +24,11 @@ export default function AppPage({ params }: IAppPage): ReactElement {
           case "ide":
             return <IDE />;
           case "vdi":
-            return <VDI />;
+            return (
+              <VDIProvider>
+                <VDI />
+              </VDIProvider>
+            );
         }
       })()}
     </Fragment>

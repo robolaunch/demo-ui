@@ -54,7 +54,7 @@ export default function SidebarSelect(): ReactElement {
     namespaces?: { label: string; value: string }[];
   }) => {
     return (
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 text-sm">
         {option.namespaces && <IoBusinessOutline />}
         {!option.namespaces && <IoFolderOutline />}
         <span>{option.label}</span>
@@ -63,8 +63,8 @@ export default function SidebarSelect(): ReactElement {
   };
 
   return (
-    <div className="flex items-center py-4 pl-10">
-      <IoBusinessOutline size={22} />
+    <div className="flex items-center gap-2 py-3 pl-6">
+      <IoBusinessOutline size={26} />
       <CascadeSelect
         value={selectedState?.namespace?.name}
         placeholder="Project"
@@ -97,7 +97,7 @@ export default function SidebarSelect(): ReactElement {
         })}
         optionLabel="name"
         optionGroupLabel="name"
-        className="w-full"
+        className="w-full text-sm"
         optionGroupChildren={["namespaces"]}
         itemTemplate={selectTemplate}
       />

@@ -2,8 +2,8 @@
 
 import { ReactElement } from "react";
 import Card from "../card/card.comp";
-import AppCardHeader from "../app.card.header/app.card.header";
-import AppCardBody from "../app.card.body/app.card.body";
+import AppCardHeader from "../app.card.header/app.card.header.comp";
+import AppCardBody from "../app.card.body/app.card.body.comp";
 import { IEnvironment } from "@/interfaces/environment.interface";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";

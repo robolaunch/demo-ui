@@ -1,5 +1,6 @@
 "use client";
 
+import SidebarButton from "@/components/sidebar.button/sidebar.button.comp";
 import Sidebar from "@/components/sidebar/sidebar.comp";
 import { ReactElement } from "react";
 
@@ -9,11 +10,14 @@ interface IMainLayout {
 
 export default function MainLayout({ children }: IMainLayout): ReactElement {
   return (
-    <div className="hw-screen grid grid-cols-12 bg-slate-100">
-      <div className="animate__animated animate__fadeInLeft col-span-2">
+    <div className="hw-screen flex bg-slate-100">
+      <div className="animate__animated animate__fadeInLeft">
         <Sidebar />
       </div>
-      <div className="relative col-span-10">{children}</div>
+      <div className="relative w-full">
+        <SidebarButton />
+        {children}
+      </div>
     </div>
   );
 }

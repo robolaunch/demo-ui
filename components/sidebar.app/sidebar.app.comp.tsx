@@ -12,40 +12,60 @@ import useMain from "@/hooks/useMain";
 import { useRouter } from "next/navigation";
 
 export default function SidebarApp(): ReactElement {
-  const { sidebarState, setSidebarState, setAppState, appState } = useMain();
+  const { setSidebarState, setAppState, appState } = useMain();
 
   const router = useRouter();
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-6">
       {[
         {
           label: "Back",
           icon: <IoChevronBackOutline size={22} />,
           onClick: () => {
             router.push("/overview");
-            setSidebarState({ activePage: "overview" });
+            setSidebarState((prev) => {
+              return {
+                ...prev,
+                activePage: "overview",
+              };
+            });
           },
         },
         {
           label: "Overview",
           icon: <IoGridOutline size={22} />,
           onClick: () => {
-            setAppState({ activeTab: "overview" });
+            setAppState((prev) => {
+              return {
+                ...prev,
+                activeTab: "overview",
+              };
+            });
           },
         },
         {
-          label: "IDE",
+          label: "Code Editor",
           icon: <IoTerminalOutline size={22} />,
           onClick: () => {
-            setAppState({ activeTab: "ide" });
+            setAppState((prev) => {
+              return {
+                ...prev,
+                activeTab: "ide",
+              };
+            });
           },
         },
         {
-          label: "VDI",
+          label: "Desktop",
           icon: <IoTvOutline size={22} />,
           onClick: () => {
-            setAppState({ activeTab: "vdi" });
+            setAppState((prev) => {
+              return {
+                ...prev,
+                activeTab: "vdi",
+              };
+            });
           },
         },
       ].map((item, index) => {

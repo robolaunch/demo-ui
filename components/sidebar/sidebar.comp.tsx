@@ -1,12 +1,13 @@
 "use client";
 
+import SidebarBottom from "../sidebar.bottom/sidebar.bottom.comp";
+import SidebarSelect from "../sidebar.select/sidebar.select.comp";
+import SidebarMain from "../sidebar.main/sidebar.main.comp";
+import SidebarApp from "../sidebar.app/sidebar.app.comp";
+import { useParams } from "next/navigation";
 import { ReactElement } from "react";
 import Image from "next/image";
-import SidebarSelect from "../sidebar.select/sidebar.select";
-import SidebarMain from "../sidebar.main/sidebar.main";
-import SidebarBottom from "../sidebar.bottom.comp/sidebar.bottom.comp";
-import { useParams } from "next/navigation";
-import SidebarApp from "../sidebar.app/sidebar.app";
+import useMain from "@/hooks/useMain";
 
 export default function Sidebar(): ReactElement {
   const {
@@ -15,12 +16,16 @@ export default function Sidebar(): ReactElement {
     appName: string;
   } = useParams();
 
+  const { sidebarState } = useMain();
+
   return (
-    <div className="flex h-screen flex-col gap-2 bg-white py-4">
+    <div
+      className={`flex h-screen flex-col gap-2 border-r border-slate-200 bg-white py-4 ${sidebarState.isOpen ? "w-72" : "hidden"}`}
+    >
       <div className="m-2 flex flex-col items-center">
         <Image
-          width={72}
-          height={72}
+          width={64 + 16}
+          height={64 + 16}
           alt="robolaunch"
           src={"/icons/rocket.svg"}
         />

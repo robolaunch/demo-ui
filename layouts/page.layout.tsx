@@ -1,7 +1,7 @@
 "use client";
 
 import useMain from "@/hooks/useMain";
-import { ReactElement, useEffect } from "react";
+import { Fragment, ReactElement, useEffect } from "react";
 
 interface IPageLayout {
   children: ReactElement | ReactElement[];
@@ -16,7 +16,7 @@ export default function PageLayout({
   paragraph,
   state,
 }: IPageLayout): ReactElement {
-  const { setSidebarState, setAppState } = useMain();
+  const { setSidebarState, setAppState, appState } = useMain();
 
   useEffect(() => {
     setSidebarState((prev) => {
@@ -35,6 +35,10 @@ export default function PageLayout({
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  if (appState.activeTab !== "overview") {
+    return <Fragment>{children}</Fragment>;
+  }
 
   return (
     <div className="hw-full animate__animated animate__fadeIn grid grid-rows-12 px-24 py-10">

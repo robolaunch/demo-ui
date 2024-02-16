@@ -33,3 +33,7 @@
 .animate-spin {
   animation: spin 1s linear infinite;
 }
+
+.p-cascadeselect-label {
+  @apply px-0 py-2;
+}

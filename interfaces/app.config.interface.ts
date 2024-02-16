@@ -1,3 +1,3 @@
 export interface IAppState {
-  activeTab: "overview" | "ide" | "vdi";
+  activeTab: "overview" | "code editor" | "remote desktop";
 }

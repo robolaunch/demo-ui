@@ -26,7 +26,7 @@ export default function AppServiceControlBar({
       {isOpen && (
         <div className="flex items-center gap-6 rounded-t-lg bg-slate-200 px-6 pb-2 pt-3">
           <FileManager />
-          <Control />
+          {type === "vdi" && <Control />}
         </div>
       )}
     </div>

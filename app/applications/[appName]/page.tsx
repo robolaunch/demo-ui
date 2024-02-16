@@ -21,9 +21,9 @@ export default function AppPage({ params }: IAppPage): ReactElement {
         switch (appState.activeTab) {
           case "overview":
             return <Fragment>overview</Fragment>;
-          case "ide":
+          case "code editor":
             return <IDE />;
-          case "vdi":
+          case "remote desktop":
             return (
               <VDIProvider>
                 <VDI />

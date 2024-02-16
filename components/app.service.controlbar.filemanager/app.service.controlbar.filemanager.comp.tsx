@@ -1,3 +1,5 @@
+import { Button } from "primereact/button";
+import { ToggleButton } from "primereact/togglebutton";
 import { Fragment, ReactElement, useState } from "react";
 import { IoFolderOpenOutline } from "react-icons/io5";
 
@@ -6,10 +8,11 @@ export default function FileManager(): ReactElement {
 
   return (
     <Fragment>
-      <div className="flex w-full cursor-pointer flex-col items-center gap-1 p-2">
-        <IoFolderOpenOutline size={24} />
-        <p className="break-keep text-xs">File Manager</p>
-      </div>
+      <ToggleButton
+        offIcon={<IoFolderOpenOutline />}
+        offLabel="File Manager"
+        className="w-32 text-xs"
+      />
     </Fragment>
   );
 }

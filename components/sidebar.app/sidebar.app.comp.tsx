@@ -51,19 +51,19 @@ export default function SidebarApp(): ReactElement {
             setAppState((prev) => {
               return {
                 ...prev,
-                activeTab: "ide",
+                activeTab: "code editor",
               };
             });
           },
         },
         {
-          label: "Desktop",
+          label: "Remote Desktop",
           icon: <IoTvOutline size={22} />,
           onClick: () => {
             setAppState((prev) => {
               return {
                 ...prev,
-                activeTab: "vdi",
+                activeTab: "remote desktop",
               };
             });
           },

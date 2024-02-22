@@ -1,3 +1,5 @@
+"use client";
+
 import { ReactElement } from "react";
 import Modal from "../modal/modal.comp";
 import useMain from "@/hooks/useMain";
@@ -33,20 +35,20 @@ export default function CreateNamespaceModal({
   });
 
   return (
-    <Modal header="Create Namespace" onClose={onClose}>
+    <Modal header="Create Project" onClose={onClose}>
       <form onSubmit={formik.handleSubmit} className="flex flex-col gap-12 p-6">
         <p>
           Give a name to your
           {selectedState?.namespace ? " new " : " first "}
-          namespace.
+          project.
         </p>
         <InputText
           formikProps={{ ...formik.getFieldProps("name") }}
-          label="Namespace Name"
+          label="Project Name"
         />
         <Button
           type="submit"
-          label="Create Namespace"
+          label="Create Project"
           loading={formik.isSubmitting}
         />
       </form>

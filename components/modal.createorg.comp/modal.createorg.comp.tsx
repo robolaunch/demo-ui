@@ -1,3 +1,5 @@
+"use client";
+
 import { ReactElement } from "react";
 import Modal from "../modal/modal.comp";
 import useMain from "@/hooks/useMain";

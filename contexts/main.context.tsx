@@ -18,6 +18,8 @@ import appStateConstant from "@/constants/appState.constant.json";
 import { ITemplate } from "@/interfaces/template.interface";
 import { getTemplates } from "@/apis/template.api";
 import LayoutLoading from "@/components/layout.loading/layout.loading.comp";
+import CreateNamespaceModal from "@/components/modal.createns.comp/modal.createns.comp";
+import CreateOrganizationModal from "@/components/modal.createorg.comp/modal.createorg.comp";
 
 export const MainContext: any = createContext<any>(null);
 
@@ -113,6 +115,12 @@ export default ({ children }: IMainContext) => {
         setAppState,
       }}
     >
+      {/* {!selectedState?.namespace?.name && (
+        <CreateNamespaceModal onClose={() => {}} />
+      )}
+      {!selectedState?.organization?.id && (
+        <CreateOrganizationModal onClose={() => {}} />
+      )} */}
       {loading && <LayoutLoading />}
       {children}
     </MainContext.Provider>

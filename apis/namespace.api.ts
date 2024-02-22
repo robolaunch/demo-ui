@@ -1,6 +1,39 @@
 import { INamespace, INamespaceBE } from "@/interfaces/namespace.interface";
 import { kubernetesApi } from "./openapi";
 import { namespacesMapper } from "@/handlers/namespace.handler";
+import { resolve } from "path";
+
+export function createNamespaceAPI(values: {
+  orgId: string;
+  regionName: string;
+  providerRegion: string;
+  instanceId: string;
+  namespaceName: string;
+}): Promise<void> {
+  return new Promise<void>(async (resolve, reject) => {
+    try {
+      await kubernetesApi.createNamespace({
+        name: "fleet/createNamespace",
+        organizationId: values?.orgId,
+        roboticsClouds: [
+          {
+            name: values?.regionName,
+            cloudInstances: [
+              {
+                instanceId: values?.instanceId,
+                region: values?.providerRegion,
+                robolaunchNamespaces: [{ name: values?.namespaceName }],
+              },
+            ],
+          },
+        ],
+      });
+      resolve();
+    } catch (error) {
+      reject(error);
+    }
+  });
+}
 
 export function getNamespacesAPI(values: {
   orgId: string;

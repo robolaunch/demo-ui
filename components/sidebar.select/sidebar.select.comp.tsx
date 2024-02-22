@@ -12,6 +12,8 @@ import { useRouter } from "next/navigation";
 import { CascadeSelect } from "primereact/cascadeselect";
 import { ReactElement, useEffect, useState } from "react";
 import { IoBusinessOutline, IoFolderOutline } from "react-icons/io5";
+import CreateOrganizationModal from "../modal.createorg.comp/modal.createorg.comp";
+import CreateNamespaceModal from "../modal.createns.comp/modal.createns.comp";
 
 export default function SidebarSelect(): ReactElement {
   const [organizationsWithNamespaces, setOrganizationsWithNamespaces] =
@@ -22,9 +24,7 @@ export default function SidebarSelect(): ReactElement {
   const router = useRouter();
 
   useEffect(() => {
-    !organizationsWithNamespaces?.length &&
-      selectedState?.instance &&
-      handleGetFlow();
+    !organizationsWithNamespaces?.length && handleGetFlow();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedState]);
 
@@ -35,12 +35,14 @@ export default function SidebarSelect(): ReactElement {
       orgs.map(async (org) => {
         return {
           ...org,
-          namespaces: await getNamespacesAPI({
-            orgId: org.id,
-            regionName: selectedState?.region?.name!,
-            providerRegion: selectedState?.region?.region!,
-            instanceId: selectedState?.instance?.id!,
-          }),
+          namespaces: selectedState?.instance
+            ? await getNamespacesAPI({
+                orgId: org.id,
+                regionName: selectedState?.region?.name!,
+                providerRegion: selectedState?.region?.region!,
+                instanceId: selectedState?.instance?.id!,
+              })
+            : [],
         };
       }),
     );
@@ -101,6 +103,12 @@ export default function SidebarSelect(): ReactElement {
         optionGroupChildren={["namespaces"]}
         itemTemplate={selectTemplate}
       />
+      {!selectedState?.namespace?.name && (
+        <CreateNamespaceModal onClose={() => {}} />
+      )}
+      {!selectedState?.organization?.id && (
+        <CreateOrganizationModal onClose={() => {}} />
+      )}
     </div>
   );
 }

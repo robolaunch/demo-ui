@@ -1,4 +1,4 @@
-import { Fragment, ReactElement } from "react";
+import { ReactElement } from "react";
 import { ToggleButton } from "primereact/togglebutton";
 import useVDI from "@/hooks/useVDI";
 import { useKeycloak } from "@react-keycloak/web";
@@ -21,7 +21,7 @@ export default function Control(): ReactElement {
 
   return (
     <ToggleButton
-      className="w-60 text-xs"
+      className="w-40 text-xs"
       checked={
         remoteDesktopReducer?.controller?.displayname ===
         keycloak?.tokenParsed?.preferred_username

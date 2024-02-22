@@ -15,6 +15,9 @@ import { INamespace } from "@/interfaces/namespace.interface";
 import { getNamespacesAPI } from "@/apis/namespace.api";
 import { IAppState } from "@/interfaces/app.config.interface";
 import appStateConstant from "@/constants/appState.constant.json";
+import { ITemplate } from "@/interfaces/template.interface";
+import { getTemplates } from "@/apis/template.api";
+import LayoutLoading from "@/components/layout.loading/layout.loading.comp";
 
 export const MainContext: any = createContext<any>(null);
 
@@ -36,9 +39,7 @@ export default ({ children }: IMainContext) => {
     appStateConstant as IAppState,
   );
 
-  const [applications, setApplications] = useState<any[]>([
-    1, 2, 3, 4, 5, 6, 7, 8, 9,
-  ]);
+  const [templates, setTemplates] = useState<ITemplate[]>([]);
 
   useEffect(() => {
     handleSelectedSetter();
@@ -49,7 +50,18 @@ export default ({ children }: IMainContext) => {
     console.log(selectedState);
   }, [selectedState]);
 
+  useEffect(() => {
+    handleGetTemplates();
+  }, []);
+
+  async function handleGetTemplates() {
+    setTemplates(await getTemplates());
+  }
+
+  const [loading, setLoading] = useState<boolean>(false);
+
   async function handleSelectedSetter() {
+    setLoading(true);
     const orgs: IOrganization[] = await getOrganizationsAPI();
 
     const regions: IRegion[] =
@@ -76,17 +88,16 @@ export default ({ children }: IMainContext) => {
           })
         : [];
 
-    if (regions?.length && instances?.length) {
-      setSelectedState((prev) => {
-        return {
-          ...prev,
-          organization: orgs?.[0] || null,
-          region: regions?.[0] || null,
-          instance: instances?.[0] || null,
-          namespace: namespaces?.[0] || null,
-        };
-      });
-    }
+    setSelectedState((prev) => {
+      return {
+        ...prev,
+        organization: orgs?.[0] || null,
+        region: regions?.[0] || null,
+        instance: instances?.[0] || null,
+        namespace: namespaces?.[0] || null,
+      };
+    });
+    setLoading(false);
   }
 
   return (
@@ -96,12 +107,13 @@ export default ({ children }: IMainContext) => {
         setSidebarState,
         selectedState,
         setSelectedState,
-        applications,
-        setApplications,
+        templates,
+        setTemplates,
         appState,
         setAppState,
       }}
     >
+      {loading && <LayoutLoading />}
       {children}
     </MainContext.Provider>
   );

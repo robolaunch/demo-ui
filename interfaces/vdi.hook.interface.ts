@@ -1,5 +1,3 @@
-"use client";
-
 export interface IVDIHook {
   client: any;
   handleMute: () => void;

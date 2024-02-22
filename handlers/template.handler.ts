@@ -32,13 +32,11 @@ export function categoriesMapper(data: ITemplate[]): ICategory[] {
     new Set(data?.map((item) => item.category)),
   );
 
-  return ["all", ...uniqueCategories]?.map((category) => {
+  return uniqueCategories?.map((category) => {
     return {
       category: category,
       alias: (() => {
         switch (category) {
-          case "all":
-            return "All";
           case "plain":
             return "Plain";
           case "robotics":

@@ -15,7 +15,7 @@ import {
   selectedStateDataSetter,
   selectedStateInitialGetter,
   selectedStateInitialSetter,
-} from "@/functions/selectedState.functions";
+} from "@/functions/selectedState.function";
 
 export const MainContext: any = createContext<any>(null);
 

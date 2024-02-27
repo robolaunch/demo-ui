@@ -16,37 +16,53 @@ export default function CreateSidebar({
   formik,
 }: ICreateSidebar): ReactElement {
   return (
-    <Card className="hw-full flex flex-col gap-10 p-4">
-      <CreateSelectedTemplateCard formik={formik} />
-      <InputText
-        formikProps={{ ...formik.getFieldProps("name") }}
-        label="Application Name"
-      />
-      <div className="flex flex-col gap-2">
-        <InputSwitch
-          label="Jupyter Notebook:"
-          checked={true}
-          onChange={() => {}}
-          formikProps={formik.getFieldProps("jupyterNotebookEnabled")}
+    <Card className="hw-full flex flex-col justify-between p-4">
+      <div className="flex flex-col gap-6">
+        <CreateSelectedTemplateCard formik={formik} />
+        <span
+          style={{
+            visibility:
+              formik.touched?.appConfig?.image?.distro &&
+              formik.errors?.appConfig?.image?.distro
+                ? "visible"
+                : "hidden",
+          }}
+          className="transition-300 mx-auto text-[0.68rem] text-red-500"
+        >
+          {formik.errors?.appConfig?.image?.distro}
+        </span>
+        <InputText
+          formikProps={{ ...formik.getFieldProps("name") }}
+          label="Application Name"
+          touched={formik.touched.name}
+          error={formik.errors.name}
         />
-        <InputSwitch
-          label="Remote Desktop:"
-          checked={true}
-          onChange={() => {}}
-          formikProps={formik.getFieldProps("vdiEnabled")}
-        />
-        <InputSwitch
-          label="Code Editor:"
-          checked={true}
-          onChange={() => {}}
-          disabled
-          formikProps={formik.getFieldProps("ideEnabled")}
-        />
+        <div className="flex flex-col gap-2">
+          <InputSwitch
+            label="Jupyter Notebook:"
+            checked={formik?.values?.jupyterNotebookEnabled}
+            onChange={() => {}}
+            formikProps={formik.getFieldProps("jupyterNotebookEnabled")}
+          />
+          <InputSwitch
+            label="Remote Desktop:"
+            checked={formik?.values?.vdiEnabled}
+            onChange={() => {}}
+            formikProps={formik.getFieldProps("vdiEnabled")}
+          />
+          <InputSwitch
+            label="Code Editor:"
+            checked={formik?.values?.ideEnabled}
+            onChange={() => {}}
+            disabled
+            formikProps={formik.getFieldProps("ideEnabled")}
+          />
+        </div>
+
+        <CreateSidebarAdvancedSettings formik={formik} />
       </div>
-
-      <CreateSidebarAdvancedSettings formik={formik} />
-
       <Button
+        disabled={formik.isSubmitting || !formik.isValid}
         loading={formik.isSubmitting}
         type="submit"
         label="Create Application"

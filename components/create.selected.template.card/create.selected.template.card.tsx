@@ -43,16 +43,18 @@ export default function CreateSelectedTemplateCard({
           className="py-2"
           width={64}
           height={64}
-          src={selectedTemplate?.app?.icon!}
+          src={selectedTemplate?.app?.icon! || "/icons/rocket.svg"}
           alt="template"
         />
         <p className="text-sm font-medium">{selectedTemplate?.app?.alias}</p>
         <p className="font-base text-xs">
-          {selectedTemplate?.image?.os}
-          {" - "}
-          {templateDistroViewer(selectedTemplate?.image?.distro!)}
-          {" : "}
-          {templateDesktopViewer(selectedTemplate?.image?.desktop!)}
+          {selectedTemplate?.image?.os
+            ? `
+            ${selectedTemplate?.image?.os} ${templateDistroViewer(
+              selectedTemplate?.image?.distro!,
+            )} - ${templateDesktopViewer(selectedTemplate?.image?.desktop!)}
+            `
+            : "None Selected Application"}
         </p>
       </div>
     </Card>

@@ -1,6 +1,6 @@
 export function templateDesktopViewer(value: string): string {
   if (value?.includes("xfce")) {
-    return "Xfce";
+    return "XFCE";
   }
   return value;
 }

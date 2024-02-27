@@ -3,11 +3,13 @@ import { Fragment, ReactElement, useState } from "react";
 import Modal from "../modal/modal.comp";
 import useApp from "@/hooks/useApp";
 
-interface IFileManager {
+interface IServiceRestart {
   type: "ide" | "vdi";
 }
 
-export default function FileManager({ type }: IFileManager): ReactElement {
+export default function ServiceRestart({
+  type,
+}: IServiceRestart): ReactElement {
   const [isOpened, setIsOpened] = useState<boolean>(false);
 
   const { appData } = useApp();
@@ -16,19 +18,16 @@ export default function FileManager({ type }: IFileManager): ReactElement {
     <Fragment>
       <ToggleButton
         onClick={() => setIsOpened(!isOpened)}
-        offLabel="File Manager"
+        offLabel="Restart"
         className="w-32 text-xs"
       />
       {isOpened && (
         <Modal
-          header="File Manager"
+          header="Restart Service"
           onClose={() => setIsOpened(false)}
-          style={{ width: "90vw", height: "90vh" }}
+          style={{ width: "40vw", height: "30vh" }}
         >
-          <iframe
-            className="hw-full"
-            src={appData?.services?.[`${type}`]?.fileManagerEndpoint}
-          />
+          <>Dev</>
         </Modal>
       )}
     </Fragment>

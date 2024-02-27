@@ -2,7 +2,7 @@
 
 import { getNamespacesAPI } from "@/apis/namespace.api";
 import { getOrganizationsAPI } from "@/apis/organization.api";
-import { orgNameDOM } from "@/functions/organization.functions";
+import { orgNameDOM } from "@/functions/organization.function";
 import useMain from "@/hooks/useMain";
 import {
   IOrganization,

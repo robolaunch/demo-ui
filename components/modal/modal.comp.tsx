@@ -5,12 +5,14 @@ interface IModal {
   children: ReactElement | ReactElement[];
   header: string;
   onClose: () => void;
+  style?: object;
 }
 
 export default function Modal({
   children,
   header,
   onClose,
+  style,
 }: IModal): ReactElement {
   return (
     <Dialog
@@ -19,7 +21,7 @@ export default function Modal({
       header={header}
       visible={true}
       onHide={onClose}
-      style={{ width: "40vw" }}
+      style={style ? style : { width: "40vw" }}
       breakpoints={{ "960px": "75vw", "641px": "100vw" }}
     >
       {children}

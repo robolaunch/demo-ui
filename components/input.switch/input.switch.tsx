@@ -15,7 +15,7 @@ export default function InputSwitch({
   formikProps,
 }: IInputSwitch): ReactElement {
   return (
-    <div className="flex items-center gap-1 text-sm">
+    <div className="flex items-center justify-between gap-1 text-sm">
       <label className="w-32">{label}</label>
       <InputSwitchPR className="scale-75" checked={checked} {...formikProps} />
     </div>

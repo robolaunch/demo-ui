@@ -1,5 +1,6 @@
 "use client";
 
+import Overview from "@/components/app.overview/app.overview.comp";
 import IDE from "@/components/app.ide/app.ide.comp";
 import VDI from "@/components/app.vdi/app.vdi.comp";
 import { Fragment, ReactElement } from "react";
@@ -20,7 +21,7 @@ export default function AppPage({ params }: IAppPage): ReactElement {
       {(() => {
         switch (appState.activeTab) {
           case "overview":
-            return <Fragment>overview</Fragment>;
+            return <Overview />;
           case "code editor":
             return <IDE />;
           case "remote desktop":

@@ -5,6 +5,8 @@ import {
 } from "react-icons/md";
 import FileManager from "../app.service.controlbar.filemanager/app.service.controlbar.filemanager.comp";
 import Control from "../app.service.controlbar.control/app.service.controlbar.control.comp";
+import ServiceLog from "../app.service.controlbar.log/app.service.controlbar.log.comp";
+import ServiceRestart from "../app.service.controlbar.restart/app.service.controlbar.restart.comp";
 
 interface IAppServiceControlBar {
   type: "ide" | "vdi";
@@ -25,7 +27,9 @@ export default function AppServiceControlBar({
       </button>
       {isOpen && (
         <div className="flex items-center gap-6 rounded-t-lg bg-slate-200 px-6 pb-2 pt-3">
-          <FileManager />
+          <FileManager type={type} />
+          <ServiceLog type={type} />
+          <ServiceRestart type={type} />
           {type === "vdi" && <Control />}
         </div>
       )}

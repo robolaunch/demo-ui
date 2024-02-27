@@ -2,19 +2,31 @@
 
 import CreateTemplatesMapper from "@/components/create.templates.mapper/create.templates.mapper";
 import { FormikProps, useFormik } from "formik";
-import { ReactElement } from "react";
+import { ReactElement, useEffect } from "react";
 import createEnvironmentInitialValues from "@/constants/create.environment.initial.json";
 import { ICreateEnvironmentForm } from "@/interfaces/create.interface";
 import CreateSidebar from "@/components/create.sidebar/create.sidebar";
 import { createEnvironmentAPI } from "@/apis/environment.api";
 import useMain from "@/hooks/useMain";
+import * as Yup from "yup";
+import { useRouter } from "next/navigation";
 
 export default function CreateApp(): ReactElement {
   const { selectedState } = useMain();
 
+  const router = useRouter();
+
   const formik: FormikProps<ICreateEnvironmentForm> =
     useFormik<ICreateEnvironmentForm>({
       initialValues: createEnvironmentInitialValues as ICreateEnvironmentForm,
+      validationSchema: Yup.object().shape({
+        name: Yup.string().required("Application name is required."),
+        appConfig: Yup.object().shape({
+          image: Yup.object().shape({
+            distro: Yup.string().required("Application is required."),
+          }),
+        }),
+      }),
       onSubmit: async () => {
         formik.setSubmitting(true);
         await createEnvironmentAPI({
@@ -39,6 +51,8 @@ export default function CreateApp(): ReactElement {
           repoURL: formik.values.repoURL as string,
           repoBranch: formik.values.repoBranch as string,
         });
+
+        setTimeout(() => router.push("/applications"), 1000);
       },
     });
 

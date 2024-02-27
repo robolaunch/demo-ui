@@ -2,24 +2,40 @@ import { IEnvironment } from "@/interfaces/environment.interface";
 import Status from "../status/status.comp";
 import { ReactElement } from "react";
 import Image from "next/image";
+import useMain from "@/hooks/useMain";
+import {
+  templateDesktopViewer,
+  templateDistroViewer,
+} from "@/functions/environment.function";
 
 interface IAppCardBody {
   app: IEnvironment;
 }
 
 export default function AppCardBody({ app }: IAppCardBody): ReactElement {
+  const { templates } = useMain();
+
+  const currentTemplate = templates.find(
+    (template) =>
+      app.applicationConfig.application.name === template.app.name &&
+      app.applicationConfig.application.version === template.app.version &&
+      app.applicationConfig.devspace.ubuntuDistro === template.image.distro &&
+      app.applicationConfig.devspace.desktop === template.image.desktop &&
+      app.applicationConfig.devspace.version === template.image.version,
+  );
+
   const list = [
     {
       key: "Application",
-      value: app.applicationConfig.application.name,
+      value: `${currentTemplate?.app.alias} - ${currentTemplate?.app.version}`,
     },
     {
-      key: "Application Version",
-      value: app.applicationConfig.application.version,
+      key: "Version",
+      value: currentTemplate?.image.version,
     },
     {
       key: "Operating System",
-      value: `Ubuntu ${app.applicationConfig.devspace.ubuntuDistro} (${app.applicationConfig.devspace.desktop})`,
+      value: `Ubuntu ${templateDistroViewer(app.applicationConfig.devspace.ubuntuDistro)} - ${templateDesktopViewer(app.applicationConfig.devspace.desktop)}`,
     },
     {
       key: "Code Editor",
@@ -61,9 +77,7 @@ export default function AppCardBody({ app }: IAppCardBody): ReactElement {
         className="flex items-start justify-end"
         width={56}
         height={56}
-        src={
-          "https://raw.githubusercontent.com/robolaunch/trademark/main/applications/ubuntu-logo.png"
-        }
+        src={currentTemplate?.app.icon! || "/icons/rocket.svg"}
         alt="app image"
       />
     </div>

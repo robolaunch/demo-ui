@@ -13,7 +13,7 @@ import { CascadeSelect } from "primereact/cascadeselect";
 import { Fragment, ReactElement, useEffect, useState } from "react";
 import { IoBusinessOutline, IoFolderOutline } from "react-icons/io5";
 import CreateNamespaceModal from "../modal.createns.comp/modal.createns.comp";
-import { IoIosAdd, IoIosAddCircleOutline } from "react-icons/io";
+import { IoIosAdd } from "react-icons/io";
 import CreateOrganizationModal from "../modal.createorg.comp/modal.createorg.comp";
 
 export default function SidebarSelect(): ReactElement {
@@ -25,7 +25,9 @@ export default function SidebarSelect(): ReactElement {
   const router = useRouter();
 
   useEffect(() => {
-    !organizationsWithNamespaces?.length && handleGetFlow();
+    !organizationsWithNamespaces?.length &&
+      selectedState?.instance &&
+      handleGetFlow();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedState]);
 
@@ -100,6 +102,10 @@ export default function SidebarSelect(): ReactElement {
     );
   };
 
+  useEffect(() => {
+    console.log("organizationsWithNamespaces", organizationsWithNamespaces);
+  }, [organizationsWithNamespaces]);
+
   return (
     <div className="flex items-center gap-2 py-3 pl-6">
       <IoBusinessOutline size={26} />
@@ -135,10 +141,7 @@ export default function SidebarSelect(): ReactElement {
                   namespace: ns,
                 };
               }),
-              {
-                label: "Create Project",
-                value: "Create Project",
-              },
+              { label: "Create Project", value: "Create Project" },
             ],
           };
         })}

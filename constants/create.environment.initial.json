@@ -1,0 +1,20 @@
+{
+  "name": "",
+  "appConfig": {
+    "category": "plain",
+    "image": {
+      "distro": "",
+      "desktop": "",
+      "version": ""
+    },
+    "app": {
+      "name": "",
+      "version": ""
+    }
+  },
+  "ideEnabled": true,
+  "vdiEnabled": true,
+  "jupyterNotebookEnabled": true,
+  "repoURL": "",
+  "repoBranch": ""
+}

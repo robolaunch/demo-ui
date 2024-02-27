@@ -18,10 +18,6 @@ export default function SidebarMain(): ReactElement {
     <div className="flex flex-col gap-4">
       {[
         {
-          label: "Overview",
-          icon: <IoGridOutline size={22} />,
-        },
-        {
           label: "Create",
           icon: <IoAddCircleOutline size={22} />,
         },

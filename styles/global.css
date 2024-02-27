@@ -21,6 +21,10 @@
   @apply h-screen w-screen;
 }
 
+.transition-300 {
+  @apply transition-all duration-300;
+}
+
 .transition-500 {
   @apply transition-all duration-500;
 }
@@ -29,6 +33,14 @@
   50% {
     opacity: 0.5;
   }
+}
+
+.p-inputswitch.p-inputswitch-checked .p-inputswitch-slider {
+  @apply bg-primary-500;
+}
+
+.p-inline-message-text {
+  @apply text-xs;
 }
 
 .animate-pulse {

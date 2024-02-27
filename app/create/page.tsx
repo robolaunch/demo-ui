@@ -1,20 +1,58 @@
 "use client";
 
-import Categories from "@/components/create.categories/create.categories";
-import Templates from "@/components/create.templates/create.templates";
-import { ReactElement, useState } from "react";
+import CreateTemplatesMapper from "@/components/create.templates.mapper/create.templates.mapper";
+import { FormikProps, useFormik } from "formik";
+import { ReactElement } from "react";
+import createEnvironmentInitialValues from "@/constants/create.environment.initial.json";
+import { ICreateEnvironmentForm } from "@/interfaces/create.interface";
+import CreateSidebar from "@/components/create.sidebar/create.sidebar";
+import { createEnvironmentAPI } from "@/apis/environment.api";
+import useMain from "@/hooks/useMain";
 
 export default function CreateApp(): ReactElement {
-  const [categoryFilter, setCategoryFilter] = useState<string>("plain");
+  const { selectedState } = useMain();
+
+  const formik: FormikProps<ICreateEnvironmentForm> =
+    useFormik<ICreateEnvironmentForm>({
+      initialValues: createEnvironmentInitialValues as ICreateEnvironmentForm,
+      onSubmit: async () => {
+        formik.setSubmitting(true);
+        await createEnvironmentAPI({
+          orgId: selectedState?.organization?.id!,
+          regionName: selectedState?.region?.name!,
+          providerRegion: selectedState?.region?.region!,
+          instanceId: selectedState?.instance?.id!,
+          namespaceName: selectedState?.namespace?.name!,
+          appName: formik.values.name,
+          ideEnabled: formik.values.ideEnabled,
+          vdiEnabled: formik.values.vdiEnabled,
+          jupyterNotebookEnabled: formik.values.jupyterNotebookEnabled,
+          appConfig: {
+            app: formik.values.appConfig.app,
+            category: formik.values.appConfig.category,
+            image: {
+              desktop: formik.values.appConfig.image.desktop,
+              distro: formik.values.appConfig.image.distro,
+              version: formik.values.appConfig.image.version,
+            },
+          },
+          repoURL: formik.values.repoURL as string,
+          repoBranch: formik.values.repoBranch as string,
+        });
+      },
+    });
 
   return (
-    <div className="hw-full flex flex-col gap-6">
-      <Categories
-        categoryFilter={categoryFilter}
-        setCategoryFilter={setCategoryFilter}
-      />
-
-      <Templates categoryFilter={categoryFilter} />
-    </div>
+    <form
+      onSubmit={formik.handleSubmit}
+      className="hw-full grid grid-cols-12 gap-12"
+    >
+      <div className="hw-full col-span-9 flex flex-col gap-6">
+        <CreateTemplatesMapper formik={formik} />
+      </div>
+      <div className="hw-full col-span-3">
+        <CreateSidebar formik={formik} />
+      </div>
+    </form>
   );
 }

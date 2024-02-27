@@ -1,4 +1,4 @@
 export interface ISidebarState {
   isOpen: boolean;
-  activePage: "overview" | "create" | "applications" | "help" | null;
+  activePage: "create" | "applications" | "help" | null;
 }

@@ -12,7 +12,7 @@ export default function InputText({
 }: IInputText): ReactElement {
   return (
     <span className="p-float-label text-sm">
-      <InputTextPR className="h-10 w-full text-xs" {...formikProps} />
+      <InputTextPR className="h-10 w-full !text-xs" {...formikProps} />
       <label>{label}</label>
     </span>
   );

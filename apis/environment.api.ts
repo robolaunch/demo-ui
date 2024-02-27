@@ -89,3 +89,105 @@ export async function getEnvironmentAPI(values: {
     }
   });
 }
+
+export async function createEnvironmentAPI(values: {
+  orgId: string;
+  regionName: string;
+  instanceId: string;
+  providerRegion: string;
+  namespaceName: string;
+  appName: string;
+  appConfig: {
+    category: string;
+    image: {
+      distro: string;
+      desktop: string;
+      version: string;
+    };
+    app: {
+      name: string;
+      version: string;
+    };
+  };
+  ideEnabled: boolean;
+  vdiEnabled: boolean;
+  jupyterNotebookEnabled: boolean;
+  repoURL: string;
+  repoBranch: string;
+}): Promise<void> {
+  return new Promise<void>(async (resolve, reject) => {
+    try {
+      await environmentApi.createEnvironment({
+        name: "environment/createEnvironment",
+        organizationId: values?.orgId,
+        roboticsClouds: [
+          {
+            name: values?.regionName,
+            cloudInstances: [
+              {
+                instanceId: values?.instanceId,
+                region: values?.providerRegion,
+                environments: [
+                  {
+                    name: values?.appName,
+                    fleetName: values?.namespaceName,
+
+                    // services settings //
+                    vdiEnabled: values.vdiEnabled,
+                    vdiSessionCount: 4,
+                    vdiGpuResource: 1,
+                    ideEnabled: values.ideEnabled,
+                    ideGpuResource: 1,
+                    ideGpuResourceType: "nvidia.com/gpu",
+                    notebookEnabled: values?.jupyterNotebookEnabled,
+                    notebookGpuResource: 1,
+                    // services settings //
+
+                    // application settings //
+                    domainName: values?.appConfig.category,
+                    application: {
+                      name: values?.appConfig?.app?.name,
+                      version: values?.appConfig?.app?.version,
+                    },
+                    devspace: {
+                      ubuntuDistro: values?.appConfig?.image?.distro,
+                      desktop: values?.appConfig?.image?.desktop,
+                      version: values?.appConfig?.image?.version,
+                    },
+                    permittedDirectories: "/home/robolaunch",
+                    persistentDirectories: "/var:/etc:/opt:/usr",
+                    // application settings //
+
+                    // hardware settings //
+                    storageAmount: 50,
+                    gpuEnabledForCloudInstance: true,
+                    // hardware settings //
+
+                    robotWorkspaces: values.repoURL
+                      ? [
+                          {
+                            name: "default",
+                            workspaceDistro: "",
+                            robotRepositories: [
+                              {
+                                name: "default",
+                                url: values.repoURL,
+                                branch: values.repoBranch,
+                              },
+                            ],
+                          },
+                        ]
+                      : undefined,
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      });
+      resolve();
+    } catch (error) {
+      reject(error);
+    }
+  });
+}

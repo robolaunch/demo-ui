@@ -22,19 +22,19 @@ export default function Sidebar(): ReactElement {
     <div
       className={`flex h-screen flex-col gap-2 border-r border-slate-200 bg-white py-4 ${sidebarState.isOpen ? "w-72" : "hidden"}`}
     >
-      <div className="m-2 flex flex-col items-center">
-        <Image
-          width={64 + 16}
-          height={64 + 16}
-          alt="robolaunch"
-          src={"/icons/rocket.svg"}
-        />
-      </div>
-
       <div className="flex h-full flex-col justify-between">
-        <SidebarSelect />
+        <div className="flex flex-col gap-6">
+          <Image
+            className="mx-auto my-2"
+            width={64 + 16}
+            height={64 + 16}
+            alt="robolaunch"
+            src={"/icons/rocket.svg"}
+          />
+          <SidebarSelect />
 
-        {appName ? <SidebarApp /> : <SidebarMain />}
+          {appName ? <SidebarApp /> : <SidebarMain />}
+        </div>
 
         <SidebarBottom />
       </div>

@@ -7,7 +7,7 @@ interface IPageLayout {
   children: ReactElement | ReactElement[];
   title: string;
   paragraph: string;
-  state: "overview" | "create" | "applications" | "help";
+  state: "create" | "applications" | "help";
 }
 
 export default function PageLayout({

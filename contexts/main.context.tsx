@@ -62,7 +62,7 @@ export default ({ children }: IMainContext) => {
 
   const [loading, setLoading] = useState<boolean>(false);
 
-  async function handleSelectedSetter() {
+  async function handleSelectedSetter(): Promise<void> {
     setLoading(true);
     const orgs: IOrganization[] = await getOrganizationsAPI();
 
@@ -115,12 +115,12 @@ export default ({ children }: IMainContext) => {
         setAppState,
       }}
     >
-      {/* {!selectedState?.namespace?.name && (
+      {!selectedState?.namespace?.name && (
         <CreateNamespaceModal onClose={() => {}} />
       )}
       {!selectedState?.organization?.id && (
         <CreateOrganizationModal onClose={() => {}} />
-      )} */}
+      )}
       {loading && <LayoutLoading />}
       {children}
     </MainContext.Provider>

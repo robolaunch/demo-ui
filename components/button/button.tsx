@@ -7,6 +7,7 @@ interface IButton {
   loading?: boolean;
   disabled?: boolean;
   onClick?: () => void;
+  className?: string;
 }
 
 export default function Button({
@@ -15,10 +16,11 @@ export default function Button({
   loading,
   disabled,
   onClick,
+  className,
 }: IButton): ReactElement {
   return (
     <ButtonPR
-      className="h-11 text-sm"
+      className={`bg-primary-500 border-primary-300 h-11 text-sm ${className}`}
       disabled={disabled}
       loading={loading}
       label={label}

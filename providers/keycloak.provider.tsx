@@ -1,8 +1,8 @@
 import { ReactElement } from "react";
+import LayoutLoading from "@/components/layout.loading/layout.loading.comp";
 import { ReactKeycloakProvider } from "@react-keycloak/web";
 import env from "@/providers/env.provider";
 import Keycloak from "keycloak-js";
-import LayoutLoading from "@/components/layout.loading/layout.loading.comp";
 interface IKeycloakProvider {
   children: Readonly<ReactElement | ReactElement[]>;
 }

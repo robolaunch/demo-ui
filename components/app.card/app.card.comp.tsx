@@ -1,11 +1,11 @@
 "use client";
 
-import { ReactElement } from "react";
-import Card from "../card/card.comp";
 import AppCardHeader from "../app.card.header/app.card.header.comp";
 import AppCardBody from "../app.card.body/app.card.body.comp";
 import { IEnvironment } from "@/interfaces/environment.interface";
 import { useRouter } from "next/navigation";
+import { ReactElement } from "react";
+import Card from "../card/card.comp";
 import { toast } from "sonner";
 
 interface IAppCard {
@@ -21,9 +21,9 @@ export default function AppCard({ app }: IAppCard): ReactElement {
   const router = useRouter();
 
   return (
-    <Card>
-      <button
-        className="hw-full transition-500 flex flex-col bg-white p-7 hover:scale-105 hover:shadow-lg"
+    <Card className="!rounded-xl">
+      <div
+        className="hw-full transition-500 flex cursor-pointer flex-col bg-white p-7 hover:scale-105 hover:shadow-lg"
         onClick={() => {
           isReady
             ? router.push(`/applications/${app.details.name}`)
@@ -32,7 +32,7 @@ export default function AppCard({ app }: IAppCard): ReactElement {
       >
         <AppCardHeader title={app.details.name} status={app?.status} />
         <AppCardBody app={app} />
-      </button>
+      </div>
     </Card>
   );
 }

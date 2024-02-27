@@ -5,16 +5,14 @@ import { ToggleButton } from "primereact/togglebutton";
 import { ICategory } from "@/interfaces/template.interface";
 import { categoriesMapper } from "@/handlers/template.handler";
 import useMain from "@/hooks/useMain";
+import { ICreateEnvironment } from "@/interfaces/create.interface";
+import { FormikProps } from "formik";
 
 interface ICategories {
-  categoryFilter: string;
-  setCategoryFilter: (category: string) => void;
+  formik: FormikProps<ICreateEnvironment>;
 }
 
-export default function Categories({
-  categoryFilter,
-  setCategoryFilter,
-}: ICategories): ReactElement {
+export default function Categories({ formik }: ICategories): ReactElement {
   const [categories, setCategories] = useState<ICategory[]>([]);
   const { templates } = useMain();
 
@@ -28,19 +26,39 @@ export default function Categories({
   }
 
   return (
-    <div className="grid grid-cols-10">
+    <div className="grid grid-cols-7">
       {categories?.map((category) => {
+        const checked: boolean =
+          formik.values?.appConfig?.category ===
+          category.category.toLowerCase();
+
         return (
           <div
-            onClick={() => setCategoryFilter(category.category)}
+            onClick={() => {
+              formik.setValues({
+                ...formik.values,
+                appConfig: {
+                  category: category.category.toLowerCase(),
+                  app: {
+                    name: "",
+                    version: "",
+                  },
+                  image: {
+                    desktop: "",
+                    distro: "",
+                    version: "",
+                  },
+                },
+              });
+            }}
             className="col-span-1"
             key={category.category}
           >
             <ToggleButton
               offLabel={category.alias}
               onLabel={category.alias}
-              className="w-32 text-xs"
-              checked={categoryFilter === category.category.toLowerCase()}
+              className={`w-32 text-xs ${checked && "bg-primary-500 border-primary-700"}`}
+              checked={checked}
             />
           </div>
         );

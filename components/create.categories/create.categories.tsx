@@ -5,11 +5,11 @@ import { ToggleButton } from "primereact/togglebutton";
 import { ICategory } from "@/interfaces/template.interface";
 import { categoriesMapper } from "@/handlers/template.handler";
 import useMain from "@/hooks/useMain";
-import { ICreateEnvironment } from "@/interfaces/create.interface";
+import { ICreateEnvironmentForm } from "@/interfaces/create.interface";
 import { FormikProps } from "formik";
 
 interface ICategories {
-  formik: FormikProps<ICreateEnvironment>;
+  formik: FormikProps<ICreateEnvironmentForm>;
 }
 
 export default function Categories({ formik }: ICategories): ReactElement {
@@ -57,7 +57,7 @@ export default function Categories({ formik }: ICategories): ReactElement {
             <ToggleButton
               offLabel={category.alias}
               onLabel={category.alias}
-              className={`w-32 text-xs ${checked && "bg-primary-500 border-primary-700"}`}
+              className={`w-32 text-xs ${checked && "border-primary-700 bg-primary-500"}`}
               checked={checked}
             />
           </div>

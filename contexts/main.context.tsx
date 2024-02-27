@@ -4,15 +4,6 @@ import { ISidebarState } from "@/interfaces/sidebarstate.interface";
 import React, { ReactElement, createContext, useEffect, useState } from "react";
 import constantSidebarState from "@/constants/sidebarstate.constant.json";
 import { ISelectedState } from "@/interfaces/main.hook.interface";
-import selectedStateContant from "@/constants/selectedState.constant.json";
-import { getOrganizationsAPI } from "@/apis/organization.api";
-import { getRegionsAPI } from "@/apis/region.api";
-import { IRegion } from "@/interfaces/region.interface";
-import { IOrganization } from "@/interfaces/organization.interface";
-import { IInstance } from "@/interfaces/instance.interface";
-import { getInstancesAPI } from "@/apis/instance.api";
-import { INamespace } from "@/interfaces/namespace.interface";
-import { getNamespacesAPI } from "@/apis/namespace.api";
 import { IAppState } from "@/interfaces/app.config.interface";
 import appStateConstant from "@/constants/appState.constant.json";
 import { ITemplate } from "@/interfaces/template.interface";
@@ -20,6 +11,11 @@ import { getTemplates } from "@/apis/template.api";
 import LayoutLoading from "@/components/layout.loading/layout.loading.comp";
 import CreateNamespaceModal from "@/components/modal.createns.comp/modal.createns.comp";
 import CreateOrganizationModal from "@/components/modal.createorg.comp/modal.createorg.comp";
+import {
+  selectedStateDataSetter,
+  selectedStateInitialGetter,
+  selectedStateInitialSetter,
+} from "@/functions/selectedState.functions";
 
 export const MainContext: any = createContext<any>(null);
 
@@ -32,63 +28,36 @@ export default ({ children }: IMainContext) => {
   const [sidebarState, setSidebarState] = useState<ISidebarState>(
     constantSidebarState as ISidebarState,
   );
-
   const [selectedState, setSelectedState] = useState<ISelectedState>(
-    selectedStateContant as ISelectedState,
+    selectedStateInitialGetter() as ISelectedState,
   );
-
   const [appState, setAppState] = useState<IAppState>(
     appStateConstant as IAppState,
   );
-
   const [templates, setTemplates] = useState<ITemplate[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    handleSelectedSetter();
+    handleGetTemplates();
+    !selectedState.namespace && selectedStateDataSetterFC();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     console.log(selectedState);
+    selectedStateInitialSetter(selectedState);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedState]);
-
-  useEffect(() => {
-    handleGetTemplates();
-  }, []);
 
   async function handleGetTemplates() {
     setTemplates(await getTemplates());
   }
 
-  const [loading, setLoading] = useState<boolean>(false);
-
-  async function handleSelectedSetter(): Promise<void> {
+  async function selectedStateDataSetterFC(): Promise<void> {
     setLoading(true);
-    const orgs: IOrganization[] = await getOrganizationsAPI();
 
-    const regions: IRegion[] =
-      orgs?.length && !selectedState?.region
-        ? await getRegionsAPI({ orgId: orgs?.[0]?.id })
-        : [];
-
-    const instances: IInstance[] =
-      regions?.length && !selectedState?.instance
-        ? await getInstancesAPI({
-            orgId: orgs?.[0]?.id,
-            regionName: regions?.[0]?.name,
-            providerRegion: regions?.[0]?.region,
-          })
-        : [];
-
-    const namespaces: INamespace[] =
-      instances?.length && !selectedState?.namespace
-        ? await getNamespacesAPI({
-            orgId: orgs?.[0]?.id,
-            regionName: regions?.[0]?.name,
-            providerRegion: regions?.[0]?.region,
-            instanceId: instances?.[0]?.id,
-          })
-        : [];
+    const { orgs, regions, instances, namespaces } =
+      await selectedStateDataSetter(selectedState);
 
     setSelectedState((prev) => {
       return {
@@ -115,10 +84,8 @@ export default ({ children }: IMainContext) => {
         setAppState,
       }}
     >
-      {!selectedState?.namespace?.name && (
-        <CreateNamespaceModal onClose={() => {}} />
-      )}
-      {!selectedState?.organization?.id && (
+      {!selectedState.namespace && <CreateNamespaceModal onClose={() => {}} />}
+      {!selectedState.organization && (
         <CreateOrganizationModal onClose={() => {}} />
       )}
       {loading && <LayoutLoading />}

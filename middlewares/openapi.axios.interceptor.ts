@@ -1,3 +1,4 @@
+import { axiosToastController } from "@/controller/axios.controller";
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 
 const axiosInterceptorOpenApi: any = axios.create({});
@@ -14,6 +15,9 @@ axiosInterceptorOpenApi.interceptors.request.use((req: AxiosRequestConfig) => {
 
 axiosInterceptorOpenApi.interceptors.response.use((res: AxiosResponse) => {
   console.log("axios.response", res);
+
+  axiosToastController(res);
+
   return res;
 });
 

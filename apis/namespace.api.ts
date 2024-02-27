@@ -1,8 +1,6 @@
 import { INamespace, INamespaceBE } from "@/interfaces/namespace.interface";
 import { kubernetesApi } from "./openapi";
 import { namespacesMapper } from "@/handlers/namespace.handler";
-import { resolve } from "path";
-
 export function createNamespaceAPI(values: {
   orgId: string;
   regionName: string;

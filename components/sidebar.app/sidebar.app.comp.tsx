@@ -23,6 +23,12 @@ export default function SidebarApp(): ReactElement {
           label: "Back",
           icon: <IoChevronBackOutline size={22} />,
           onClick: () => {
+            setAppState((prev) => {
+              return {
+                ...prev,
+                activeTab: "overview",
+              };
+            });
             router.push("/applications");
             setSidebarState((prev) => {
               return {

@@ -7,6 +7,7 @@ import {
   environmentMapper,
   environmentsMapper,
 } from "@/handlers/environment.handler";
+import { AxiosResponse } from "axios";
 
 export async function getEnvironmentsAPI(values: {
   orgId: string;
@@ -117,7 +118,14 @@ export async function createEnvironmentAPI(values: {
 }): Promise<void> {
   return new Promise<void>(async (resolve, reject) => {
     try {
-      await environmentApi.createEnvironment({
+      const response: AxiosResponse<
+        any,
+        {
+          data: any;
+          success: boolean;
+          message: string;
+        }
+      > = await environmentApi.createEnvironment({
         name: "environment/createEnvironment",
         organizationId: values?.orgId,
         roboticsClouds: [

@@ -7,9 +7,10 @@ import { useFormik } from "formik";
 import InputText from "../input.text/input.text.comp";
 import Button from "../button/button";
 import { createNamespaceAPI } from "@/apis/namespace.api";
+import * as Yup from "yup";
 
 interface ICreateNamespaceModal {
-  onClose: () => void;
+  onClose?: () => void;
 }
 
 export default function CreateNamespaceModal({
@@ -21,6 +22,17 @@ export default function CreateNamespaceModal({
     initialValues: {
       name: "",
     },
+    validationSchema: Yup.object().shape({
+      name: Yup.string()
+        .required("Project name is required.")
+        .min(3, "Minimum 3 characters.")
+        .max(16, "Maximum 16 characters.")
+        .lowercase("Must be lowercase.")
+        .matches(
+          /^[a-z0-9]+(-[a-z0-9]+)*$/,
+          "Must be lowercase with hyphen (-) only in the middle.",
+        ),
+    }),
     onSubmit: async () => {
       formik.setSubmitting(true);
       await createNamespaceAPI({
@@ -36,8 +48,8 @@ export default function CreateNamespaceModal({
 
   return (
     <Modal header="Create Project" onClose={onClose}>
-      <form onSubmit={formik.handleSubmit} className="flex flex-col gap-12 p-6">
-        <p>
+      <form onSubmit={formik.handleSubmit} className="flex flex-col gap-8 p-6">
+        <p className="font-medium">
           Give a name to your
           {selectedState?.namespace ? " new " : " first "}
           project.
@@ -45,11 +57,14 @@ export default function CreateNamespaceModal({
         <InputText
           formikProps={{ ...formik.getFieldProps("name") }}
           label="Project Name"
+          error={formik.errors.name}
+          touched={formik.touched.name}
         />
         <Button
           type="submit"
           label="Create Project"
           loading={formik.isSubmitting}
+          disabled={!formik.isValid || formik.isSubmitting}
         />
       </form>
     </Modal>

@@ -4,7 +4,7 @@ import { ReactElement } from "react";
 interface IModal {
   children: ReactElement | ReactElement[];
   header: string;
-  onClose: () => void;
+  onClose?: () => void;
   style?: object;
 }
 
@@ -20,7 +20,8 @@ export default function Modal({
       position="center"
       header={header}
       visible={true}
-      onHide={onClose}
+      onHide={onClose ? onClose : () => {}}
+      closable={onClose ? true : false}
       style={style ? style : { width: "40vw" }}
       breakpoints={{ "960px": "75vw", "641px": "100vw" }}
     >

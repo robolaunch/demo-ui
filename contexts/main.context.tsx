@@ -84,10 +84,8 @@ export default ({ children }: IMainContext) => {
         setAppState,
       }}
     >
-      {!selectedState.namespace && <CreateNamespaceModal onClose={() => {}} />}
-      {!selectedState.organization && (
-        <CreateOrganizationModal onClose={() => {}} />
-      )}
+      {!selectedState.namespace && <CreateNamespaceModal />}
+      {!selectedState.organization && <CreateOrganizationModal />}
       {loading && <LayoutLoading />}
       {children}
     </MainContext.Provider>

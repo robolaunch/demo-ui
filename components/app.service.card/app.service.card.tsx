@@ -21,11 +21,11 @@ export default function AppServiceCard({
     },
     vdi: {
       title: "Remote Desktop",
-      description: "Integrated Development Environment",
+      description: "Virtual Desktop Infrastructure",
     },
     jupyterNotebook: {
       title: "Jupyter Notebook",
-      description: "Integrated Development Environment",
+      description: "Data Science and Machine Learning",
     },
   };
 
@@ -49,13 +49,15 @@ export default function AppServiceCard({
       }}
     >
       <Image
-        width={64 * 5}
-        height={64 * 5}
+        width={64 * 7}
+        height={64 * 7}
         src={`/services/${type}.png` || "/icons/rocket.svg"}
         alt={type}
       />
-      <p>{content?.[`${type}`]?.title}</p>
-      <p>{content?.[`${type}`]?.description}</p>
+      <p className="text-base font-medium">{content?.[`${type}`]?.title}</p>
+      <p className="text-center text-sm text-slate-500">
+        {content?.[`${type}`]?.description}
+      </p>
     </Card>
   );
 }

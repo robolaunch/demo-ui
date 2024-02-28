@@ -9,6 +9,7 @@ import {
   templateDesktopViewer,
   templateDistroViewer,
 } from "@/functions/environment.function";
+import Skeleton from "react-loading-skeleton";
 
 export default function AppTemplateCard(): ReactElement {
   const [currentTemplate, setCurrentTemplate] = useState<ITemplate>();
@@ -22,7 +23,7 @@ export default function AppTemplateCard(): ReactElement {
   return (
     <Card className="flex flex-col items-center justify-between gap-4 p-10">
       <div className="hw-full flex items-start justify-between">
-        <div className="flex flex-col gap-2.5 text-sm">
+        <div className="flex w-full flex-col gap-2.5 text-sm">
           <p>
             <span className="font-medium">Application Model: </span>
             {currentTemplate?.app.alias}
@@ -57,7 +58,9 @@ export default function AppTemplateCard(): ReactElement {
           height={64 * 1.75}
           src={currentTemplate?.app?.icon! || "/icons/rocket.svg"}
           alt={currentTemplate?.app?.alias!}
-          objectFit="contain"
+          style={{
+            objectFit: "contain",
+          }}
         />
       </div>
       <p className="text-sm">

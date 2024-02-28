@@ -65,13 +65,11 @@ export default function SidebarSelect(): ReactElement {
       return (
         <Fragment>
           <div
-            className="absolute inset-0 flex items-center px-6 py-4"
+            className="flex w-full items-center justify-start text-sm"
             onClick={() => setIsOpenCreateNS(true)}
           >
-            <div className="flex items-center gap-2 text-sm">
-              <IoIosAdd size={18} />
-              <span>{option.label}</span>
-            </div>
+            <IoIosAdd size={18} />
+            <span>{option.label}</span>
           </div>
         </Fragment>
       );
@@ -81,13 +79,11 @@ export default function SidebarSelect(): ReactElement {
       return (
         <Fragment>
           <div
-            className="absolute inset-0 flex h-11 w-full items-center"
+            className="flex w-full items-center justify-start text-sm"
             onClick={() => setIsOpenCreateOrg(true)}
           >
-            <div className="mx-4 flex items-center gap-2 text-sm">
-              <IoIosAdd size={18} />
-              <span>{option.label}</span>
-            </div>
+            <IoIosAdd size={18} />
+            <span>{option.label}</span>
           </div>
         </Fragment>
       );
@@ -102,17 +98,20 @@ export default function SidebarSelect(): ReactElement {
     );
   };
 
-  useEffect(() => {
-    console.log("organizationsWithNamespaces", organizationsWithNamespaces);
-  }, [organizationsWithNamespaces]);
-
   return (
-    <div className="flex items-center gap-2 py-3 pl-6">
+    <div className="flex items-center gap-2 py-3 pl-6 pr-3">
       <IoBusinessOutline size={26} />
       <CascadeSelect
         value={selectedState?.namespace?.name}
         placeholder="Projects"
         onChange={({ value }) => {
+          if (
+            value.label === "Create Project" ||
+            value.label === "org_Create Organization"
+          ) {
+            return;
+          }
+
           setSelectedState((prev) => {
             return {
               ...prev,
@@ -141,13 +140,16 @@ export default function SidebarSelect(): ReactElement {
                   namespace: ns,
                 };
               }),
-              { label: "Create Project", value: "Create Project" },
+              {
+                label: "Create Project",
+                value: "Create Project",
+              },
             ],
           };
         })}
         optionLabel="name"
         optionGroupLabel="name"
-        className="w-full text-sm"
+        className="w-full px-2 text-sm"
         optionGroupChildren={["namespaces"]}
         itemTemplate={selectTemplate}
       />

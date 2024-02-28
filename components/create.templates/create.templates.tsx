@@ -62,7 +62,9 @@ export default function Templates({ formik }: ITemplates): ReactElement {
                   className="py-2"
                   width={92}
                   height={92}
-                  objectFit="contain"
+                  style={{
+                    objectFit: "contain",
+                  }}
                   src={template.app.icon}
                   alt={template.app.name}
                 />

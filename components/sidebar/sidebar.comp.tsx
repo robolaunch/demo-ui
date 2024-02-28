@@ -8,6 +8,7 @@ import { useParams } from "next/navigation";
 import { ReactElement } from "react";
 import Image from "next/image";
 import useMain from "@/hooks/useMain";
+import AppProvider from "@/contexts/app.context";
 
 export default function Sidebar(): ReactElement {
   const {
@@ -33,7 +34,13 @@ export default function Sidebar(): ReactElement {
           />
           <SidebarSelect />
 
-          {appName ? <SidebarApp /> : <SidebarMain />}
+          {appName ? (
+            <AppProvider>
+              <SidebarApp />
+            </AppProvider>
+          ) : (
+            <SidebarMain />
+          )}
         </div>
 
         <SidebarBottom />

@@ -20,7 +20,7 @@ export default function Button({
 }: IButton): ReactElement {
   return (
     <ButtonPR
-      className={`h-11 border-primary-300 bg-primary-500 text-sm ${className}`}
+      className={`transition-300 h-11 border-primary-300 bg-primary-500 text-sm hover:bg-primary-700 ${className}`}
       disabled={disabled}
       loading={loading}
       label={label}

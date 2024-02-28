@@ -5,7 +5,7 @@ interface IInputSwitch {
   label: string;
   checked: boolean;
   disabled?: boolean;
-  onChange: (e: any) => void;
+  onChange?: (e: any) => void;
   formikProps?: any;
 }
 

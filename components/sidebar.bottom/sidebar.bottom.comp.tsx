@@ -13,7 +13,7 @@ export default function SidebarBottom(): ReactElement {
           label: "Logout",
           icon: <IoLogOutOutline size={22} />,
           onClick: () => {
-            localStorage.removeItem("rl-auth");
+            localStorage.clear();
             keycloak?.logout();
           },
         },

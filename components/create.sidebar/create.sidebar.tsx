@@ -41,21 +41,17 @@ export default function CreateSidebar({
           <InputSwitch
             label="Jupyter Notebook:"
             checked={formik?.values?.jupyterNotebookEnabled}
-            onChange={() => {}}
             formikProps={formik.getFieldProps("jupyterNotebookEnabled")}
           />
           <InputSwitch
             label="Remote Desktop:"
             checked={formik?.values?.vdiEnabled}
-            onChange={() => {}}
             formikProps={formik.getFieldProps("vdiEnabled")}
           />
           <InputSwitch
             label="Code Editor:"
             checked={formik?.values?.ideEnabled}
-            onChange={() => {}}
             disabled
-            formikProps={formik.getFieldProps("ideEnabled")}
           />
         </div>
 

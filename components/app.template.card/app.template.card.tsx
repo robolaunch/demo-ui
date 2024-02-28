@@ -38,7 +38,7 @@ export default function AppTemplateCard(): ReactElement {
             {templateDistroViewer(currentTemplate?.image.distro!)}
           </p>
           <p>
-            <span className="font-medium">Application Desktop: </span>
+            <span className="font-medium">Desktop Environment: </span>
             {templateDesktopViewer(currentTemplate?.image.desktop!)}
           </p>
           <p>

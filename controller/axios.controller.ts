@@ -6,14 +6,14 @@ export function axiosToastController(response: AxiosResponse) {
   const message = data?.message;
 
   if (status === 200 || status === 201) {
-    if (data?.success && !message?.toLowerCase().includes("get")) {
-      toast.success(message || "Request success");
-    } else if (!data?.success && !message?.toLowerCase().includes("get")) {
-      toast.error(message || "Request failed");
+    if (!data?.success) {
+      return toast.error(message || "Request failed");
     }
-  } else if (message) {
-    toast.error(message);
+
+    if (data?.success && !message?.toLowerCase().includes("get")) {
+      return toast.success(message || "Request success");
+    }
   } else {
-    toast.error("Request failed");
+    toast.error(message || "Request failed");
   }
 }

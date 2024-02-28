@@ -30,7 +30,7 @@ export default function CreateNamespaceModal({
         instanceId: selectedState?.instance?.id!,
         namespaceName: formik.values.name,
       });
-      // setTimeout(() => window.location.reload(), 1000);
+      setTimeout(() => window.location.reload(), 1000);
     },
   });
 

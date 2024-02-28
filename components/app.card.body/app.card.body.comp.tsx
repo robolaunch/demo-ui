@@ -7,6 +7,7 @@ import {
   templateDesktopViewer,
   templateDistroViewer,
 } from "@/functions/environment.function";
+import { templateFinder } from "@/functions/template.function";
 
 interface IAppCardBody {
   app: IEnvironment;
@@ -15,14 +16,7 @@ interface IAppCardBody {
 export default function AppCardBody({ app }: IAppCardBody): ReactElement {
   const { templates } = useMain();
 
-  const currentTemplate = templates.find(
-    (template) =>
-      app.applicationConfig.application.name === template.app.name &&
-      app.applicationConfig.application.version === template.app.version &&
-      app.applicationConfig.devspace.ubuntuDistro === template.image.distro &&
-      app.applicationConfig.devspace.desktop === template.image.desktop &&
-      app.applicationConfig.devspace.version === template.image.version,
-  );
+  const currentTemplate = templateFinder(app, templates);
 
   const list = [
     {

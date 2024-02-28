@@ -40,7 +40,7 @@ export default function Apps(): ReactElement {
     <div className="hw-full grid grid-cols-3 ">
       {apps?.map((app, index) => {
         return (
-          <div key={index} className="col-span-1  p-4">
+          <div key={index} className="col-span-1 p-4">
             <AppCard app={app} />
           </div>
         );

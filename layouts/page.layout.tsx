@@ -1,6 +1,7 @@
 "use client";
 
 import useMain from "@/hooks/useMain";
+import { useParams } from "next/navigation";
 import { Fragment, ReactElement, useEffect } from "react";
 
 interface IPageLayout {
@@ -16,7 +17,7 @@ export default function PageLayout({
   paragraph,
   state,
 }: IPageLayout): ReactElement {
-  const { setSidebarState, setAppState, appState } = useMain();
+  const { setSidebarState } = useMain();
 
   useEffect(() => {
     setSidebarState((prev) => {
@@ -26,17 +27,14 @@ export default function PageLayout({
       };
     });
 
-    setAppState((prev) => {
-      return {
-        ...prev,
-        activeTab: "overview",
-      };
-    });
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (appState.activeTab !== "overview") {
+  const params = useParams();
+
+  console.log(params);
+
+  if (params?.appName) {
     return <Fragment>{children}</Fragment>;
   }
 

@@ -6,6 +6,7 @@ import { INamespace } from "./namespace.interface";
 import { IInstance } from "./instance.interface";
 import { IAppState } from "./app.config.interface";
 import { ITemplate } from "./template.interface";
+import { IEnvironment } from "./environment.interface";
 
 export interface IMainHook {
   sidebarState: ISidebarState;
@@ -14,8 +15,8 @@ export interface IMainHook {
   setSelectedState: Dispatch<SetStateAction<ISelectedState>>;
   templates: ITemplate[];
   setTemplates: Dispatch<SetStateAction<ITemplate[]>>;
-  appState: IAppState;
-  setAppState: Dispatch<SetStateAction<IAppState>>;
+  applications: IEnvironment[];
+  setApplications: Dispatch<SetStateAction<IEnvironment[]>>;
 }
 
 export interface ISelectedState {

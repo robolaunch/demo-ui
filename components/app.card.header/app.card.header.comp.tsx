@@ -1,4 +1,3 @@
-import Status from "@/components/status/status.comp";
 import { ReactElement } from "react";
 
 interface IAppCardHeader {
@@ -13,7 +12,7 @@ export default function AppCardHeader({
   return (
     <div className="flex w-full justify-between">
       <h1 className="text-base font-semibold text-slate-700">{title}</h1>
-      <Status isReady={status} />
+      {/* <Status isReady={status} /> */}
     </div>
   );
 }

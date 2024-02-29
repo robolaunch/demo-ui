@@ -2,20 +2,19 @@
 
 // @ts-ignore
 import GuacamoleKeyboard from "@/utils/vdi.keyboard/guacamole-keyboard.ts";
-// import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 import { useEffect, createContext, useRef, useReducer } from "react";
 import { useKeycloak } from "@react-keycloak/web";
-import useApp from "@/hooks/useApp";
 import { toast } from "sonner";
 
 export const VDIContext: any = createContext<any>(null);
 
 interface IVDIContext {
   children: any;
+  socketEndpoint: string;
 }
 
 // eslint-disable-next-line
-export default ({ children }: IVDIContext) => {
+export default ({ children, socketEndpoint }: IVDIContext) => {
   const video = useRef<any>(null);
   const peer = useRef<any>(null);
   const candidate = useRef<any>(null);
@@ -25,8 +24,6 @@ export default ({ children }: IVDIContext) => {
   const overlay = useRef<any>(null);
 
   const { keycloak } = useKeycloak();
-
-  const { appData } = useApp();
 
   const [remoteDesktopReducer, dispatcher] = useReducer(handleReducer, {
     members: [],
@@ -271,10 +268,7 @@ export default ({ children }: IVDIContext) => {
       }
       client.current.close();
     };
-  }, [
-    appData?.services?.vdi?.socketEndpoint,
-    keycloak?.tokenParsed?.preferred_username,
-  ]);
+  }, [socketEndpoint, keycloak?.tokenParsed?.preferred_username]);
 
   useEffect(() => {
     var buffer: ArrayBuffer;

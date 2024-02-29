@@ -39,7 +39,7 @@ export default function VDI(): ReactElement {
         {remoteDesktopReducer?.isMuted && (
           <div
             onClick={() => handleMute()}
-            className="animate-fadeIn text-light-50 absolute top-0 z-10 flex h-full w-full cursor-pointer items-center justify-center bg-[#00000090]"
+            className="animate-fadeIn absolute top-0 z-10 flex h-full w-full cursor-pointer items-center justify-center bg-[#00000090] text-light-50"
           >
             <GiSpeaker size={48} />
           </div>

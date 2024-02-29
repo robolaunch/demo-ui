@@ -1,7 +1,6 @@
 import { ReactElement } from "react";
 import Card from "../card/card.comp";
 import useApp from "@/hooks/useApp";
-import useMain from "@/hooks/useMain";
 import Image from "next/image";
 
 interface IAppServiceCard {
@@ -12,7 +11,6 @@ export default function AppServiceCard({
   type,
 }: IAppServiceCard): ReactElement {
   const { appData } = useApp();
-  const { setAppState } = useMain();
 
   const content = {
     ide: {
@@ -38,13 +36,6 @@ export default function AppServiceCard({
             appData?.services?.jupyterNotebook?.httpsEndpoint,
             "_blank",
           );
-        } else {
-          setAppState((prev) => {
-            return {
-              ...prev,
-              activeTab: type === "ide" ? "code editor" : "remote desktop",
-            };
-          });
         }
       }}
     >

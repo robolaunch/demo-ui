@@ -2,15 +2,15 @@ import { ReactElement } from "react";
 import {
   IoAddCircleOutline,
   IoAppsOutline,
-  IoGridOutline,
   IoHelpBuoyOutline,
 } from "react-icons/io5";
 import SidebarItem from "../sidebar.item/sidebar.item.comp";
 import useMain from "@/hooks/useMain";
 import { useRouter } from "next/navigation";
+import SidebarAppItem from "../SidebarAppItem/SidebarAppItem";
 
 export default function SidebarMain(): ReactElement {
-  const { sidebarState } = useMain();
+  const { sidebarState, applications } = useMain();
 
   const router = useRouter();
 
@@ -41,6 +41,9 @@ export default function SidebarMain(): ReactElement {
             }}
           />
         );
+      })}
+      {applications.map((app, index) => {
+        return <SidebarAppItem app={app} key={index} />;
       })}
     </div>
   );

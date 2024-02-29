@@ -1,5 +1,5 @@
 import { IEnvironment } from "@/interfaces/environment.interface";
-import Status from "../status/status.comp";
+import Status from "../app.status/app.status.comp";
 import { ReactElement } from "react";
 import Image from "next/image";
 import useMain from "@/hooks/useMain";
@@ -35,7 +35,8 @@ export default function AppCardBody({ app }: IAppCardBody): ReactElement {
       key: "Code Editor",
       value: (
         <Status
-          isReady={app.services.ide.isEnabled && app.status}
+          status=""
+          // isReady={app.services.ide.isEnabled && app.status}
           textWeight="text-xs"
           iconSize={2}
         />
@@ -45,7 +46,8 @@ export default function AppCardBody({ app }: IAppCardBody): ReactElement {
       key: "Remote Desktop",
       value: (
         <Status
-          isReady={app.services.vdi.isEnabled && app.status}
+          status=""
+          // isReady={app.services.vdi.isEnabled && app.status}
           textWeight="text-xs"
           iconSize={2}
         />

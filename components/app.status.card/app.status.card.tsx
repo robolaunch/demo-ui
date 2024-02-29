@@ -2,7 +2,7 @@ import { ReactElement } from "react";
 import Card from "../card/card.comp";
 import { ProgressSpinner } from "primereact/progressspinner";
 import useApp from "@/hooks/useApp";
-import Status from "../status/status.comp";
+import Status from "../app.status/app.status.comp";
 
 export default function AppStatusCard(): ReactElement {
   const { appData } = useApp();
@@ -18,7 +18,7 @@ export default function AppStatusCard(): ReactElement {
         animationDuration=".5s"
       />
       <span>{status}</span>
-      <Status isReady={status === "EnvironmentReady"} />
+      <Status status="" />
     </Card>
   );
 }

@@ -4,8 +4,6 @@ import { ISidebarState } from "@/interfaces/sidebarstate.interface";
 import React, { ReactElement, createContext, useEffect, useState } from "react";
 import constantSidebarState from "@/constants/sidebarstate.constant.json";
 import { ISelectedState } from "@/interfaces/main.hook.interface";
-import { IAppState } from "@/interfaces/app.config.interface";
-import appStateConstant from "@/constants/appState.constant.json";
 import { ITemplate } from "@/interfaces/template.interface";
 import { getTemplates } from "@/apis/template.api";
 import LayoutLoading from "@/components/layout.loading/layout.loading.comp";
@@ -16,6 +14,8 @@ import {
   selectedStateInitialGetter,
   selectedStateInitialSetter,
 } from "@/functions/selectedState.function";
+import { IEnvironment } from "@/interfaces/environment.interface";
+import { getEnvironmentsAPI } from "@/apis/environment.api";
 
 export const MainContext: any = createContext<any>(null);
 
@@ -31,10 +31,8 @@ export default ({ children }: IMainContext) => {
   const [selectedState, setSelectedState] = useState<ISelectedState>(
     selectedStateInitialGetter() as ISelectedState,
   );
-  const [appState, setAppState] = useState<IAppState>(
-    appStateConstant as IAppState,
-  );
   const [templates, setTemplates] = useState<ITemplate[]>([]);
+  const [applications, setApplications] = useState<IEnvironment[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
@@ -71,6 +69,23 @@ export default ({ children }: IMainContext) => {
     setLoading(false);
   }
 
+  useEffect(() => {
+    selectedState?.namespace?.name && handleGetApplications();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedState]);
+
+  async function handleGetApplications() {
+    setApplications(
+      await getEnvironmentsAPI({
+        orgId: selectedState?.organization?.id!,
+        regionName: selectedState?.region?.name!,
+        providerRegion: selectedState?.region?.region!,
+        instanceId: selectedState?.instance?.id!,
+        namespaceName: selectedState?.namespace?.name!,
+      }),
+    );
+  }
+
   return (
     <MainContext.Provider
       value={{
@@ -80,8 +95,8 @@ export default ({ children }: IMainContext) => {
         setSelectedState,
         templates,
         setTemplates,
-        appState,
-        setAppState,
+        applications,
+        setApplications,
       }}
     >
       {!selectedState.namespace && <CreateNamespaceModal />}

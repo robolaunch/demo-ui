@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  IoLogoPython,
-  IoTerminal,
-  IoTerminalOutline,
-  IoTv,
-  IoTvOutline,
-} from "react-icons/io5";
+import { IoLogoPython, IoTerminal, IoTv } from "react-icons/io5";
 import { IEnvironment } from "@/interfaces/environment.interface";
 import { useRouter } from "next/navigation";
 import { ReactElement } from "react";

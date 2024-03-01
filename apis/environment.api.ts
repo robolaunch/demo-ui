@@ -199,3 +199,73 @@ export async function createEnvironmentAPI(values: {
     }
   });
 }
+
+export async function startEnvironmentAPI(values: {
+  orgId: string;
+  regionName: string;
+  instanceId: string;
+  providerRegion: string;
+  namespaceName: string;
+  appName: string;
+}): Promise<void> {
+  return new Promise<void>(async (resolve, reject) => {
+    try {
+      const response = await environmentApi.startEnvironment({
+        name: "environment/startEnvironment",
+        organizationId: values.orgId,
+        roboticsClouds: [
+          {
+            name: values.regionName,
+            cloudInstances: [
+              {
+                instanceId: values.instanceId,
+                region: values.providerRegion,
+                environments: [
+                  { fleetName: values.namespaceName, name: values.appName },
+                ],
+              },
+            ],
+          },
+        ],
+      });
+      resolve();
+    } catch (error) {
+      reject(error);
+    }
+  });
+}
+
+export async function stopEnvironmentAPI(values: {
+  orgId: string;
+  regionName: string;
+  instanceId: string;
+  providerRegion: string;
+  namespaceName: string;
+  appName: string;
+}): Promise<void> {
+  return new Promise<void>(async (resolve, reject) => {
+    try {
+      const response = await environmentApi.stopEnvironment({
+        name: "environment/stopEnvironment",
+        organizationId: values.orgId,
+        roboticsClouds: [
+          {
+            name: values.regionName,
+            cloudInstances: [
+              {
+                instanceId: values.instanceId,
+                region: values.providerRegion,
+                environments: [
+                  { fleetName: values.namespaceName, name: values.appName },
+                ],
+              },
+            ],
+          },
+        ],
+      });
+      resolve();
+    } catch (error) {
+      reject(error);
+    }
+  });
+}

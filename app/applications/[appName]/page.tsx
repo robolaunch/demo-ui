@@ -9,5 +9,5 @@ interface IAppPage {
 }
 
 export default function AppPage({ params }: IAppPage): ReactElement {
-  return <Fragment></Fragment>;
+  return <Fragment />;
 }

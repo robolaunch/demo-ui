@@ -1,3 +1,5 @@
+"use client";
+
 import SidebarAppItemService from "../SidebarAppItemService/SidebarAppItemService";
 import { getApplicationStatus } from "@/functions/environment.function";
 import { IEnvironment } from "@/interfaces/environment.interface";
@@ -12,12 +14,6 @@ interface ISidebarAppItem {
 
 export default function SidebarAppItem({ app }: ISidebarAppItem): ReactElement {
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
-
-  const appStatus: string = app?.clusters?.environment?.length
-    ? app?.clusters?.environment?.find(
-        (env) => env.status !== "EnvironmentReady",
-      )?.status || "EnvironmentReady"
-    : "Unreachable Status";
 
   return (
     <div className="transition-300 flex flex-col">

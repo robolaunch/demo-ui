@@ -19,10 +19,10 @@ export default function AppStatus({
           switch (status) {
             case "EnvironmentReady":
               return "bg-green-500";
-            case "Unreachable Status":
-              return "bg-red-500";
-            default:
+            case "ConfiguringEnvironment":
               return "bg-yellow-500";
+            default:
+              return "bg-red-500";
           }
         })()}
           `}

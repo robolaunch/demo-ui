@@ -23,10 +23,6 @@ export default function SidebarMain(): ReactElement {
           icon: <IoAddCircleOutline size={22} />,
         },
         {
-          label: "Applications",
-          icon: <IoAppsOutline size={22} />,
-        },
-        {
           label: "Help",
           icon: <IoHelpBuoyOutline size={22} />,
         },

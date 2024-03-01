@@ -1,9 +1,11 @@
 "use client";
 
+import { getApplicationStatus } from "@/functions/environment.function";
 import { IoLogoPython, IoTerminal, IoTv } from "react-icons/io5";
 import { IEnvironment } from "@/interfaces/environment.interface";
 import { useRouter } from "next/navigation";
 import { ReactElement } from "react";
+import { toast } from "sonner";
 
 interface ISidebarAppItemService {
   type: "ide" | "vdi" | "jupyterNotebook";
@@ -20,23 +22,27 @@ export default function SidebarAppItemService({
     <button
       className={`transition-500 animate__animated animate__fadeIn flex w-full items-center justify-between gap-3 py-3 pl-11 hover:bg-slate-100 disabled:cursor-not-allowed`}
       onClick={() => {
-        if (type === "jupyterNotebook") {
-          return window.open(
-            app.services.jupyterNotebook.httpsEndpoint,
-            "_blank",
-          );
-        }
+        if (getApplicationStatus(app) === "EnvironmentReady") {
+          if (type === "jupyterNotebook") {
+            return window.open(
+              app.services.jupyterNotebook.httpsEndpoint,
+              "_blank",
+            );
+          }
 
-        router.push(
-          `/applications/${app.details.name}/${(() => {
-            switch (type) {
-              case "ide":
-                return "code-editor";
-              case "vdi":
-                return "remote-desktop";
-            }
-          })()}`,
-        );
+          router.push(
+            `/applications/${app.details.name}/${(() => {
+              switch (type) {
+                case "ide":
+                  return "code-editor";
+                case "vdi":
+                  return "remote-desktop";
+              }
+            })()}`,
+          );
+        } else {
+          toast.warning("Service is not ready.");
+        }
       }}
     >
       <div className="flex gap-2">

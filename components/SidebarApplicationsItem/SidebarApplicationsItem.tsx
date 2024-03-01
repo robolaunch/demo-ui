@@ -1,8 +1,8 @@
 import SidebarAppItem from "../SidebarAppItem/SidebarAppItem";
-import { IoIosApps, IoIosArrowForward } from "react-icons/io";
 import { Fragment, ReactElement, useState } from "react";
-import useMain from "@/hooks/useMain";
+import { IoIosArrowForward } from "react-icons/io";
 import { IoApps } from "react-icons/io5";
+import useMain from "@/hooks/useMain";
 
 export default function SidebarApplicationsItem(): ReactElement {
   const [isCollapsed, setIsCollapsed] = useState<boolean>(true);

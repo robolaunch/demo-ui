@@ -1,7 +1,11 @@
+"use client";
+
 import { IEnvironment } from "@/interfaces/environment.interface";
 import { Button } from "primereact/button";
 import { Menu } from "primereact/menu";
-import { ReactElement, useRef } from "react";
+import { ReactElement, useRef, useState } from "react";
+import ModalAppEvents from "../modal.app.events/modal.app.events";
+import { getApplicationStatus } from "@/functions/environment.function";
 
 interface ISidebarAppDots {
   app: IEnvironment;
@@ -9,6 +13,10 @@ interface ISidebarAppDots {
 
 export default function SidebarAppDots({ app }: ISidebarAppDots): ReactElement {
   const menuRight: any = useRef(null);
+
+  const [activeModal, setActiveModal] = useState<
+    "start" | "stop" | "terminate" | null
+  >(null);
 
   return (
     <div className="card flex items-center justify-center">
@@ -20,29 +28,32 @@ export default function SidebarAppDots({ app }: ISidebarAppDots): ReactElement {
               {
                 label: "Info",
                 icon: "pi pi-info-circle",
-                command: () => {
-                  console.log("Start");
+                command: async () => {
+                  console.log("Info");
                 },
+                visible: false,
               },
               {
                 label: "Start",
                 icon: "pi pi-chevron-circle-right",
                 command: () => {
-                  console.log("Start");
+                  setActiveModal("start");
                 },
+                visible: getApplicationStatus(app) === "Stopped",
               },
               {
                 label: "Stop",
                 icon: "pi pi-stop-circle",
                 command: () => {
-                  console.log("Stop");
+                  setActiveModal("stop");
                 },
+                visible: getApplicationStatus(app) === "EnvironmentReady",
               },
               {
                 label: "Terminate",
                 icon: "pi pi-trash",
                 command: () => {
-                  console.log("Terminate");
+                  setActiveModal("terminate");
                 },
               },
             ],
@@ -61,6 +72,13 @@ export default function SidebarAppDots({ app }: ISidebarAppDots): ReactElement {
         aria-controls="popup_menu_right"
         aria-haspopup
       />
+      {activeModal && (
+        <ModalAppEvents
+          appName={app.details.name}
+          onClose={() => setActiveModal(null)}
+          type={activeModal}
+        />
+      )}
     </div>
   );
 }

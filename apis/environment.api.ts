@@ -269,3 +269,41 @@ export async function stopEnvironmentAPI(values: {
     }
   });
 }
+
+export async function terminateEnvironmentAPI(values: {
+  orgId: string;
+  regionName: string;
+  instanceId: string;
+  providerRegion: string;
+  namespaceName: string;
+  appName: string;
+}) {
+  return new Promise<void>(async (resolve, reject) => {
+    try {
+      await environmentApi.deleteEnvironment({
+        name: "environment/deleteEnvironment",
+        organizationId: values?.orgId,
+        roboticsClouds: [
+          {
+            name: values?.regionName,
+            cloudInstances: [
+              {
+                instanceId: values?.instanceId,
+                region: values?.providerRegion,
+                environments: [
+                  {
+                    fleetName: values?.namespaceName,
+                    name: values?.appName,
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      });
+      resolve();
+    } catch (error) {
+      reject(error);
+    }
+  });
+}

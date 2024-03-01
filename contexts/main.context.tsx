@@ -1,21 +1,21 @@
 "use client";
 
-import { ISidebarState } from "@/interfaces/sidebarstate.interface";
+import CreateOrganizationModal from "@/components/modal.createorg.comp/modal.createorg.comp";
+import CreateNamespaceModal from "@/components/modal.createns.comp/modal.createns.comp";
 import React, { ReactElement, createContext, useEffect, useState } from "react";
+import LayoutLoading from "@/components/layout.loading/layout.loading.comp";
 import constantSidebarState from "@/constants/sidebarstate.constant.json";
+import { ISidebarState } from "@/interfaces/sidebarstate.interface";
 import { ISelectedState } from "@/interfaces/main.hook.interface";
+import { IEnvironment } from "@/interfaces/environment.interface";
+import { getEnvironmentsAPI } from "@/apis/environment.api";
 import { ITemplate } from "@/interfaces/template.interface";
 import { getTemplates } from "@/apis/template.api";
-import LayoutLoading from "@/components/layout.loading/layout.loading.comp";
-import CreateNamespaceModal from "@/components/modal.createns.comp/modal.createns.comp";
-import CreateOrganizationModal from "@/components/modal.createorg.comp/modal.createorg.comp";
 import {
   selectedStateDataSetter,
   selectedStateInitialGetter,
   selectedStateInitialSetter,
 } from "@/functions/selectedState.function";
-import { IEnvironment } from "@/interfaces/environment.interface";
-import { getEnvironmentsAPI } from "@/apis/environment.api";
 
 export const MainContext: any = createContext<any>(null);
 
@@ -69,11 +69,6 @@ export default ({ children }: IMainContext) => {
     setLoading(false);
   }
 
-  useEffect(() => {
-    selectedState?.namespace?.name && handleGetApplications();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedState]);
-
   async function handleGetApplications() {
     setApplications(
       await getEnvironmentsAPI({
@@ -85,6 +80,16 @@ export default ({ children }: IMainContext) => {
       }),
     );
   }
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      selectedState?.namespace?.name && handleGetApplications();
+    }, 5000);
+
+    return () => clearInterval(timer);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [applications, selectedState]);
 
   return (
     <MainContext.Provider

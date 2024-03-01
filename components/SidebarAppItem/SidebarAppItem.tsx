@@ -1,9 +1,10 @@
-import { Fragment, ReactElement, useEffect, useState } from "react";
-import { IoIosApps, IoIosArrowForward } from "react-icons/io";
-import { IEnvironment } from "@/interfaces/environment.interface";
 import SidebarAppItemService from "../SidebarAppItemService/SidebarAppItemService";
-import Status from "../app.status/app.status.comp";
 import { getApplicationStatus } from "@/functions/environment.function";
+import { IEnvironment } from "@/interfaces/environment.interface";
+import { IoIosApps, IoIosArrowForward } from "react-icons/io";
+import { Fragment, ReactElement, useState } from "react";
+import Status from "../app.status/app.status.comp";
+import SidebarAppDots from "../SidebarAppDots/SidebarAppDots";
 
 interface ISidebarAppItem {
   app: IEnvironment;
@@ -19,19 +20,22 @@ export default function SidebarAppItem({ app }: ISidebarAppItem): ReactElement {
     : "Unreachable Status";
 
   return (
-    <div className="flex flex-col">
+    <div className="transition-300 flex flex-col">
       <button
-        className={`transition-500 animate__animated animate__fadeIn flex w-full items-center justify-between gap-2 px-6 py-3 hover:bg-slate-100 disabled:cursor-not-allowed`}
-        onClick={() => setIsCollapsed(!isCollapsed)}
+        className={`transition-500 animate__animated animate__fadeIn flex w-full items-center justify-between gap-2 py-3 pl-8 pr-4 hover:bg-slate-100 disabled:cursor-not-allowed`}
       >
-        <div className="flex gap-2">
+        <div className="flex items-center gap-2">
           <IoIosApps size={22} />
           <span className="text-base font-normal">{app?.details?.name}</span>
-          <Status status={getApplicationStatus(app)} />
         </div>
-        <IoIosArrowForward
-          className={`${isCollapsed ? "rotate-90" : "rotate-0"}`}
-        />
+        <div className="flex items-center gap-2">
+          <Status status={getApplicationStatus(app)} />
+          <SidebarAppDots app={app} />
+          <IoIosArrowForward
+            className={`transition-300 ${isCollapsed ? "rotate-90" : "rotate-0"}`}
+            onClick={() => setIsCollapsed(!isCollapsed)}
+          />
+        </div>
       </button>
       {isCollapsed && (
         <Fragment>

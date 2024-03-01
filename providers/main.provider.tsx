@@ -21,6 +21,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 import { Toaster } from "sonner";
 import Version from "@/components/version/version";
 import KeycloakProvider from "./keycloak.provider";
+import "primeicons/primeicons.css";
 
 interface IMainProvider {
   children: Readonly<ReactElement | ReactElement[]>;

@@ -1,7 +1,15 @@
+"use client";
+
+import {
+  IoLogoPython,
+  IoTerminal,
+  IoTerminalOutline,
+  IoTv,
+  IoTvOutline,
+} from "react-icons/io5";
 import { IEnvironment } from "@/interfaces/environment.interface";
 import { useRouter } from "next/navigation";
 import { ReactElement } from "react";
-import { IoLogoPython, IoTerminalOutline, IoTvOutline } from "react-icons/io5";
 
 interface ISidebarAppItemService {
   type: "ide" | "vdi" | "jupyterNotebook";
@@ -16,7 +24,7 @@ export default function SidebarAppItemService({
 
   return (
     <button
-      className={`transition-500 animate__animated animate__fadeIn flex w-full items-center justify-between gap-3 px-10 py-3 hover:bg-slate-100 disabled:cursor-not-allowed`}
+      className={`transition-500 animate__animated animate__fadeIn flex w-full items-center justify-between gap-3 py-3 pl-11 hover:bg-slate-100 disabled:cursor-not-allowed`}
       onClick={() => {
         if (type === "jupyterNotebook") {
           return window.open(
@@ -41,11 +49,11 @@ export default function SidebarAppItemService({
         {(() => {
           switch (type) {
             case "ide":
-              return <IoTerminalOutline size={22} />;
+              return <IoTerminal size={20} />;
             case "vdi":
-              return <IoTvOutline size={22} />;
+              return <IoTv size={21} />;
             case "jupyterNotebook":
-              return <IoLogoPython size={22} />;
+              return <IoLogoPython size={21} />;
           }
         })()}
         <span className="text-sm font-normal">

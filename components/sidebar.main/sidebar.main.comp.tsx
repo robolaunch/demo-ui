@@ -8,6 +8,7 @@ import SidebarItem from "../sidebar.item/sidebar.item.comp";
 import useMain from "@/hooks/useMain";
 import { useRouter } from "next/navigation";
 import SidebarAppItem from "../SidebarAppItem/SidebarAppItem";
+import SidebarApplicationsItem from "../SidebarApplicationsItem/SidebarApplicationsItem";
 
 export default function SidebarMain(): ReactElement {
   const { sidebarState, applications } = useMain();
@@ -42,9 +43,8 @@ export default function SidebarMain(): ReactElement {
           />
         );
       })}
-      {applications.map((app, index) => {
-        return <SidebarAppItem app={app} key={index} />;
-      })}
+
+      <SidebarApplicationsItem />
     </div>
   );
 }

@@ -4,9 +4,9 @@ import SidebarAppItemService from "../SidebarAppItemService/SidebarAppItemServic
 import { getApplicationStatus } from "@/functions/environment.function";
 import { IEnvironment } from "@/interfaces/environment.interface";
 import { IoIosApps, IoIosArrowForward } from "react-icons/io";
+import SidebarAppDots from "../SidebarAppDots/SidebarAppDots";
 import { Fragment, ReactElement, useState } from "react";
 import Status from "../app.status/app.status.comp";
-import SidebarAppDots from "../SidebarAppDots/SidebarAppDots";
 
 interface ISidebarAppItem {
   app: IEnvironment;
@@ -22,7 +22,11 @@ export default function SidebarAppItem({ app }: ISidebarAppItem): ReactElement {
       >
         <div className="flex items-center gap-2">
           <IoIosApps size={22} />
-          <span className="text-base font-normal">{app?.details?.name}</span>
+          <span title={app?.details?.name} className="text-base font-normal">
+            {app?.details?.name.length > 12
+              ? app?.details?.name.slice(0, 12) + "..."
+              : app?.details?.name}
+          </span>
         </div>
         <div className="flex items-center gap-2">
           <Status status={getApplicationStatus(app)} />

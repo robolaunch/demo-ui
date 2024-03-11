@@ -15,19 +15,18 @@ export default function InputText({
   error,
 }: IInputText): ReactElement {
   return (
-    <div className="flex w-full flex-col gap-2">
-      <span className="p-float-label text-sm">
-        <InputTextPR className="h-10 w-full !text-xs" {...formikProps} />
-        <label>{label}</label>
-      </span>
-      <span
-        style={{
-          visibility: touched && error ? "visible" : "hidden",
-        }}
-        className="transition-300 mx-auto text-[0.68rem] text-red-500"
-      >
-        {error}
-      </span>
+    <div className="relative w-full">
+      <div className="flex w-full flex-col gap-2">
+        <span className="p-float-label relative text-sm">
+          <InputTextPR className="h-10 w-full !text-xs" {...formikProps} />
+          <label>{label}</label>
+        </span>
+      </div>
+      {touched && error && (
+        <span className="transition-300 absolute -bottom-6 left-1/2 mx-auto -translate-x-1/2 transform text-[0.68rem] text-red-500">
+          {error}
+        </span>
+      )}
     </div>
   );
 }

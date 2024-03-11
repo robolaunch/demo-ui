@@ -1,17 +1,12 @@
-import { ReactElement } from "react";
-import {
-  IoAddCircleOutline,
-  IoAppsOutline,
-  IoHelpBuoyOutline,
-} from "react-icons/io5";
-import SidebarItem from "../sidebar.item/sidebar.item.comp";
-import useMain from "@/hooks/useMain";
-import { useRouter } from "next/navigation";
-import SidebarAppItem from "../SidebarAppItem/SidebarAppItem";
+import { IoAddCircleOutline, IoHelpBuoyOutline } from "react-icons/io5";
 import SidebarApplicationsItem from "../SidebarApplicationsItem/SidebarApplicationsItem";
+import SidebarItem from "../sidebar.item/sidebar.item.comp";
+import { useRouter } from "next/navigation";
+import useMain from "@/hooks/useMain";
+import { ReactElement } from "react";
 
 export default function SidebarMain(): ReactElement {
-  const { sidebarState, applications } = useMain();
+  const { sidebarState } = useMain();
 
   const router = useRouter();
 

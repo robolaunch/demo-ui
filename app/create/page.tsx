@@ -2,7 +2,7 @@
 
 import CreateTemplatesMapper from "@/components/create.templates.mapper/create.templates.mapper";
 import { FormikProps, useFormik } from "formik";
-import { ReactElement, useEffect } from "react";
+import { ReactElement } from "react";
 import createEnvironmentInitialValues from "@/constants/create.environment.initial.json";
 import { ICreateEnvironmentForm } from "@/interfaces/create.interface";
 import CreateSidebar from "@/components/create.sidebar/create.sidebar";
@@ -61,10 +61,10 @@ export default function CreateApp(): ReactElement {
       onSubmit={formik.handleSubmit}
       className="hw-full grid grid-cols-12 gap-12"
     >
-      <div className="hw-full col-span-9 flex flex-col gap-6">
+      <div className="hw-full col-span-8 flex flex-col gap-6">
         <CreateTemplatesMapper formik={formik} />
       </div>
-      <div className="hw-full col-span-3">
+      <div className="hw-full col-span-4">
         <CreateSidebar formik={formik} />
       </div>
     </form>

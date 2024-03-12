@@ -6,6 +6,13 @@ interface IInputText {
   label: string;
   touched?: boolean;
   error?: string;
+  disabled?: boolean;
+  value?: string;
+  classNameInput?: string;
+  type?: string;
+  minLength?: number;
+  maxLength?: number;
+  required?: boolean;
 }
 
 export default function InputText({
@@ -13,12 +20,28 @@ export default function InputText({
   label,
   touched,
   error,
+  disabled,
+  value,
+  classNameInput,
+  type,
+  minLength,
+  maxLength,
+  required,
 }: IInputText): ReactElement {
   return (
     <div className="relative w-full">
       <div className="flex w-full flex-col gap-2">
         <span className="p-float-label relative text-sm">
-          <InputTextPR className="h-10 w-full !text-xs" {...formikProps} />
+          <InputTextPR
+            required={required}
+            type={type || "text"}
+            minLength={minLength}
+            maxLength={maxLength}
+            className={`h-10 w-full !text-xs ${classNameInput} ${disabled && "cursor-not-allowed"}`}
+            {...formikProps}
+            disabled={disabled}
+            value={value}
+          />
           <label>{label}</label>
         </span>
       </div>

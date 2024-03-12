@@ -5,14 +5,14 @@ import Card from "../card/card.comp";
 import useMain from "@/hooks/useMain";
 import Image from "next/image";
 import { FormikProps } from "formik";
-import { ICreateEnvironmentForm } from "@/interfaces/create.interface";
 import {
   templateDesktopViewer,
   templateDistroViewer,
 } from "@/functions/environment.function";
+import { IEnvironment } from "@/interfaces/environment.interface";
 
 interface ITemplates {
-  formik: FormikProps<ICreateEnvironmentForm>;
+  formik: FormikProps<IEnvironment>;
 }
 
 export default function Templates({ formik }: ITemplates): ReactElement {

@@ -7,9 +7,10 @@ import { categoriesMapper } from "@/handlers/template.handler";
 import useMain from "@/hooks/useMain";
 import { ICreateEnvironmentForm } from "@/interfaces/create.interface";
 import { FormikProps } from "formik";
+import { IEnvironment } from "@/interfaces/environment.interface";
 
 interface ICategories {
-  formik: FormikProps<ICreateEnvironmentForm>;
+  formik: FormikProps<IEnvironment>;
 }
 
 export default function Categories({ formik }: ICategories): ReactElement {

@@ -4,9 +4,10 @@ import { ReactElement } from "react";
 import { FormikProps } from "formik";
 import { ICreateEnvironmentForm } from "@/interfaces/create.interface";
 import CFRemoveLabel from "../cf.remove.label/cf.remove.label";
+import { IEnvironment } from "@/interfaces/environment.interface";
 
 interface ICFHostDirectory {
-  formik: FormikProps<ICreateEnvironmentForm>;
+  formik: FormikProps<IEnvironment>;
   index: number;
 }
 

@@ -76,8 +76,8 @@ export interface IEnvironment {
     };
   };
   directories: {
-    permittedDirectories: string;
-    persistentDirectories: string;
+    permittedDirectories: string[];
+    persistentDirectories: string[];
     hostDirectories: {
       hostDirectory: string;
       mountPath: string;
@@ -106,7 +106,6 @@ export interface IEnvironment {
     build: IEnvironmentStep1Cluster[];
     launch: IEnvironmentStep1Cluster[];
   };
-  status: boolean;
 }
 
 export interface IEnvironmentStep1Cluster {

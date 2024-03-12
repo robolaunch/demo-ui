@@ -5,11 +5,11 @@ import InputText from "../input.text/input.text.comp";
 import InputSwitch from "../input.switch/input.switch";
 import Button from "../button/button";
 import { FormikProps } from "formik";
-import { ICreateEnvironmentForm } from "@/interfaces/create.interface";
 import CreateSidebarAdvancedSettings from "../create.sidebar.advancedsettings/create.sidebar.advancedsettings";
+import { IEnvironment } from "@/interfaces/environment.interface";
 
 interface ICreateSidebar {
-  formik: FormikProps<ICreateEnvironmentForm>;
+  formik: FormikProps<IEnvironment>;
 }
 
 export default function CreateSidebar({

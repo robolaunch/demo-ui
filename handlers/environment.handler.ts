@@ -97,8 +97,8 @@ function handleMapper(data: IEnvironmentBE[]): IEnvironment[] {
           },
         },
         directories: {
-          permittedDirectories: env?.permittedDirectories,
-          persistentDirectories: env?.persistentDirectories,
+          permittedDirectories: env?.permittedDirectories?.split(":"),
+          persistentDirectories: env?.persistentDirectories?.split(":"),
           hostDirectories:
             env?.hostDirectories?.split(",")?.map((item: string) => {
               console.log("hostDirectories", item?.split(":")[0]);

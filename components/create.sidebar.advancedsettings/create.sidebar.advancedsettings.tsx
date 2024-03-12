@@ -1,10 +1,13 @@
 import { Fragment, ReactElement, useState } from "react";
 import { FormikProps } from "formik";
-import { ICreateEnvironmentForm } from "@/interfaces/create.interface";
-import CreateSidebarHostDirectories from "../create.sidebar.hostdirectories/create.sidebar.hostdirectories.comp";
+import CreateSidebarHostDirectories from "../cf.hostdirectories/cf.hostdirectories";
+import CFCustomPorts from "../cf.customports/cf.customports";
+import CFPersistentDirectories from "../cf.persistentdirectories/cf.persistentdirectories";
+import CFGrantedDirectories from "../cf.granteddirectories/cf.granteddirectories";
+import { IEnvironment } from "@/interfaces/environment.interface";
 
 interface ICreateSidebarAdvancedSettings {
-  formik: FormikProps<ICreateEnvironmentForm>;
+  formik: FormikProps<IEnvironment>;
 }
 
 export default function CreateSidebarAdvancedSettings({
@@ -24,7 +27,14 @@ export default function CreateSidebarAdvancedSettings({
           </span>
         </div>
       ) : (
-        <CreateSidebarHostDirectories formik={formik} />
+        <Fragment>
+          <CreateSidebarHostDirectories formik={formik} />
+          <CFCustomPorts formik={formik} type="ide" />
+          <CFCustomPorts formik={formik} type="vdi" />
+          <CFCustomPorts formik={formik} type="jupyterNotebook" />
+          <CFPersistentDirectories formik={formik} />
+          <CFGrantedDirectories formik={formik} />
+        </Fragment>
       )}
     </Fragment>
   );

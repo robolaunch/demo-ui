@@ -72,7 +72,7 @@ export const environmentInitial: IEnvironment = {
   },
 
   applicationConfig: {
-    domainName: "",
+    domainName: "plain",
     application: {
       name: "",
       version: "",

@@ -1,4 +1,3 @@
-import { ICreateEnvironmentForm } from "@/interfaces/create.interface";
 import Accordion from "@/app/accordion/accordion.comp";
 import { ReactElement } from "react";
 import { FormikProps } from "formik";
@@ -13,7 +12,7 @@ export default function CFHostDirectories({
   formik,
 }: ICFHostDirectories): ReactElement {
   return (
-    <Accordion header="Host Directories">
+    <Accordion headerClassName="text-sm" header="Host Directories">
       <CFHostDirectory index={1} formik={formik} />
       <CFHostDirectory index={2} formik={formik} />
     </Accordion>

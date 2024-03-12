@@ -31,7 +31,6 @@ export default function CFPort({ formik, type, index }: ICFPort): ReactElement {
           <InputText
             label="Port Name"
             formikProps={null}
-            classNameInput="!w-24"
             minLength={4}
             maxLength={4}
             required
@@ -42,7 +41,6 @@ export default function CFPort({ formik, type, index }: ICFPort): ReactElement {
             label="Node Port"
             formikProps={null}
             disabled
-            classNameInput="!w-24"
             value="3000"
           />
         </div>

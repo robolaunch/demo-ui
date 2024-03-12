@@ -26,7 +26,10 @@ export default function CFCustomPorts({
   }
 
   return (
-    <Accordion header={`Custom Ports Exposure From ${typeView()}`}>
+    <Accordion
+      headerClassName="text-sm"
+      header={`Custom Ports Exposure From ${typeView()}`}
+    >
       <CFPort type={type} index={1} formik={formik} />
       <CFPort type={type} index={2} formik={formik} />
     </Accordion>

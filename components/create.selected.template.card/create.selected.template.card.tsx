@@ -1,7 +1,6 @@
 import { ReactElement, useEffect, useState } from "react";
 import Card from "../card/card.comp";
 import { FormikProps } from "formik";
-import { ICreateEnvironmentForm } from "@/interfaces/create.interface";
 import useMain from "@/hooks/useMain";
 import { ITemplate } from "@/interfaces/template.interface";
 import Image from "next/image";
@@ -9,9 +8,10 @@ import {
   templateDesktopViewer,
   templateDistroViewer,
 } from "@/functions/environment.function";
+import { IEnvironment } from "@/interfaces/environment.interface";
 
 interface ICreateSelectedTemplateCard {
-  formik: FormikProps<ICreateEnvironmentForm>;
+  formik: FormikProps<IEnvironment>;
 }
 
 export default function CreateSelectedTemplateCard({
@@ -25,11 +25,16 @@ export default function CreateSelectedTemplateCard({
     setSelectedTemplate(
       templates.find(
         (template) =>
-          template.image.distro === formik.values?.appConfig?.image?.distro &&
-          template.image.desktop === formik.values?.appConfig?.image?.desktop &&
-          template.image.version === formik.values?.appConfig?.image?.version &&
-          template.app.name === formik.values?.appConfig?.app?.name &&
-          template.app.version === formik.values?.appConfig?.app?.version,
+          template.app.name ===
+            formik.values.applicationConfig.application.name &&
+          template.app.version ===
+            formik.values.applicationConfig.application.version &&
+          template.image.desktop ===
+            formik.values.applicationConfig.devspace.desktop &&
+          template.image.distro ===
+            formik.values.applicationConfig.devspace.ubuntuDistro &&
+          template.image.version ===
+            formik.values.applicationConfig.devspace.version,
       ),
     );
   }, [templates, formik.values]);

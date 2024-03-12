@@ -8,6 +8,7 @@ interface IButton {
   disabled?: boolean;
   onClick?: () => void;
   className?: string;
+  model?: "primary" | "secondary";
 }
 
 export default function Button({
@@ -17,10 +18,17 @@ export default function Button({
   disabled,
   onClick,
   className,
+  model,
 }: IButton): ReactElement {
+  const models = {
+    primary: "bg-primary-500 hover:bg-primary-700 border-primary-300 text-sm",
+    secondary:
+      "bg-white hover:bg-primary-50 text-primary-500 border-primary-500 text-sm ",
+  };
+
   return (
     <ButtonPR
-      className={`transition-300 h-11 border-primary-300 bg-primary-500 text-sm hover:bg-primary-700 ${className}`}
+      className={`transition-300 h-11  ${className} ${model && models?.[model]}`}
       disabled={disabled}
       loading={loading}
       label={label}

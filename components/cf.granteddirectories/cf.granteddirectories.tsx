@@ -1,4 +1,3 @@
-import { ICreateEnvironmentForm } from "@/interfaces/create.interface";
 import { FormikProps } from "formik";
 import { ReactElement } from "react";
 import CFInputLabels from "../input.labels/input.labels";

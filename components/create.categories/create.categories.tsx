@@ -30,7 +30,7 @@ export default function Categories({ formik }: ICategories): ReactElement {
     <div className="grid grid-cols-7">
       {categories?.map((category) => {
         const checked: boolean =
-          formik.values?.appConfig?.category ===
+          formik.values.applicationConfig.domainName ===
           category.category.toLowerCase();
 
         return (
@@ -38,15 +38,16 @@ export default function Categories({ formik }: ICategories): ReactElement {
             onClick={() => {
               formik.setValues({
                 ...formik.values,
-                appConfig: {
-                  category: category.category.toLowerCase(),
-                  app: {
+                applicationConfig: {
+                  ...formik.values.applicationConfig,
+                  domainName: category.category.toLowerCase(),
+                  application: {
                     name: "",
                     version: "",
                   },
-                  image: {
+                  devspace: {
                     desktop: "",
-                    distro: "",
+                    ubuntuDistro: "",
                     version: "",
                   },
                 },

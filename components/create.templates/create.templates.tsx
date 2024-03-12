@@ -23,35 +23,40 @@ export default function Templates({ formik }: ITemplates): ReactElement {
       {templates
         .filter(
           (template) =>
-            template.category === formik.values?.appConfig?.category,
+            template.category === formik.values?.applicationConfig?.domainName,
         )
         .map((template, index) => {
           const selected =
-            formik.values?.appConfig?.image?.distro === template.image.distro &&
-            formik.values?.appConfig?.image?.desktop ===
-              template.image.desktop &&
-            formik.values?.appConfig?.image?.version ===
-              template.image.version &&
-            formik.values?.appConfig?.app?.name === template.app.name &&
-            formik.values?.appConfig?.app?.version === template.app.version;
+            formik.values?.applicationConfig?.application?.name ===
+              template?.app?.name &&
+            formik.values?.applicationConfig?.application?.version ===
+              template?.app?.version &&
+            formik.values?.applicationConfig?.devspace?.desktop ===
+              template?.image?.desktop &&
+            formik.values?.applicationConfig?.devspace?.ubuntuDistro ===
+              template?.image?.distro &&
+            formik.values?.applicationConfig?.devspace?.version ===
+              template?.image?.version;
 
           return (
             <Card
               key={index}
-              className={`transition-300 col-span-1 cursor-pointer p-4 hover:scale-105 hover:shadow-md ${selected && "border-primary-500 ring-2 ring-primary-200"}`}
+              className={`transition-300 col-span-1 cursor-pointer p-4 hover:scale-95 hover:shadow-md ${selected && "border-primary-500 ring-2 ring-primary-200"}`}
               onClick={() => {
                 formik.setValues({
                   ...formik.values,
-                  appConfig: {
-                    ...formik.values.appConfig,
-                    image: {
-                      distro: template.image.distro,
-                      desktop: template.image.desktop,
-                      version: template.image.version,
+                  applicationConfig: {
+                    ...formik.values.applicationConfig,
+                    application: {
+                      ...formik.values.applicationConfig.application,
+                      name: template?.app?.name,
+                      version: template?.app?.version,
                     },
-                    app: {
-                      name: template.app.name,
-                      version: template.app.version,
+                    devspace: {
+                      ...formik.values.applicationConfig.devspace,
+                      desktop: template?.image?.desktop,
+                      ubuntuDistro: template?.image?.distro,
+                      version: template?.image?.version,
                     },
                   },
                 });

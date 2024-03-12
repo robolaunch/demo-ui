@@ -8,15 +8,13 @@ import { FormikProps } from "formik";
 import CreateSidebarAdvancedSettings from "../create.sidebar.advancedsettings/create.sidebar.advancedsettings";
 import { IEnvironment } from "@/interfaces/environment.interface";
 
-interface ICreateSidebar {
+interface ICreateForm {
   formik: FormikProps<IEnvironment>;
 }
 
-export default function CreateSidebar({
-  formik,
-}: ICreateSidebar): ReactElement {
+export default function CreateForm({ formik }: ICreateForm): ReactElement {
   return (
-    <Card className="hw-full flex flex-col justify-between p-4">
+    <Card className="hw-full flex flex-col justify-between overflow-auto p-4">
       <div className="flex flex-col gap-6">
         <CreateSelectedTemplateCard formik={formik} />
         <span
@@ -57,12 +55,27 @@ export default function CreateSidebar({
 
         <CreateSidebarAdvancedSettings formik={formik} />
       </div>
-      <Button
-        disabled={formik.isSubmitting || !formik.isValid}
-        loading={formik.isSubmitting}
-        type="submit"
-        label="Create Application"
-      />
+      <div className="flex w-full gap-4">
+        <Button
+          className="w-full"
+          disabled={formik.isSubmitting || !formik.isValid}
+          loading={formik.isSubmitting}
+          type="reset"
+          label="Cancel"
+          model="secondary"
+          onClick={() => {
+            formik.resetForm();
+          }}
+        />
+        <Button
+          className="w-full"
+          disabled={formik.isSubmitting || !formik.isValid}
+          loading={formik.isSubmitting}
+          type="submit"
+          label="Create Application"
+          model="primary"
+        />
+      </div>
     </Card>
   );
 }

@@ -1,7 +1,7 @@
 import { IEnvironment } from "@/interfaces/environment.interface";
 import { FormikProps } from "formik";
 import { ReactElement } from "react";
-import { IoLogoPython, IoTerminal, IoTv } from "react-icons/io5";
+import { IoTerminal, IoTv } from "react-icons/io5";
 import { SiJupyter } from "react-icons/si";
 
 interface IPreviewServices {

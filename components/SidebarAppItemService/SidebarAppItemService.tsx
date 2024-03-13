@@ -1,11 +1,12 @@
 "use client";
 
 import { getApplicationStatus } from "@/functions/environment.function";
-import { IoLogoPython, IoTerminal, IoTv } from "react-icons/io5";
+import { IoTerminal, IoTv } from "react-icons/io5";
 import { IEnvironment } from "@/interfaces/environment.interface";
 import { useRouter } from "next/navigation";
 import { ReactElement } from "react";
 import { toast } from "sonner";
+import { SiJupyter } from "react-icons/si";
 
 interface ISidebarAppItemService {
   type: "ide" | "vdi" | "jupyterNotebook";
@@ -53,7 +54,7 @@ export default function SidebarAppItemService({
             case "vdi":
               return <IoTv size={21} />;
             case "jupyterNotebook":
-              return <IoLogoPython size={21} />;
+              return <SiJupyter size={21} />;
           }
         })()}
         <span className="text-sm font-normal">

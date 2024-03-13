@@ -1,10 +1,11 @@
 import Accordion from "@/app/accordion/accordion.comp";
 import InputText from "../input.text/input.text.comp";
-import { ReactElement } from "react";
+import { ReactElement, useEffect } from "react";
 import { FormikProps } from "formik";
-import { ICreateEnvironmentForm } from "@/interfaces/create.interface";
 import CFRemoveLabel from "../cf.remove.label/cf.remove.label";
 import { IEnvironment } from "@/interfaces/environment.interface";
+import { getPort } from "@/apis/port.api";
+import useMain from "@/hooks/useMain";
 
 interface ICFPort {
   formik: FormikProps<IEnvironment>;
@@ -24,27 +25,67 @@ export default function CFPort({ formik, type, index }: ICFPort): ReactElement {
     }
   }
 
+  const { selectedState } = useMain();
+
+  useEffect(() => {
+    handleGetPort();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  async function handleGetPort() {
+    formik.setFieldValue(
+      `services.${type}.customPorts[${index}].backendPort`,
+      await getPort({
+        orgId: selectedState?.organization?.id!,
+        regionName: selectedState?.region?.name!,
+        instanceId: selectedState?.instance?.id!,
+        providerRegion: selectedState?.region?.region!,
+      }),
+    );
+  }
+
   return (
-    <Accordion headerClassName="text-sm" header={`IDE Port #${index}`}>
+    <Accordion headerClassName="text-sm" header={`IDE Port #${index + 1}`}>
       <div className="flex flex-col gap-2">
         <div className="flex items-center gap-2 py-3">
           <InputText
             label="Port Name"
-            formikProps={null}
             minLength={4}
             maxLength={4}
             required
+            formikProps={formik.getFieldProps(
+              `services.${type}.customPorts[${index}].name`,
+            )}
           />
-          <InputText type="number" label="App Port" formikProps={null} />
+          <InputText
+            type="number"
+            label="App Port"
+            formikProps={formik.getFieldProps(
+              `services.${type}.customPorts[${index}].port`,
+            )}
+          />
           <InputText
             type="number"
             label="Node Port"
-            formikProps={null}
             disabled
             value="3000"
+            formikProps={formik.getFieldProps(
+              `services.${type}.customPorts[${index}].backendPort`,
+            )}
           />
         </div>
-        <CFRemoveLabel label={`Remove ${typeView()} Port #${index}`} />
+        <CFRemoveLabel
+          type="remove"
+          label={`Remove ${typeView()} Port #${index}`}
+          onClick={() => {
+            formik.setFieldValue(
+              `services.${type}.customPorts`,
+              formik.values.services[type].customPorts.filter(
+                (_, i) => i !== index,
+              ),
+            );
+          }}
+        />
       </div>
     </Accordion>
   );

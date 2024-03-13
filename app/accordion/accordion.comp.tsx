@@ -17,12 +17,8 @@ export default function Accordion({
 }: IAccordion): ReactElement {
   return (
     <AccordionPR activeIndex={0}>
-      <AccordionTabPR
-        contentClassName="pt-2"
-        className={headerClassName}
-        header={header}
-      >
-        {children}
+      <AccordionTabPR className={headerClassName} header={header}>
+        <div className="hw-full pt-2">{children}</div>
       </AccordionTabPR>
     </AccordionPR>
   );

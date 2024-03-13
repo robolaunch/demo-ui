@@ -9,6 +9,7 @@ import {
   templateDistroViewer,
 } from "@/functions/environment.function";
 import { IEnvironment } from "@/interfaces/environment.interface";
+import PreviewServices from "../PreviewServices/PreviewServices";
 
 interface ICreateSelectedTemplateCard {
   formik: FormikProps<IEnvironment>;
@@ -43,7 +44,7 @@ export default function CreateSelectedTemplateCard({
     <Card
       className={`flex !h-fit cursor-pointer flex-col items-center justify-between p-4 text-sm`}
     >
-      <div className="flex flex-col items-center ">
+      <div className="flex flex-col items-center gap-2">
         <Image
           className="py-2"
           width={64}
@@ -61,6 +62,7 @@ export default function CreateSelectedTemplateCard({
             `
             : "None Selected Application"}
         </p>
+        <PreviewServices formik={formik} />
       </div>
     </Card>
   );

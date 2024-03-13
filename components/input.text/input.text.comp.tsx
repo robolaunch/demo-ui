@@ -38,9 +38,9 @@ export default function InputText({
             minLength={minLength}
             maxLength={maxLength}
             className={`h-10 w-full !text-xs ${classNameInput} ${disabled && "cursor-not-allowed"}`}
-            {...formikProps}
             disabled={disabled}
             value={value}
+            {...formikProps}
           />
           <label>{label}</label>
         </span>

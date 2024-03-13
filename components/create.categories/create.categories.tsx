@@ -27,7 +27,7 @@ export default function Categories({ formik }: ICategories): ReactElement {
   }
 
   return (
-    <div className="grid grid-cols-7">
+    <div className="grid grid-cols-9">
       {categories?.map((category) => {
         const checked: boolean =
           formik.values.applicationConfig.domainName ===

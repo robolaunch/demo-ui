@@ -1,20 +1,24 @@
 import { ReactElement } from "react";
 
-interface ICFRemoveLabel {
+interface ICFLabel {
+  type: "remove" | "add";
   label: string;
   onClick?: () => void;
 }
 
-export default function CFRemoveLabel({
+export default function CFLabel({
+  type,
   label,
   onClick,
-}: ICFRemoveLabel): ReactElement {
+}: ICFLabel): ReactElement {
   return (
-    <p
+    <span
       onClick={onClick}
-      className="cursor-pointer text-center text-xs text-red-500 underline"
+      className={`cursor-pointer pt-4 text-center text-xs  underline ${
+        type === "add" ? "text-primary-500" : "text-red-500"
+      }`}
     >
-      {label || "Remove"}
-    </p>
+      {label}
+    </span>
   );
 }

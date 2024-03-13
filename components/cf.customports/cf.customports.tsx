@@ -1,9 +1,9 @@
-import { ICreateEnvironmentForm } from "@/interfaces/create.interface";
 import Accordion from "@/app/accordion/accordion.comp";
 import { ReactElement } from "react";
 import { FormikProps } from "formik";
 import CFPort from "../cf.port/cf.port";
 import { IEnvironment } from "@/interfaces/environment.interface";
+import CFLabel from "../cf.remove.label/cf.remove.label";
 
 interface ICFCustomPorts {
   formik: FormikProps<IEnvironment>;
@@ -30,8 +30,21 @@ export default function CFCustomPorts({
       headerClassName="text-sm"
       header={`Custom Ports Exposure From ${typeView()}`}
     >
-      <CFPort type={type} index={1} formik={formik} />
-      <CFPort type={type} index={2} formik={formik} />
+      <div className="hw-full flex flex-col gap-2">
+        {formik.values.services[type].customPorts.map((_, index) => (
+          <CFPort key={index} index={index} formik={formik} type={type} />
+        ))}
+        <CFLabel
+          type="add"
+          label={`Add Custom Port to ${typeView()}`}
+          onClick={() => {
+            formik.setFieldValue(`services.${type}.customPorts`, [
+              ...formik.values.services[type].customPorts,
+              { name: "", port: "", backendPort: "" },
+            ]);
+          }}
+        />
+      </div>
     </Accordion>
   );
 }

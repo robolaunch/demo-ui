@@ -18,7 +18,9 @@ export default function AppStatus({
         className={`rounded-full ${(() => {
           switch (status) {
             case "EnvironmentReady":
-              return "bg-green-500";
+              return "bg-primary-500";
+            case "Enabled":
+              return "bg-primary-500";
             case "ConfiguringEnvironment":
               return "bg-yellow-500";
             default:

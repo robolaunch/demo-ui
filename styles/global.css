@@ -72,3 +72,24 @@
 .p-tooltip-text {
   @apply text-xs;
 }
+
+.p-chips-token-label {
+  @apply text-sm;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f9fafb;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #64748b30;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b50;
+}

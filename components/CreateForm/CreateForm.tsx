@@ -18,6 +18,7 @@ export default function CreateForm({ formik }: ICreateForm): ReactElement {
         <InputText
           formikProps={{ ...formik.getFieldProps("details.name") }}
           label="Application Name"
+          tooltip="Application Name is the name of the application that you want to create."
           touched={formik.touched.details?.name}
           error={formik.errors.details?.name}
         />
@@ -25,9 +26,9 @@ export default function CreateForm({ formik }: ICreateForm): ReactElement {
           <InputSwitch
             label="Code Editor:"
             checked={formik?.values?.services?.ide?.isEnabled}
-            disabled
+            tooltip="Code Editor is a web-based code editor that is used to write and run code."
             onChange={() =>
-              toast.warning(
+              toast.info(
                 "Code Editor not closable, it is required for application to run.",
               )
             }
@@ -35,12 +36,14 @@ export default function CreateForm({ formik }: ICreateForm): ReactElement {
           <InputSwitch
             label="Remote Desktop:"
             checked={formik?.values?.services?.vdi?.isEnabled}
+            tooltip="Remote Desktop is a remote desktop that is used to run GUI applications."
             formikProps={formik.getFieldProps("services.vdi.isEnabled")}
           />
 
           <InputSwitch
             label="Jupyter Notebook:"
             checked={formik?.values?.services?.jupyterNotebook?.isEnabled}
+            tooltip="Jupyter Notebook is an open-source web application that allows you to create and share documents that contain live code, equations, visualizations, and narrative text."
             formikProps={formik.getFieldProps(
               "services.jupyterNotebook.isEnabled",
             )}

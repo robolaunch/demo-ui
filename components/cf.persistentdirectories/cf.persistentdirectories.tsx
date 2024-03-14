@@ -1,7 +1,9 @@
+"use client";
+
 import { FormikProps } from "formik";
 import { ReactElement } from "react";
 import CFInputLabels from "../input.labels/input.labels";
-import Accordion from "@/app/accordion/accordion.comp";
+import Accordion from "@/components/Accordion/Accordion";
 import { IEnvironment } from "@/interfaces/environment.interface";
 import { toast } from "sonner";
 

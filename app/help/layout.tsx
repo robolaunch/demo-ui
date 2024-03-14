@@ -1,3 +1,5 @@
+"use client";
+
 import PageLayout from "@/layouts/page.layout";
 import { ReactElement } from "react";
 

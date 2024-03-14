@@ -1,5 +1,7 @@
-import Accordion from "@/app/accordion/accordion.comp";
-import { Fragment, ReactElement } from "react";
+"use client";
+
+import Accordion from "@/components/Accordion/Accordion";
+import { ReactElement } from "react";
 import { FormikProps } from "formik";
 import CFHostDirectory from "../cf.hostdirectory/cf.hostdirectory";
 import { IEnvironment } from "@/interfaces/environment.interface";

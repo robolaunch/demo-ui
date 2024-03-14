@@ -1,17 +1,26 @@
 "use client";
 
-import { ReactElement } from "react";
+import { ComponentType, Fragment, ReactElement } from "react";
 import LayoutLoading from "@/components/layout.loading/layout.loading.comp";
-import { ReactKeycloakProvider } from "@react-keycloak/web";
 import env from "@/providers/env.provider";
 import Keycloak from "keycloak-js";
+import dynamic from "next/dynamic";
 interface IKeycloakProvider {
   children: Readonly<ReactElement | ReactElement[]>;
 }
 
 export default function KeycloakProvider({ children }: IKeycloakProvider) {
+  const KCProvider: ComponentType<any> = dynamic(
+    () =>
+      import("@react-keycloak/web").then((lib) => lib.ReactKeycloakProvider),
+    {
+      ssr: false,
+      loading: () => <LayoutLoading />,
+    },
+  );
+
   return (
-    <ReactKeycloakProvider
+    <KCProvider
       LoadingComponent={<LayoutLoading />}
       authClient={
         new Keycloak({
@@ -21,7 +30,7 @@ export default function KeycloakProvider({ children }: IKeycloakProvider) {
         })
       }
       autoRefreshToken={true}
-      onTokens={(tokens) => {
+      onTokens={(tokens: any) => {
         localStorage.setItem("rl-auth", JSON.stringify(tokens));
       }}
       initOptions={{
@@ -30,11 +39,11 @@ export default function KeycloakProvider({ children }: IKeycloakProvider) {
         checkLoginIframe: false,
         prompt: "none",
       }}
-      onEvent={(event, error) => {
+      onEvent={(event: any, error: any) => {
         console.log("onKeycloakEvent", event, error);
       }}
     >
-      {children}
-    </ReactKeycloakProvider>
+      <Fragment>{children}</Fragment>
+    </KCProvider>
   );
 }

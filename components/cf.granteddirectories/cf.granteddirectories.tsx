@@ -3,9 +3,9 @@
 import { FormikProps } from "formik";
 import { ReactElement } from "react";
 import CFInputLabels from "../input.labels/input.labels";
-import Accordion from "@/app/accordion/accordion.comp";
 import { IEnvironment } from "@/interfaces/environment.interface";
 import { toast } from "sonner";
+import Accordion from "../Accordion/Accordion";
 
 interface ICFGrantedDirectories {
   formik: FormikProps<IEnvironment>;

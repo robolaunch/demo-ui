@@ -1,4 +1,5 @@
-import IDE from "@/components/app.ide/app.ide.comp";
+"use client";
+
 import { Fragment, ReactElement } from "react";
 
 interface ICodeEditorLayout {

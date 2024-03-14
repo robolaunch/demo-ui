@@ -1,3 +1,5 @@
+"use client";
+
 import { Fragment, ReactElement } from "react";
 
 interface IRemoteDesktopLayout {

@@ -1,6 +1,6 @@
 "use client";
 
-import Accordion from "@/app/accordion/accordion.comp";
+import Accordion from "@/components/Accordion/Accordion";
 import { ReactElement } from "react";
 import { FormikProps } from "formik";
 import CFPort from "../cf.port/cf.port";

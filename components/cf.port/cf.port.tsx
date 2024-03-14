@@ -1,4 +1,6 @@
-import Accordion from "@/app/accordion/accordion.comp";
+"use client";
+
+import Accordion from "@/components/Accordion/Accordion";
 import InputText from "../InputText/InputText";
 import { ReactElement, useEffect } from "react";
 import { FormikProps } from "formik";

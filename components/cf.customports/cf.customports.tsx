@@ -1,3 +1,5 @@
+"use client";
+
 import Accordion from "@/app/accordion/accordion.comp";
 import { ReactElement } from "react";
 import { FormikProps } from "formik";

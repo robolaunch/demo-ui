@@ -1,3 +1,5 @@
+"use client";
+
 import openapiAxiosInterceptor from "@/middlewares/openapi.axios.interceptor";
 import {
   Configuration,

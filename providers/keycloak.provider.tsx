@@ -1,3 +1,5 @@
+"use client";
+
 import { ReactElement } from "react";
 import LayoutLoading from "@/components/layout.loading/layout.loading.comp";
 import { ReactKeycloakProvider } from "@react-keycloak/web";

@@ -22,6 +22,7 @@ import { Toaster } from "sonner";
 import Version from "@/components/version/version";
 import KeycloakProvider from "./keycloak.provider";
 import "primeicons/primeicons.css";
+import HiddenFrame from "@/components/HiddenFrame/HiddenFrame";
 
 interface IMainProvider {
   children: Readonly<ReactElement | ReactElement[]>;
@@ -48,6 +49,7 @@ export default function MainProvider({
             <PrimeReactProvider>
               <MainLayout>
                 <Toaster richColors position="top-center" />
+                <HiddenFrame />
                 <Version />
                 <Fragment>{children}</Fragment>
               </MainLayout>

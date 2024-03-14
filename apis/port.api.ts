@@ -1,3 +1,5 @@
+"use client";
+
 import { kubernetesApi } from "./openapi";
 
 export async function getPort(values: {

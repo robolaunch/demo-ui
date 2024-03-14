@@ -1,3 +1,5 @@
+"use client";
+
 import { ReactElement, useEffect, useState } from "react";
 import Card from "../card/card.comp";
 import { FormikProps } from "formik";

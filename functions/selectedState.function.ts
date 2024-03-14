@@ -1,3 +1,5 @@
+"use client";
+
 import { getInstancesAPI } from "@/apis/instance.api";
 import { getNamespacesAPI } from "@/apis/namespace.api";
 import { getOrganizationsAPI } from "@/apis/organization.api";

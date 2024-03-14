@@ -1,3 +1,5 @@
+"use client";
+
 import { FormikProps } from "formik";
 import { ReactElement } from "react";
 import CFInputLabels from "../input.labels/input.labels";

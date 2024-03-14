@@ -1,3 +1,5 @@
+"use client";
+
 import { IRegion, IRegionBE } from "@/interfaces/region.interface";
 import { regionsMapper } from "@/handlers/region.handler";
 import { createInstanceApi } from "./openapi";

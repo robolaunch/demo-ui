@@ -1,3 +1,5 @@
+"use client";
+
 import { axiosToastController } from "@/controller/axios.controller";
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 

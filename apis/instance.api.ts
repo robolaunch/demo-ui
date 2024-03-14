@@ -1,3 +1,5 @@
+"use client";
+
 import { IInstance, IInstanceBE } from "@/interfaces/instance.interface";
 import { createInstanceApi } from "./openapi";
 import { instancesMapper } from "@/handlers/instance.handler";

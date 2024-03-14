@@ -1,3 +1,5 @@
+"use client";
+
 import { ReactElement } from "react";
 import Card from "../card/card.comp";
 import InputText from "../InputText/InputText";

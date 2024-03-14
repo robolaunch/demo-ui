@@ -274,7 +274,6 @@ export default ({ children, socketEndpoint }: IVDIContext) => {
     var buffer: ArrayBuffer;
     var payload: DataView;
     keyboard.current = GuacamoleKeyboard();
-    const targetElement: any = document.querySelector("body");
 
     keyboard.current.onkeydown = (key: number) => {
       // eslint-disable-next-line react-hooks/exhaustive-deps

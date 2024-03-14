@@ -13,7 +13,7 @@ import { useParams, useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 export default function IDE(): ReactElement {
-  const { applications, sidebarState } = useMain();
+  const { applications } = useMain();
   const params = useParams();
 
   const app: IEnvironment = applicationFinder(

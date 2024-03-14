@@ -4,7 +4,7 @@ import { ReactElement } from "react";
 import Modal from "../modal/modal.comp";
 import useMain from "@/hooks/useMain";
 import { useFormik } from "formik";
-import InputText from "../input.text/input.text.comp";
+import InputText from "../InputText/InputText";
 import Button from "../button/button";
 import { createNamespaceAPI } from "@/apis/namespace.api";
 import * as Yup from "yup";

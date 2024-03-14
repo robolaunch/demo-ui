@@ -6,6 +6,8 @@ interface ICFInputLabels {
   values: string[];
   onAdd?: (e: ChipsAddEvent) => void;
   onRemove?: (e: ChipsRemoveEvent) => void;
+  allowDuplicate?: boolean;
+  tooltip?: string;
 }
 
 export default function CFInputLabels({
@@ -13,14 +15,18 @@ export default function CFInputLabels({
   values,
   onAdd,
   onRemove,
+  allowDuplicate,
+  tooltip,
 }: ICFInputLabels): ReactElement {
   return (
     <span className="p-float-label relative w-full text-sm">
       <Chips
         value={values}
-        className="w-full"
+        className="w-full "
         onAdd={onAdd}
         onRemove={onRemove}
+        allowDuplicate={allowDuplicate}
+        tooltip={tooltip}
       />
       <label>{label}</label>
     </span>

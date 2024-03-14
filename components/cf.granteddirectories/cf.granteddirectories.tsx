@@ -14,8 +14,15 @@ export default function CFGrantedDirectories({
 }: ICFGrantedDirectories): ReactElement {
   return (
     <Accordion headerClassName="text-sm" header={`Granted Directories`}>
+      <p className="pb-8 text-slate-500">
+        Granted Directories are the directories that you want to grant access to
+        the container. The mount path is the path where the host directory will
+        be mounted inside the container.
+      </p>
       <CFInputLabels
         label="Granted Directories"
+        allowDuplicate={false}
+        tooltip="Type the path and press Enter."
         values={formik.values.directories.permittedDirectories}
         onAdd={(e) => {
           const firstLetter = e?.value?.charAt(0);

@@ -1,11 +1,14 @@
 import { ReactElement } from "react";
-import { InputSwitch as InputSwitchPR } from "primereact/inputswitch";
+import {
+  InputSwitchChangeEvent,
+  InputSwitch as InputSwitchPR,
+} from "primereact/inputswitch";
 
 interface IInputSwitch {
   label: string;
   checked: boolean;
   disabled?: boolean;
-  onChange?: (e: any) => void;
+  onChange?: (e: InputSwitchChangeEvent) => void;
   formikProps?: any;
 }
 

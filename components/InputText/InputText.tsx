@@ -13,6 +13,7 @@ interface IInputText {
   minLength?: number;
   maxLength?: number;
   required?: boolean;
+  tooltip?: string;
 }
 
 export default function InputText({
@@ -27,6 +28,7 @@ export default function InputText({
   minLength,
   maxLength,
   required,
+  tooltip,
 }: IInputText): ReactElement {
   return (
     <div className="relative w-full">
@@ -41,6 +43,7 @@ export default function InputText({
             disabled={disabled}
             value={value}
             {...formikProps}
+            tooltip={tooltip}
           />
           <label>{label}</label>
         </span>

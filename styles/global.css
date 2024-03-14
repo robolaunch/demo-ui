@@ -68,3 +68,7 @@
 .p-cascadeselect-item-content {
   @apply relative;
 }
+
+.p-tooltip-text {
+  @apply text-xs;
+}

@@ -1,5 +1,5 @@
 import Accordion from "@/app/accordion/accordion.comp";
-import InputText from "../input.text/input.text.comp";
+import InputText from "../InputText/InputText";
 import { ReactElement, useEffect } from "react";
 import { FormikProps } from "formik";
 import CFRemoveLabel from "../cf.remove.label/cf.remove.label";
@@ -56,6 +56,7 @@ export default function CFPort({ formik, type, index }: ICFPort): ReactElement {
             formikProps={formik.getFieldProps(
               `services.${type}.customPorts[${index}].name`,
             )}
+            tooltip="Port Name is the name of the port that you want to expose."
           />
           <InputText
             type="number"
@@ -63,6 +64,7 @@ export default function CFPort({ formik, type, index }: ICFPort): ReactElement {
             formikProps={formik.getFieldProps(
               `services.${type}.customPorts[${index}].port`,
             )}
+            tooltip="Application Port is the port of the application that you want to expose. For example, if you are running a web application, you can expose port 3000 to run your application on the Service."
           />
           <InputText
             type="number"
@@ -72,11 +74,12 @@ export default function CFPort({ formik, type, index }: ICFPort): ReactElement {
             formikProps={formik.getFieldProps(
               `services.${type}.customPorts[${index}].backendPort`,
             )}
+            tooltip="Node Port is the port of your application that you want to expose. For example, if you are running a web application, you can expose from port 3000 to run your application on the Service."
           />
         </div>
         <CFRemoveLabel
           type="remove"
-          label={`Remove ${typeView()} Port #${index}`}
+          label={`Remove ${typeView()} Port #${index + 1}`}
           onClick={() => {
             formik.setFieldValue(
               `services.${type}.customPorts`,

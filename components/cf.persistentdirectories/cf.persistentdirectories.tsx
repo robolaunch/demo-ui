@@ -14,7 +14,13 @@ export default function CFPersistentDirectories({
 }: ICFPersistentDirectories): ReactElement {
   return (
     <Accordion headerClassName="text-sm" header={`Persistent Directories`}>
+      <p className="pb-8 text-slate-500">
+        Persistent Directories are the directories that you want to persist even
+        after the container is deleted. The mount path is the path where the
+        host directory will be mounted inside the container.
+      </p>
       <CFInputLabels
+        tooltip="Type the path and press Enter."
         label="Persistent Directories"
         values={formik.values.directories.persistentDirectories}
         onAdd={(e) => {

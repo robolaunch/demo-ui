@@ -1,5 +1,5 @@
 import Accordion from "@/app/accordion/accordion.comp";
-import InputText from "../input.text/input.text.comp";
+import InputText from "../InputText/InputText";
 import { ReactElement } from "react";
 import { FormikProps } from "formik";
 import { IEnvironment } from "@/interfaces/environment.interface";
@@ -26,12 +26,14 @@ export default function CFHostDirectory({
             formikProps={formik.getFieldProps(
               `directories.hostDirectories[${index}].hostDirectory`,
             )}
+            tooltip="Host Path is the path of the directory on the host machine that you want to mount into the container."
           />
           <InputText
             label="Mount Path"
             formikProps={formik.getFieldProps(
               `directories.hostDirectories[${index}].mountPath`,
             )}
+            tooltip="Mount Path is the path where the host directory will be mounted inside the container."
           />
         </div>
         <CFLabel

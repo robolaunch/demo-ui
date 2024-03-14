@@ -15,6 +15,12 @@ export default function CFHostDirectories({
   return (
     <Accordion headerClassName="text-sm" header="Host Directories">
       <div className="hw-full flex flex-col gap-2">
+        <p className="pb-2 text-slate-500">
+          Host Directories are the directories on the host machine that you want
+          to mount into the container. The mount path is the path where the host
+          directory will be mounted inside the container.
+        </p>
+
         {formik.values.directories.hostDirectories.map((_, index) => (
           <CFHostDirectory key={index} index={index} formik={formik} />
         ))}

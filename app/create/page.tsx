@@ -6,7 +6,7 @@ import { ReactElement, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { IEnvironment } from "@/interfaces/environment.interface";
 import { environmentInitial } from "@/constants/environment.initial";
-import CreateForm from "@/components/create.form/create.form";
+import CreateForm from "@/components/CreateForm/CreateForm";
 import PreviewForm from "@/components/PreviewForm.tsx/PreviewForm";
 
 export default function CreateApp(): ReactElement {

@@ -6,6 +6,8 @@ import CFInputLabels from "../input.labels/input.labels";
 import { IEnvironment } from "@/interfaces/environment.interface";
 import { toast } from "sonner";
 import Accordion from "../Accordion/Accordion";
+import { MdOutlineCheckCircle } from "react-icons/md";
+import CFAccordionValidLabel from "../CFAccordionValidLabel/CFAccordionValidLabel";
 
 interface ICFGrantedDirectories {
   formik: FormikProps<IEnvironment>;
@@ -15,7 +17,15 @@ export default function CFGrantedDirectories({
   formik,
 }: ICFGrantedDirectories): ReactElement {
   return (
-    <Accordion headerClassName="text-sm" header={`Granted Directories`}>
+    <Accordion
+      headerClassName="text-sm"
+      header={
+        <div className="flex items-center justify-between">
+          <p>Granted Directories</p>
+          <CFAccordionValidLabel type="valid" />
+        </div>
+      }
+    >
       <p className="pb-8 text-slate-500">
         Granted Directories are the directories that you want to grant access to
         the container. The mount path is the path where the host directory will

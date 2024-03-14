@@ -6,6 +6,8 @@ import CFInputLabels from "../input.labels/input.labels";
 import Accordion from "@/components/Accordion/Accordion";
 import { IEnvironment } from "@/interfaces/environment.interface";
 import { toast } from "sonner";
+import { MdOutlineCheckCircle } from "react-icons/md";
+import CFAccordionValidLabel from "../CFAccordionValidLabel/CFAccordionValidLabel";
 
 interface ICFPersistentDirectories {
   formik: FormikProps<IEnvironment>;
@@ -15,7 +17,15 @@ export default function CFPersistentDirectories({
   formik,
 }: ICFPersistentDirectories): ReactElement {
   return (
-    <Accordion headerClassName="text-sm" header={`Persistent Directories`}>
+    <Accordion
+      headerClassName="text-sm"
+      header={
+        <div className="flex items-center justify-between">
+          <p>Persistent Directories</p>
+          <CFAccordionValidLabel type="valid" />
+        </div>
+      }
+    >
       <p className="pb-8 text-slate-500">
         Persistent Directories are the directories that you want to persist even
         after the container is deleted. The mount path is the path where the

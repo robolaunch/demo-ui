@@ -6,6 +6,8 @@ import { FormikProps } from "formik";
 import CFPort from "../cf.port/cf.port";
 import { IEnvironment } from "@/interfaces/environment.interface";
 import CFLabel from "../cf.remove.label/cf.remove.label";
+import { MdErrorOutline, MdOutlineCheckCircle } from "react-icons/md";
+import CFAccordionValidLabel from "../CFAccordionValidLabel/CFAccordionValidLabel";
 
 interface ICFCustomPorts {
   formik: FormikProps<IEnvironment>;
@@ -27,10 +29,24 @@ export default function CFCustomPorts({
     }
   }
 
+  const haveErrors: boolean =
+    formik.errors.services?.[type]?.customPorts?.length ?? 0 > 0 ? true : false;
+
+  const haveValid: boolean = formik.values.services[type].customPorts.every(
+    (port) => port.name && port.port && port.backendPort,
+  );
+
   return (
     <Accordion
       headerClassName="text-sm"
-      header={`Custom Ports Exposure From ${typeView()}`}
+      header={
+        <div className="flex items-center justify-between">
+          <p>Custom Ports Exposure From {typeView()}</p>
+          <CFAccordionValidLabel
+            type={haveErrors ? "error" : haveValid ? "valid" : null}
+          />
+        </div>
+      }
     >
       <div className="hw-full flex flex-col gap-2">
         <p className="pb-2 text-slate-500">

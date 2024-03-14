@@ -21,7 +21,6 @@ export default function PreviewForm({ formik }: IPreviewForm): ReactElement {
         <Button
           className="w-full"
           disabled={formik.isSubmitting}
-          loading={formik.isSubmitting}
           type="reset"
           label="Cancel"
           model="secondary"

@@ -20,7 +20,7 @@ export default function PreviewForm({ formik }: IPreviewForm): ReactElement {
       <div className="flex w-full gap-2">
         <Button
           className="w-full"
-          disabled={formik.isSubmitting || !formik.isValid}
+          disabled={formik.isSubmitting}
           loading={formik.isSubmitting}
           type="reset"
           label="Cancel"

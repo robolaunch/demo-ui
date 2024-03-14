@@ -99,22 +99,33 @@ export async function createEnvironmentAPI(values: {
   namespaceName: string;
   appName: string;
   appConfig: {
-    category: string;
-    image: {
-      distro: string;
-      desktop: string;
-      version: string;
-    };
-    app: {
+    domainName: string;
+    application: {
       name: string;
       version: string;
     };
+    devspace: {
+      desktop: string;
+      ubuntuDistro: string;
+      version: string;
+    };
   };
-  ideEnabled: boolean;
   vdiEnabled: boolean;
   jupyterNotebookEnabled: boolean;
-  repoURL: string;
-  repoBranch: string;
+  directories: {
+    hostDirectories: string;
+    permittedDirectories: string;
+    persistentDirectories: string;
+  };
+  customPorts: {
+    ide: string;
+    vdi: string;
+    jupyterNotebook: string;
+  };
+  repository: {
+    url: string | undefined;
+    branch: string;
+  };
 }): Promise<void> {
   return new Promise<void>(async (resolve, reject) => {
     try {
@@ -138,40 +149,36 @@ export async function createEnvironmentAPI(values: {
                 environments: [
                   {
                     name: values?.appName,
+                    domainName: values?.appConfig?.domainName,
                     fleetName: values?.namespaceName,
-
-                    // services settings //
+                    gpuEnabledForCloudInstance: true,
                     vdiEnabled: values.vdiEnabled,
                     vdiSessionCount: 4,
                     vdiGpuResource: 1,
-                    ideEnabled: values.ideEnabled,
+                    ideEnabled: values.vdiEnabled,
                     ideGpuResource: 1,
                     ideGpuResourceType: "nvidia.com/gpu",
-                    notebookEnabled: values?.jupyterNotebookEnabled,
-                    notebookGpuResource: 1,
-                    // services settings //
-
-                    // application settings //
-                    domainName: values?.appConfig.category,
+                    storageAmount: 50,
                     application: {
-                      name: values?.appConfig?.app?.name,
-                      version: values?.appConfig?.app?.version,
+                      name: values?.appConfig?.application?.name,
+                      version: values?.appConfig?.application?.version,
                     },
                     devspace: {
-                      ubuntuDistro: values?.appConfig?.image?.distro,
-                      desktop: values?.appConfig?.image?.desktop,
-                      version: values?.appConfig?.image?.version,
+                      ubuntuDistro: values?.appConfig?.devspace?.ubuntuDistro,
+                      desktop: values?.appConfig?.devspace?.desktop,
+                      version: values?.appConfig?.devspace?.version,
                     },
-                    permittedDirectories: "/home/robolaunch",
-                    persistentDirectories: "/var:/etc:/opt:/usr",
-                    // application settings //
-
-                    // hardware settings //
-                    storageAmount: 50,
-                    gpuEnabledForCloudInstance: true,
-                    // hardware settings //
-
-                    robotWorkspaces: values.repoURL
+                    permittedDirectories:
+                      values?.directories?.permittedDirectories,
+                    persistentDirectories:
+                      values?.directories?.persistentDirectories,
+                    hostDirectories: values?.directories?.hostDirectories,
+                    ideCustomPorts: values?.customPorts?.ide,
+                    vdiCustomPorts: values?.customPorts?.vdi,
+                    notebookEnabled: values.jupyterNotebookEnabled,
+                    notebookGpuResource: 1,
+                    notebookCustomPorts: values?.customPorts?.jupyterNotebook,
+                    robotWorkspaces: values.repository.url
                       ? [
                           {
                             name: "default",
@@ -179,8 +186,8 @@ export async function createEnvironmentAPI(values: {
                             robotRepositories: [
                               {
                                 name: "default",
-                                url: values.repoURL,
-                                branch: values.repoBranch,
+                                url: values.repository.url,
+                                branch: values.repository.branch,
                               },
                             ],
                           },

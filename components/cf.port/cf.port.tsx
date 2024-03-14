@@ -45,7 +45,10 @@ export default function CFPort({ formik, type, index }: ICFPort): ReactElement {
   }
 
   return (
-    <Accordion headerClassName="text-sm" header={`IDE Port #${index + 1}`}>
+    <Accordion
+      headerClassName="text-sm"
+      header={`${typeView()} Port #${index + 1}`}
+    >
       <div className="flex flex-col gap-2">
         <div className="flex items-center gap-2 py-3">
           <InputText

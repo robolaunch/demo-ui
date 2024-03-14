@@ -9,9 +9,13 @@ import { environmentInitial } from "@/constants/environment.initial";
 import CreateForm from "@/components/CreateForm/CreateForm";
 import PreviewForm from "@/components/PreviewForm.tsx/PreviewForm";
 import * as Yup from "yup";
+import { createEnvironmentAPI } from "@/apis/environment.api";
+import useMain from "@/hooks/useMain";
 
 export default function CreateApp(): ReactElement {
   const router = useRouter();
+
+  const { selectedState } = useMain();
 
   const formik: FormikProps<IEnvironment> = useFormik<IEnvironment>({
     initialValues: environmentInitial as IEnvironment,
@@ -64,6 +68,62 @@ export default function CreateApp(): ReactElement {
     }),
     onSubmit: async () => {
       formik.setSubmitting(true);
+
+      await createEnvironmentAPI({
+        orgId: selectedState?.organization?.id!,
+        regionName: selectedState?.region?.name!,
+        providerRegion: selectedState?.region?.region!,
+        instanceId: selectedState?.instance?.id!,
+        namespaceName: selectedState?.namespace?.name!,
+        appName: formik.values.details.name,
+        repository: {
+          url: undefined,
+          branch: "",
+        },
+        vdiEnabled: formik.values.services.vdi.isEnabled,
+        jupyterNotebookEnabled:
+          formik.values.services.jupyterNotebook.isEnabled,
+        appConfig: {
+          domainName: formik.values.applicationConfig.domainName,
+          application: {
+            name: formik.values.applicationConfig.application.name,
+            version: formik.values.applicationConfig.application.version,
+          },
+          devspace: {
+            desktop: formik.values.applicationConfig.devspace.desktop,
+            ubuntuDistro: formik.values.applicationConfig.devspace.ubuntuDistro,
+            version: formik.values.applicationConfig.devspace.version,
+          },
+        },
+        customPorts: {
+          ide:
+            formik.values.services.ide.customPorts
+              ?.map((port) => {
+                return `${port.name}-${port.backendPort}:${port.port}`;
+              })
+              ?.join("/") || "",
+          vdi:
+            formik.values.services.vdi.customPorts
+              ?.map((port) => {
+                return `${port.name}-${port.backendPort}:${port.port}`;
+              })
+              ?.join("/") || "",
+          jupyterNotebook:
+            formik.values.services.jupyterNotebook.customPorts
+              ?.map((port) => {
+                return `${port.name}-${port.backendPort}:${port.port}`;
+              })
+              ?.join("/") || "",
+        },
+        directories: {
+          hostDirectories: "",
+          permittedDirectories:
+            formik.values.directories.permittedDirectories?.join(":"),
+          persistentDirectories:
+            formik.values.directories.persistentDirectories?.join(":"),
+        },
+      });
+
       setTimeout(() => router.push("/applications"), 1000);
     },
   });

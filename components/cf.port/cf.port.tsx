@@ -56,6 +56,11 @@ export default function CFPort({ formik, type, index }: ICFPort): ReactElement {
             formikProps={formik.getFieldProps(
               `services.${type}.customPorts[${index}].name`,
             )}
+            touched={
+              formik.touched.services?.[type]?.customPorts?.[index]?.name
+            }
+            // @ts-ignore
+            error={formik.errors.services?.[type]?.customPorts?.[index]?.name}
             tooltip="Port Name is the name of the port that you want to expose."
           />
           <InputText
@@ -64,6 +69,11 @@ export default function CFPort({ formik, type, index }: ICFPort): ReactElement {
             formikProps={formik.getFieldProps(
               `services.${type}.customPorts[${index}].port`,
             )}
+            touched={
+              formik.touched.services?.[type]?.customPorts?.[index]?.port
+            }
+            // @ts-ignore
+            error={formik.errors.services?.[type]?.customPorts?.[index]?.port}
             tooltip="Application Port is the port of the application that you want to expose. For example, if you are running a web application, you can expose port 3000 to run your application on the Service."
           />
           <InputText
@@ -74,6 +84,13 @@ export default function CFPort({ formik, type, index }: ICFPort): ReactElement {
             formikProps={formik.getFieldProps(
               `services.${type}.customPorts[${index}].backendPort`,
             )}
+            touched={
+              formik.touched.services?.[type]?.customPorts?.[index]?.backendPort
+            }
+            error={
+              // @ts-ignore
+              formik.errors.services?.[type]?.customPorts?.[index]?.backendPort
+            }
             tooltip="Node Port is the port of your application that you want to expose. For example, if you are running a web application, you can expose from port 3000 to run your application on the Service."
           />
         </div>

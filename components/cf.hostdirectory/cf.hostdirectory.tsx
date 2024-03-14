@@ -27,6 +27,14 @@ export default function CFHostDirectory({
               `directories.hostDirectories[${index}].hostDirectory`,
             )}
             tooltip="Host Path is the path of the directory on the host machine that you want to mount into the container."
+            touched={
+              formik.touched.directories?.hostDirectories?.[index]
+                ?.hostDirectory
+            }
+            error={
+              // @ts-ignore
+              formik.errors.directories?.hostDirectories?.[index]?.hostDirectory
+            }
           />
           <InputText
             label="Mount Path"
@@ -34,6 +42,13 @@ export default function CFHostDirectory({
               `directories.hostDirectories[${index}].mountPath`,
             )}
             tooltip="Mount Path is the path where the host directory will be mounted inside the container."
+            touched={
+              formik.touched.directories?.hostDirectories?.[index]?.mountPath
+            }
+            error={
+              // @ts-ignore
+              formik.errors.directories?.hostDirectories?.[index]?.mountPath
+            }
           />
         </div>
         <CFLabel

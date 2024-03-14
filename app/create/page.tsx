@@ -8,12 +8,60 @@ import { IEnvironment } from "@/interfaces/environment.interface";
 import { environmentInitial } from "@/constants/environment.initial";
 import CreateForm from "@/components/CreateForm/CreateForm";
 import PreviewForm from "@/components/PreviewForm.tsx/PreviewForm";
+import * as Yup from "yup";
 
 export default function CreateApp(): ReactElement {
   const router = useRouter();
 
   const formik: FormikProps<IEnvironment> = useFormik<IEnvironment>({
     initialValues: environmentInitial as IEnvironment,
+    validationSchema: Yup.object().shape({
+      details: Yup.object().shape({
+        name: Yup.string().required("Application Name is required."),
+      }),
+
+      directories: Yup.object().shape({
+        hostDirectories: Yup.array().of(
+          Yup.object().shape({
+            hostDirectory: Yup.string().required("Host Path is required."),
+            mountPath: Yup.string().required("Mount Path is required."),
+          }),
+        ),
+      }),
+
+      services: Yup.object().shape({
+        ide: Yup.object().shape({
+          isEnabled: Yup.boolean(),
+          customPorts: Yup.array().of(
+            Yup.object().shape({
+              name: Yup.string().required("Port Name is required."),
+              port: Yup.number().required("Port is required"),
+              backendPort: Yup.number().required("Backend Port is required."),
+            }),
+          ),
+        }),
+        vdi: Yup.object().shape({
+          isEnabled: Yup.boolean(),
+          customPorts: Yup.array().of(
+            Yup.object().shape({
+              name: Yup.string().required("Port Name is required."),
+              port: Yup.number().required("Port is required"),
+              backendPort: Yup.number().required("Backend Port is required."),
+            }),
+          ),
+        }),
+        jupyterNotebook: Yup.object().shape({
+          isEnabled: Yup.boolean(),
+          customPorts: Yup.array().of(
+            Yup.object().shape({
+              name: Yup.string().required("Port Name is required."),
+              port: Yup.number().required("Port is required"),
+              backendPort: Yup.number().required("Backend Port is required."),
+            }),
+          ),
+        }),
+      }),
+    }),
     onSubmit: async () => {
       formik.setSubmitting(true);
       setTimeout(() => router.push("/applications"), 1000);

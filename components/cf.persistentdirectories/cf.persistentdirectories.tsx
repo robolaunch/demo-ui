@@ -1,13 +1,12 @@
 "use client";
 
-import { FormikProps } from "formik";
-import { ReactElement } from "react";
+import CFAccordionValidLabel from "../CFAccordionValidLabel/CFAccordionValidLabel";
+import { IEnvironment } from "@/interfaces/environment.interface";
 import CFInputLabels from "../input.labels/input.labels";
 import Accordion from "@/components/Accordion/Accordion";
-import { IEnvironment } from "@/interfaces/environment.interface";
+import { FormikProps } from "formik";
+import { ReactElement } from "react";
 import { toast } from "sonner";
-import { MdOutlineCheckCircle } from "react-icons/md";
-import CFAccordionValidLabel from "../CFAccordionValidLabel/CFAccordionValidLabel";
 
 interface ICFPersistentDirectories {
   formik: FormikProps<IEnvironment>;

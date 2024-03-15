@@ -8,6 +8,7 @@ import CFRemoveLabel from "../cf.remove.label/cf.remove.label";
 import { IEnvironment } from "@/interfaces/environment.interface";
 import { getPort } from "@/apis/port.api";
 import useMain from "@/hooks/useMain";
+import CFAccordionValidLabel from "../CFAccordionValidLabel/CFAccordionValidLabel";
 
 interface ICFPort {
   formik: FormikProps<IEnvironment>;
@@ -46,10 +47,34 @@ export default function CFPort({ formik, type, index }: ICFPort): ReactElement {
     );
   }
 
+  const hasErrors: boolean =
+    // @ts-ignore
+    formik.errors.services?.[type]?.customPorts?.[index]?.name ||
+    // @ts-ignore
+    formik.errors.services?.[type]?.customPorts?.[index]?.port ||
+    // @ts-ignore
+    formik.errors.services?.[type]?.customPorts?.[index]?.backendPort
+      ? true
+      : false;
+
+  const hasValid: boolean =
+    formik.values.services[type].customPorts[index].name &&
+    formik.values.services[type].customPorts[index].port &&
+    formik.values.services[type].customPorts[index].backendPort
+      ? true
+      : false;
+
   return (
     <Accordion
       headerClassName="text-sm"
-      header={`${typeView()} Port #${index + 1}`}
+      header={
+        <div className="flex items-center justify-between">
+          <p>Custom Ports Exposure From {typeView()}</p>
+          <CFAccordionValidLabel
+            type={hasErrors ? "error" : hasValid ? "valid" : null}
+          />
+        </div>
+      }
     >
       <div className="flex flex-col gap-2">
         <div className="flex items-center gap-2 py-3">

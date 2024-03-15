@@ -16,10 +16,10 @@ interface ICFHostDirectories {
 export default function CFHostDirectories({
   formik,
 }: ICFHostDirectories): ReactElement {
-  const haveErrors: boolean =
+  const hasErrors: boolean =
     formik.errors.directories?.hostDirectories?.length ?? 0 > 0 ? true : false;
 
-  const haveValid: boolean = formik.values.directories.hostDirectories.every(
+  const hasValid: boolean = formik.values.directories.hostDirectories.every(
     (directory) => directory.hostDirectory && directory.mountPath,
   );
 
@@ -30,7 +30,7 @@ export default function CFHostDirectories({
         <div className="flex items-center justify-between">
           <p>Host Directories</p>
           <CFAccordionValidLabel
-            type={haveErrors ? "error" : haveValid ? "valid" : null}
+            type={hasErrors ? "error" : hasValid ? "valid" : null}
           />
         </div>
       }

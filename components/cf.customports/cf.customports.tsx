@@ -29,10 +29,10 @@ export default function CFCustomPorts({
     }
   }
 
-  const haveErrors: boolean =
+  const hasErrors: boolean =
     formik.errors.services?.[type]?.customPorts?.length ?? 0 > 0 ? true : false;
 
-  const haveValid: boolean = formik.values.services[type].customPorts.every(
+  const hasValid: boolean = formik.values.services[type].customPorts.every(
     (port) => port.name && port.port && port.backendPort,
   );
 
@@ -43,7 +43,7 @@ export default function CFCustomPorts({
         <div className="flex items-center justify-between">
           <p>Custom Ports Exposure From {typeView()}</p>
           <CFAccordionValidLabel
-            type={haveErrors ? "error" : haveValid ? "valid" : null}
+            type={hasErrors ? "error" : hasValid ? "valid" : null}
           />
         </div>
       }

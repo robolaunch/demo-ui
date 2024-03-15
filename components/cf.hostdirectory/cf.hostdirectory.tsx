@@ -6,6 +6,7 @@ import { ReactElement } from "react";
 import { FormikProps } from "formik";
 import { IEnvironment } from "@/interfaces/environment.interface";
 import CFLabel from "../cf.remove.label/cf.remove.label";
+import CFAccordionValidLabel from "../CFAccordionValidLabel/CFAccordionValidLabel";
 
 interface ICFHostDirectory {
   formik: FormikProps<IEnvironment>;
@@ -16,10 +17,31 @@ export default function CFHostDirectory({
   formik,
   index,
 }: ICFHostDirectory): ReactElement {
+  const hasErrors: boolean =
+    // @ts-ignore
+    formik.errors.directories?.hostDirectories?.[index]?.hostDirectory ||
+    // @ts-ignore
+    formik.errors.directories?.hostDirectories?.[index]?.mountPath
+      ? true
+      : false;
+
+  const hasValid: boolean =
+    formik.values.directories.hostDirectories[index].hostDirectory &&
+    formik.values.directories.hostDirectories[index].mountPath
+      ? true
+      : false;
+
   return (
     <Accordion
       headerClassName="text-sm"
-      header={`Host Directory #${index + 1}`}
+      header={
+        <div className="flex items-center justify-between">
+          <p>Host Directory #{index + 1}</p>
+          <CFAccordionValidLabel
+            type={hasErrors ? "error" : hasValid ? "valid" : null}
+          />
+        </div>
+      }
     >
       <div className="flex flex-col gap-2">
         <div className="flex items-center gap-2 py-3">

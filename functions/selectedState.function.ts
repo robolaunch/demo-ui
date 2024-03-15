@@ -18,10 +18,14 @@ export const selectedStateInitial: ISelectedState = {
 };
 
 export function selectedStateInitialGetter(): ISelectedState {
-  return JSON.parse(
-    localStorage.getItem("selectedState") ||
-      JSON.stringify(selectedStateInitial),
-  );
+  if (typeof localStorage !== "undefined") {
+    return JSON.parse(
+      localStorage.getItem("selectedState") ||
+        JSON.stringify(selectedStateInitial),
+    );
+  } else {
+    return selectedStateInitial;
+  }
 }
 
 export function selectedStateInitialSetter(selectedState: ISelectedState) {

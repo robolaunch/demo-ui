@@ -3,7 +3,7 @@
 import { ReactElement } from "react";
 import { IoLogOutOutline } from "react-icons/io5";
 import SidebarItem from "../sidebar.item/sidebar.item.comp";
-import { useKeycloak } from "@react-keycloak/web";
+import useKeycloak from "@/hooks/useKeycloak";
 
 export default function SidebarBottom(): ReactElement {
   const { keycloak } = useKeycloak();

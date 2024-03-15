@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 import { ToggleButton } from "primereact/togglebutton";
 import useVDI from "@/hooks/useVDI";
-import { useKeycloak } from "@react-keycloak/web";
+import useKeycloak from "@/hooks/useKeycloak";
 
 export default function Control(): ReactElement {
   const { remoteDesktopReducer, client } = useVDI();

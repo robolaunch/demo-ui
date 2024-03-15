@@ -1,9 +1,9 @@
 "use client";
 
+import useKeycloak from "@/hooks/useKeycloak";
 // @ts-ignore
 import GuacamoleKeyboard from "@/utils/vdi.keyboard/guacamole-keyboard.ts";
 import { useEffect, createContext, useRef, useReducer } from "react";
-import { useKeycloak } from "@react-keycloak/web";
 import { toast } from "sonner";
 
 export const VDIContext: any = createContext<any>(null);

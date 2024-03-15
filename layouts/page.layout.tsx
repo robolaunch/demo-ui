@@ -32,8 +32,6 @@ export default function PageLayout({
 
   const params = useParams();
 
-  console.log(params);
-
   if (params?.appName) {
     return <Fragment>{children}</Fragment>;
   }

@@ -6,7 +6,6 @@ import { FormikProps } from "formik";
 import CFPort from "../cf.port/cf.port";
 import { IEnvironment } from "@/interfaces/environment.interface";
 import CFLabel from "../cf.remove.label/cf.remove.label";
-import { MdErrorOutline, MdOutlineCheckCircle } from "react-icons/md";
 import CFAccordionValidLabel from "../CFAccordionValidLabel/CFAccordionValidLabel";
 
 interface ICFCustomPorts {

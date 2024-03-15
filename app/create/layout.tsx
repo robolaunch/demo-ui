@@ -10,8 +10,8 @@ interface ICreateApp {
 export default function CreateApp({ children }: ICreateApp): ReactElement {
   return (
     <PageLayout
-      title="Create App"
-      paragraph="This is the create app page layout"
+      title="Create Application"
+      paragraph="To create an application, please fill out the form below."
       state="create"
     >
       {children}

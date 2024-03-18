@@ -1,6 +1,6 @@
 "use client";
 
-import AppCardHeader from "../app.card.header/app.card.header.comp";
+import AppCardHeader from "../AppCardHeader/AppCardHeader";
 import AppCardBody from "../AppCardBody/AppCardBody";
 import { IEnvironment } from "@/interfaces/environment.interface";
 import { useRouter } from "next/navigation";

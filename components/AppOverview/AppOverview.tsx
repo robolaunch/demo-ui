@@ -1,9 +1,9 @@
 "use client";
 
 import { ReactElement } from "react";
-import AppStatusCard from "../app.status.card/app.status.card";
-import AppTemplateCard from "../app.template.card/app.template.card";
-import AppServiceCard from "../app.service.card/app.service.card";
+import AppStatusCard from "../AppStatusCard/AppStatusCard";
+import AppTemplateCard from "../AppTemplateCard/AppTemplateCard";
+import AppServiceCard from "../AppServiceCard/AppServiceCard";
 import useApp from "@/hooks/useApp";
 
 export default function AppOverview(): ReactElement {

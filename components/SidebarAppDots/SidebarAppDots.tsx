@@ -4,7 +4,7 @@ import { IEnvironment } from "@/interfaces/environment.interface";
 import { Button } from "primereact/button";
 import { Menu } from "primereact/menu";
 import { ReactElement, useRef, useState } from "react";
-import ModalAppEvents from "../modal.app.events/modal.app.events";
+import ModalAppEvents from "../ModalAppEvents/ModalAppEvents";
 import { getApplicationStatus } from "@/functions/environment.function";
 
 interface ISidebarAppDots {

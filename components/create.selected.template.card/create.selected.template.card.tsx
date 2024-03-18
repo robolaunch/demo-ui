@@ -1,7 +1,7 @@
 "use client";
 
 import { ReactElement, useEffect, useState } from "react";
-import Card from "../card/card.comp";
+import Card from "../Card/Card";
 import { FormikProps } from "formik";
 import useMain from "@/hooks/useMain";
 import { ITemplate } from "@/interfaces/template.interface";

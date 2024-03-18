@@ -1,9 +1,9 @@
 import { Fragment, ReactElement, useState } from "react";
 import { FormikProps } from "formik";
-import CreateSidebarHostDirectories from "../cf.hostdirectories/cf.hostdirectories";
-import CFCustomPorts from "../cf.customports/cf.customports";
-import CFPersistentDirectories from "../cf.persistentdirectories/cf.persistentdirectories";
-import CFGrantedDirectories from "../cf.granteddirectories/cf.granteddirectories";
+import CreateSidebarHostDirectories from "../CFHostDirectories/CFHostDirectories";
+import CFCustomPorts from "../CFCustomPorts/CFCustomPorts";
+import CFPersistentDirectories from "../CFPersistentDirectories/CFPersistentDirectories";
+import CFGrantedDirectories from "../CFGrantedDirectories/CFGrantedDirectories";
 import { IEnvironment } from "@/interfaces/environment.interface";
 
 interface ICreateSidebarAdvancedSettings {

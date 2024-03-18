@@ -1,6 +1,6 @@
 "use client";
 
-import CreateTemplatesMapper from "@/components/create.templates.mapper/create.templates.mapper";
+import CreateTemplatesMapper from "@/components/CreateTemplatesMapper/CreateTemplatesMapper";
 import { FormikProps, useFormik } from "formik";
 import { ReactElement, useEffect } from "react";
 import { useRouter } from "next/navigation";

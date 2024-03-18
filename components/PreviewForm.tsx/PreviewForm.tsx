@@ -1,9 +1,9 @@
 import { ReactElement } from "react";
-import Card from "../card/card.comp";
+import Card from "../Card/Card";
 import CreateSelectedTemplateCard from "../create.selected.template.card/create.selected.template.card";
 import { IEnvironment } from "@/interfaces/environment.interface";
 import { FormikProps } from "formik";
-import Button from "../button/button";
+import Button from "../Button/Button";
 import PreviewFormLabels from "../PreviewFormLabels/PreviewFormLabels";
 
 interface IPreviewForm {

@@ -1,9 +1,9 @@
 "use client";
 
 import { ReactElement } from "react";
-import Card from "../card/card.comp";
+import Card from "../Card/Card";
 import InputText from "../InputText/InputText";
-import InputSwitch from "../input.switch/input.switch";
+import InputSwitch from "../InputSwitch/InputSwitch";
 import { FormikProps } from "formik";
 import CreateSidebarAdvancedSettings from "../create.sidebar.advancedsettings/create.sidebar.advancedsettings";
 import { IEnvironment } from "@/interfaces/environment.interface";

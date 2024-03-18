@@ -1,7 +1,5 @@
 "use client";
 
-import CreateOrganizationModal from "@/components/modal.createorg.comp/modal.createorg.comp";
-import CreateNamespaceModal from "@/components/modal.createns.comp/modal.createns.comp";
 import React, { ReactElement, createContext, useEffect, useState } from "react";
 import LayoutLoading from "@/components/layout.loading/layout.loading.comp";
 import constantSidebarState from "@/constants/sidebarstate.constant.json";
@@ -16,6 +14,8 @@ import {
   selectedStateInitialGetter,
   selectedStateInitialSetter,
 } from "@/functions/selectedState.function";
+import ModalCreateNS from "@/components/ModalCreateNS/ModalCreateNS";
+import ModalCreateOrg from "@/components/ModalCreateOrg/ModalCreateOrg";
 
 export const MainContext: any = createContext<any>(null);
 
@@ -104,8 +104,8 @@ export default ({ children }: IMainContext) => {
         setApplications,
       }}
     >
-      {!selectedState.namespace && <CreateNamespaceModal />}
-      {!selectedState.organization && <CreateOrganizationModal />}
+      {!selectedState.namespace && <ModalCreateNS />}
+      {!selectedState.organization && <ModalCreateOrg />}
       {loading ? <LayoutLoading /> : children}
     </MainContext.Provider>
   );

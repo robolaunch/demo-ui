@@ -1,6 +1,6 @@
 "use client";
 
-import Card from "@/components/card/card.comp";
+import Card from "@/components/Card/Card";
 import { ReactElement } from "react";
 
 export default function Help(): ReactElement {

@@ -19,7 +19,7 @@ import MainContextProvider from "@/contexts/main.context";
 import "primereact/resources/themes/lara-light-cyan/theme.css";
 import "react-loading-skeleton/dist/skeleton.css";
 import { Toaster } from "sonner";
-import Version from "@/components/version/version";
+import Version from "@/components/Version/Version";
 import KeycloakProvider from "./keycloak.provider";
 import "primeicons/primeicons.css";
 import HiddenFrame from "@/components/HiddenFrame/HiddenFrame";

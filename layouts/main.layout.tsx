@@ -1,7 +1,7 @@
 "use client";
 
-import SidebarButton from "@/components/sidebar.button/sidebar.button.comp";
-import Sidebar from "@/components/sidebar/sidebar.comp";
+import SidebarButton from "@/components/SidebarButton/SidebarButton";
+import Sidebar from "@/components/Sidebar/Sidebar";
 import { ReactElement } from "react";
 
 interface IMainLayout {

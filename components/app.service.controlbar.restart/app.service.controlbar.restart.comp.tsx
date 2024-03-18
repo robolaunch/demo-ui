@@ -1,6 +1,6 @@
 import { ToggleButton } from "primereact/togglebutton";
 import { Fragment, ReactElement, useState } from "react";
-import Modal from "../modal/modal.comp";
+import Modal from "../Modal/Modal";
 import useApp from "@/hooks/useApp";
 
 interface IServiceRestart {

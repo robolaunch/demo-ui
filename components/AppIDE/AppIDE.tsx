@@ -12,7 +12,7 @@ import {
 import { useParams, useRouter } from "next/navigation";
 import { toast } from "sonner";
 
-export default function JupyterNotebook(): ReactElement {
+export default function AppIDE(): ReactElement {
   const { applications } = useMain();
   const params = useParams();
 
@@ -37,7 +37,7 @@ export default function JupyterNotebook(): ReactElement {
         className="hw-full"
         title="ide"
         allow="clipboard-read"
-        src={app?.services?.jupyterNotebook?.httpsEndpoint}
+        src={app?.services?.ide?.httpsEndpoint}
       />
       <AppServiceControlBar type="ide" />
     </Card>

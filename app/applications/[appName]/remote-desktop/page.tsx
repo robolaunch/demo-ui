@@ -1,6 +1,6 @@
 "use client";
 
-import VDI from "@/components/app.vdi/app.vdi.comp";
+import AppVDI from "@/components/AppVDI/AppVDI";
 import WEBRTCProvider from "@/contexts/vdi.context";
 import {
   applicationFinder,
@@ -34,7 +34,7 @@ export default function RemoteDesktop(): ReactElement {
 
   return (
     <WEBRTCProvider socketEndpoint={app?.services?.vdi?.socketEndpoint}>
-      <VDI />
+      <AppVDI />
     </WEBRTCProvider>
   );
 }

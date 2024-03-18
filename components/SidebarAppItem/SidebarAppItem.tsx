@@ -6,7 +6,7 @@ import { IEnvironment } from "@/interfaces/environment.interface";
 import { IoIosApps, IoIosArrowForward } from "react-icons/io";
 import SidebarAppDots from "../SidebarAppDots/SidebarAppDots";
 import { Fragment, ReactElement, useState } from "react";
-import Status from "../app.status/app.status.comp";
+import Status from "../AppStatus/AppStatus";
 import { Tooltip } from "primereact/tooltip";
 import SidebarAppItemTooltip from "../SidebarAppItemTooltip/SidebarAppItemTooltip";
 

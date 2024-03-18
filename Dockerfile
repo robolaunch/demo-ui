@@ -1,10 +1,24 @@
 FROM node:alpine as build-stage
+
+ARG BACKEND_URL
+ARG KEYCLOAK_URL
+ARG KEYCLOAK_REALM
+ARG KEYCLOAK_CLIENT_ID
+
 COPY . /app
 WORKDIR /app
 RUN npm install -s
 RUN npm run build
+
 FROM node:alpine as production-stage
+
 COPY --from=build-stage /app/.next /app/.next
 WORKDIR /app
+
+ENV BACKEND_URL=$BACKEND_URL
+ENV KEYCLOAK_URL=$KEYCLOAK_URL
+ENV KEYCLOAK_REALM=$KEYCLOAK_REALM
+ENV KEYCLOAK_CLIENT_ID=$KEYCLOAK_CLIENT_ID
+
 CMD ["npm", "start"]
 EXPOSE 3000

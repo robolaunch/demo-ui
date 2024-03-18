@@ -1,9 +1,9 @@
 "use client";
 
-import useKeycloak from "@/hooks/useKeycloak";
 // @ts-ignore
 import GuacamoleKeyboard from "@/utils/vdi.keyboard/guacamole-keyboard.ts";
 import { useEffect, createContext, useRef, useReducer } from "react";
+import { useKeycloak } from "react-keycloak-client";
 import { toast } from "sonner";
 
 export const VDIContext: any = createContext<any>(null);
@@ -23,7 +23,7 @@ export default ({ children, socketEndpoint }: IVDIContext) => {
   const keyboard = useRef<any>(null);
   const overlay = useRef<any>(null);
 
-  const { keycloak } = useKeycloak();
+  const keycloak = useKeycloak();
 
   const [remoteDesktopReducer, dispatcher] = useReducer(handleReducer, {
     members: [],

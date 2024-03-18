@@ -1,12 +1,12 @@
 "use client";
 
 import { getApplicationStatus } from "@/functions/environment.function";
-import { IoTerminal, IoTv } from "react-icons/io5";
 import { IEnvironment } from "@/interfaces/environment.interface";
+import { IoTerminal, IoTv } from "react-icons/io5";
 import { useRouter } from "next/navigation";
+import { SiJupyter } from "react-icons/si";
 import { ReactElement } from "react";
 import { toast } from "sonner";
-import { SiJupyter } from "react-icons/si";
 
 interface ISidebarAppItemService {
   type: "ide" | "vdi" | "jupyterNotebook";
@@ -24,13 +24,6 @@ export default function SidebarAppItemService({
       className={`transition-500 animate__animated animate__fadeIn flex w-full items-center justify-between gap-3 py-3 pl-11 hover:bg-slate-100 disabled:cursor-not-allowed`}
       onClick={() => {
         if (getApplicationStatus(app) === "EnvironmentReady") {
-          if (type === "jupyterNotebook") {
-            return window.open(
-              app.services.jupyterNotebook.httpsEndpoint,
-              "_blank",
-            );
-          }
-
           router.push(
             `/applications/${app.details.name}/${(() => {
               switch (type) {
@@ -38,6 +31,8 @@ export default function SidebarAppItemService({
                   return "code-editor";
                 case "vdi":
                   return "remote-desktop";
+                case "jupyterNotebook":
+                  return "jupyter-notebook";
               }
             })()}`,
           );

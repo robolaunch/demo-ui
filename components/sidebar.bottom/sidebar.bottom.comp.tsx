@@ -1,12 +1,12 @@
 "use client";
 
-import { ReactElement } from "react";
+import { ReactElement, useEffect } from "react";
 import { IoLogOutOutline } from "react-icons/io5";
 import SidebarItem from "../sidebar.item/sidebar.item.comp";
-import useKeycloak from "@/hooks/useKeycloak";
+import { useKeycloak } from "react-keycloak-client";
 
 export default function SidebarBottom(): ReactElement {
-  const { keycloak } = useKeycloak();
+  const keycloak = useKeycloak();
 
   return (
     <div className="flex flex-col">

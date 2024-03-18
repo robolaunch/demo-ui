@@ -106,8 +106,7 @@ export default ({ children }: IMainContext) => {
     >
       {!selectedState.namespace && <CreateNamespaceModal />}
       {!selectedState.organization && <CreateOrganizationModal />}
-      {loading && <LayoutLoading />}
-      {children}
+      {loading ? <LayoutLoading /> : children}
     </MainContext.Provider>
   );
 };

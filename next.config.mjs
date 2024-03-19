@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
+  output: "standalone",
   env: {
     BACKEND_URL: process.env.BACKEND_URL,
     KEYCLOAK_URL: process.env.KEYCLOAK_URL,

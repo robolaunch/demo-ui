@@ -4,11 +4,16 @@ import SidebarBottom from "../SidebarBottom/SidebarBottom";
 import SidebarSelect from "../SidebarSelect/SidebarSelect";
 import SidebarMain from "../SidebarMain/SidebarMain";
 import useMain from "@/hooks/useMain";
-import { ReactElement } from "react";
+import { ReactElement, useEffect } from "react";
 import Image from "next/image";
+import env from "@/providers/env.provider";
 
 export default function Sidebar(): ReactElement {
   const { sidebarState } = useMain();
+
+  useEffect(() => {
+    console.log("env", env);
+  }, []);
 
   return (
     <div

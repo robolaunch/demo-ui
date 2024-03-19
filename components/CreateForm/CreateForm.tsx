@@ -1,12 +1,13 @@
 "use client";
 
-import { ReactElement } from "react";
-import Card from "../Card/Card";
-import InputText from "../InputText/InputText";
-import InputSwitch from "../InputSwitch/InputSwitch";
-import { FormikProps } from "formik";
 import CreateSidebarAdvancedSettings from "../create.sidebar.advancedsettings/create.sidebar.advancedsettings";
 import { IEnvironment } from "@/interfaces/environment.interface";
+import InputSwitch from "../InputSwitch/InputSwitch";
+import { ReactElement } from "react";
+import InputText from "../InputText/InputText";
+import CFTemplate from "../CFTemplate/CFTemplate";
+import { FormikProps } from "formik";
+import Card from "../Card/Card";
 import { toast } from "sonner";
 
 interface ICreateForm {
@@ -24,7 +25,7 @@ export default function CreateForm({ formik }: ICreateForm): ReactElement {
           touched={formik.touched.details?.name}
           error={formik.errors.details?.name}
         />
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-4">
           <InputSwitch
             label="Code Editor:"
             checked={formik?.values?.services?.ide?.isEnabled}
@@ -41,7 +42,6 @@ export default function CreateForm({ formik }: ICreateForm): ReactElement {
             tooltip="Remote Desktop is a remote desktop that is used to run GUI applications."
             formikProps={formik.getFieldProps("services.vdi.isEnabled")}
           />
-
           <InputSwitch
             label="Jupyter Notebook:"
             checked={formik?.values?.services?.jupyterNotebook?.isEnabled}
@@ -50,7 +50,9 @@ export default function CreateForm({ formik }: ICreateForm): ReactElement {
               "services.jupyterNotebook.isEnabled",
             )}
           />
+          <CFTemplate formik={formik} />
         </div>
+
         <CreateSidebarAdvancedSettings formik={formik} />
       </div>
     </Card>

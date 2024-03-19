@@ -65,6 +65,10 @@ export default function CreateApp(): ReactElement {
           ),
         }),
       }),
+
+      sharing: Yup.object().shape({
+        alias: Yup.string().required("Template Name is required."),
+      }),
     }),
     onSubmit: async () => {
       formik.setSubmitting(true);
@@ -121,6 +125,13 @@ export default function CreateApp(): ReactElement {
             formik.values.directories.permittedDirectories?.join(":"),
           persistentDirectories:
             formik.values.directories.persistentDirectories?.join(":"),
+        },
+        sharing: {
+          alias: formik.values.sharing.alias,
+          template: JSON.stringify(formik.values),
+          private: formik.values.sharing.private,
+          organization: formik.values.sharing.organization,
+          public: formik.values.sharing.public,
         },
       });
 

@@ -128,6 +128,13 @@ export async function createEnvironmentAPI(values: {
     url: string | undefined;
     branch: string;
   };
+  sharing: {
+    alias: string;
+    private: boolean;
+    organization: boolean;
+    public: boolean;
+    template: string;
+  };
 }): Promise<void> {
   return new Promise<void>(async (resolve, reject) => {
     try {
@@ -180,6 +187,12 @@ export async function createEnvironmentAPI(values: {
                     notebookEnabled: values.jupyterNotebookEnabled,
                     notebookGpuResource: 1,
                     notebookCustomPorts: values?.customPorts?.jupyterNotebook,
+                    templateContent: values?.sharing?.template,
+                    templateName: values?.sharing?.alias,
+                    templatePrivate: values?.sharing?.private,
+                    templateOrganizationLevelAvailable:
+                      values?.sharing?.organization,
+                    templatePublicLevelAvailable: values?.sharing?.public,
                     robotWorkspaces: values.repository.url
                       ? [
                           {

@@ -1,7 +1,11 @@
 "use client";
 
+import { IEnvironment } from "@/interfaces/environment.interface";
 import {
   ICategory,
+  ISavedTemplate,
+  ISavedTemplateBE,
+  ISavedTemplateTypes,
   ITemplate,
   ITemplateBE,
 } from "@/interfaces/template.interface";
@@ -53,6 +57,25 @@ export function categoriesMapper(data: ITemplate[]): ICategory[] {
             return category;
         }
       })(),
+    };
+  });
+}
+
+export function savedTemplateMapper(
+  data: ISavedTemplateBE[],
+): ISavedTemplate[] {
+  const filteredData =
+    data?.filter(
+      (template, index, array) =>
+        array.findIndex((t) => t.templateName === template.templateName) ===
+        index,
+    ) || [];
+
+  return filteredData?.map((template) => {
+    return {
+      name: template.templateName,
+      type: template.templateType as ISavedTemplateTypes,
+      template: JSON.parse(template.templateContent) as IEnvironment,
     };
   });
 }

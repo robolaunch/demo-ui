@@ -9,12 +9,11 @@ import CFTemplate from "../CFTemplate/CFTemplate";
 import { FormikProps } from "formik";
 import Card from "../Card/Card";
 import { toast } from "sonner";
+import useCreate from "@/hooks/useCreate";
 
-interface ICreateForm {
-  formik: FormikProps<IEnvironment>;
-}
+export default function CreateForm(): ReactElement {
+  const { formik } = useCreate();
 
-export default function CreateForm({ formik }: ICreateForm): ReactElement {
   return (
     <Card className="hw-full flex flex-col justify-between overflow-auto p-12">
       <div className="flex flex-col gap-8">

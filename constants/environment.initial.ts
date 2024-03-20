@@ -95,4 +95,5 @@ export const environmentInitial: IEnvironment = {
     build: [],
     launch: [],
   },
+  workspaces: [],
 };

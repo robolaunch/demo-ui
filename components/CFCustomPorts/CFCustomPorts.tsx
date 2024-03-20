@@ -5,7 +5,7 @@ import { ReactElement } from "react";
 import { FormikProps } from "formik";
 import CFPort from "../CFPort/CFPort";
 import { IEnvironment } from "@/interfaces/environment.interface";
-import CFLabel from "../cf.remove.label/cf.remove.label";
+import CFLabel from "../CFLabel/CFLabel";
 import CFAccordionValidLabel from "../CFAccordionValidLabel/CFAccordionValidLabel";
 
 interface ICFCustomPorts {

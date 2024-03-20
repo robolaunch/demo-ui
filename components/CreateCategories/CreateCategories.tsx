@@ -5,14 +5,11 @@ import { ToggleButton } from "primereact/togglebutton";
 import { ICategory } from "@/interfaces/template.interface";
 import { categoriesMapper } from "@/handlers/template.handler";
 import useMain from "@/hooks/useMain";
-import { FormikProps } from "formik";
-import { IEnvironment } from "@/interfaces/environment.interface";
+import useCreate from "@/hooks/useCreate";
 
-interface ICategories {
-  formik: FormikProps<IEnvironment>;
-}
+export default function Categories(): ReactElement {
+  const { formik } = useCreate();
 
-export default function Categories({ formik }: ICategories): ReactElement {
   const [categories, setCategories] = useState<ICategory[]>([]);
   const { templates } = useMain();
 

@@ -4,7 +4,7 @@ import Accordion from "@/components/Accordion/Accordion";
 import InputText from "../InputText/InputText";
 import { ReactElement, useEffect } from "react";
 import { FormikProps } from "formik";
-import CFRemoveLabel from "../cf.remove.label/cf.remove.label";
+import CFRemoveLabel from "../CFLabel/CFLabel";
 import { IEnvironment } from "@/interfaces/environment.interface";
 import { getPort } from "@/apis/port.api";
 import useMain from "@/hooks/useMain";

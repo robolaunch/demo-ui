@@ -137,6 +137,7 @@ function handleMapper(data: IEnvironmentBE[]): IEnvironment[] {
             (cluster) => cluster.robotStatus === "EnvironmentReady",
           ),
         ),
+        workspaces: [],
       };
     }) || []
   );

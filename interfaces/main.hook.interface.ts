@@ -1,12 +1,11 @@
 import { Dispatch, SetStateAction } from "react";
 import { ISidebarState } from "./sidebarstate.interface";
 import { IOrganization } from "./organization.interface";
-import { IRegion } from "./region.interface";
+import { IEnvironment } from "./environment.interface";
 import { INamespace } from "./namespace.interface";
 import { IInstance } from "./instance.interface";
-import { IAppState } from "./app.config.interface";
 import { ITemplate } from "./template.interface";
-import { IEnvironment } from "./environment.interface";
+import { IRegion } from "./region.interface";
 
 export interface IMainHook {
   sidebarState: ISidebarState;

@@ -1,16 +1,15 @@
+"use client";
+
 import { ReactElement } from "react";
-import Card from "../Card/Card";
-import CreateSelectedTemplateCard from "../create.selected.template.card/create.selected.template.card";
-import { IEnvironment } from "@/interfaces/environment.interface";
-import { FormikProps } from "formik";
-import Button from "../Button/Button";
 import PreviewFormLabels from "../PreviewFormLabels/PreviewFormLabels";
+import CreateSelectedTemplateCard from "../create.selected.template.card/create.selected.template.card";
+import useCreate from "@/hooks/useCreate";
+import Button from "../Button/Button";
+import Card from "../Card/Card";
 
-interface IPreviewForm {
-  formik: FormikProps<IEnvironment>;
-}
+export default function PreviewForm(): ReactElement {
+  const { formik } = useCreate();
 
-export default function PreviewForm({ formik }: IPreviewForm): ReactElement {
   return (
     <Card className="hw-full flex flex-col justify-between   p-5 text-sm">
       <div className="flex flex-col gap-4">

@@ -106,6 +106,14 @@ export interface IEnvironment {
     build: IEnvironmentStep1Cluster[];
     launch: IEnvironmentStep1Cluster[];
   };
+  workspaces: {
+    name: string;
+    repos: {
+      name: string;
+      url: string;
+      branch: string;
+    }[];
+  }[];
 }
 
 export interface IEnvironmentStep1Cluster {

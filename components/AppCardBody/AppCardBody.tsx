@@ -21,11 +21,11 @@ export default function AppCardBody({ app }: IAppCardBody): ReactElement {
   const list = [
     {
       key: "Application",
-      value: `${currentTemplate?.app.alias} - ${currentTemplate?.app.version}`,
+      value: `${currentTemplate?.app?.alias} - ${currentTemplate?.app?.version}`,
     },
     {
       key: "Version",
-      value: currentTemplate?.image.version,
+      value: currentTemplate?.image?.version,
     },
     {
       key: "Operating System",
@@ -73,7 +73,7 @@ export default function AppCardBody({ app }: IAppCardBody): ReactElement {
         className="flex items-start justify-end"
         width={56}
         height={56}
-        src={currentTemplate?.app.icon! || "/icons/rocket.svg"}
+        src={currentTemplate?.app?.icon! || "/icons/rocket.svg"}
         alt="app image"
       />
     </div>

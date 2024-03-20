@@ -5,6 +5,7 @@ import CFCustomPorts from "../CFCustomPorts/CFCustomPorts";
 import CFPersistentDirectories from "../CFPersistentDirectories/CFPersistentDirectories";
 import CFGrantedDirectories from "../CFGrantedDirectories/CFGrantedDirectories";
 import { IEnvironment } from "@/interfaces/environment.interface";
+import CFWorkspaces from "../CFWorkspaces/CFWorkspaces";
 
 interface ICreateSidebarAdvancedSettings {
   formik: FormikProps<IEnvironment>;
@@ -28,6 +29,7 @@ export default function CreateSidebarAdvancedSettings({
         </div>
       ) : (
         <div className="flex flex-col gap-2">
+          <CFWorkspaces formik={formik} />
           <CreateSidebarHostDirectories formik={formik} />
           <CFCustomPorts formik={formik} type="ide" />
           <CFCustomPorts formik={formik} type="vdi" />

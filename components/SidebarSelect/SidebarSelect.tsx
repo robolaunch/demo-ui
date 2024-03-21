@@ -156,6 +156,7 @@ export default function SidebarSelect(): ReactElement {
       {isOpenCreateOrg && (
         <CreateOrganizationModal onClose={() => setIsOpenCreateOrg(false)} />
       )}
+
       {isOpenCreateNS && (
         <CreateNamespaceModal onClose={() => setIsOpenCreateNS(false)} />
       )}

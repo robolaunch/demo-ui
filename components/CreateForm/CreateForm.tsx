@@ -1,12 +1,10 @@
 "use client";
 
 import CreateSidebarAdvancedSettings from "../create.sidebar.advancedsettings/create.sidebar.advancedsettings";
-import { IEnvironment } from "@/interfaces/environment.interface";
 import InputSwitch from "../InputSwitch/InputSwitch";
 import { ReactElement } from "react";
 import InputText from "../InputText/InputText";
 import CFTemplate from "../CFTemplate/CFTemplate";
-import { FormikProps } from "formik";
 import Card from "../Card/Card";
 import { toast } from "sonner";
 import useCreate from "@/hooks/useCreate";

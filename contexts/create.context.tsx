@@ -10,6 +10,7 @@ import { environmentInitial } from "@/constants/environment.initial";
 import * as Yup from "yup";
 import { createEnvironmentAPI } from "@/apis/environment.api";
 import { useRouter } from "next/navigation";
+import { IFilters } from "@/interfaces/create.interface";
 
 export const CreateContext: any = createContext<any>(null);
 
@@ -20,6 +21,10 @@ interface ICreateContext {
 // eslint-disable-next-line
 export default ({ children }: ICreateContext) => {
   const [savedTemplates, setSavedTemplates] = useState<ISavedTemplate[]>([]);
+
+  const [filters, setFilters] = useState<IFilters>({
+    publisher: "all",
+  });
 
   const router = useRouter();
 
@@ -173,6 +178,8 @@ export default ({ children }: ICreateContext) => {
       value={{
         formik,
         savedTemplates,
+        filters,
+        setFilters,
       }}
     >
       {children}

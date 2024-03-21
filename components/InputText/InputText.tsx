@@ -4,7 +4,7 @@ import { ReactElement } from "react";
 import { InputText as InputTextPR } from "primereact/inputtext";
 
 interface IInputText {
-  formikProps: any;
+  formikProps?: any;
   label: string;
   touched?: boolean;
   error?: string;

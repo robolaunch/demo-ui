@@ -18,3 +18,7 @@ export interface ICreateEnvironmentForm {
   repoURL?: string;
   repoBranch?: string;
 }
+
+export interface IFilters {
+  publisher: string;
+}

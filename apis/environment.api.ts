@@ -124,10 +124,6 @@ export async function createEnvironmentAPI(values: {
     vdi: string;
     jupyterNotebook: string;
   };
-  repository: {
-    url: string | undefined;
-    branch: string;
-  };
   sharing: {
     alias: string;
     private: boolean;
@@ -135,6 +131,15 @@ export async function createEnvironmentAPI(values: {
     public: boolean;
     template: string;
   };
+  workspaces: {
+    name: string;
+    workspaceDistro: string;
+    robotRepositories: {
+      name: string;
+      url: string;
+      branch: string;
+    }[];
+  }[];
 }): Promise<void> {
   return new Promise<void>(async (resolve, reject) => {
     try {
@@ -193,21 +198,10 @@ export async function createEnvironmentAPI(values: {
                     templateOrganizationLevelAvailable:
                       values?.sharing?.organization,
                     templatePublicLevelAvailable: values?.sharing?.public,
-                    robotWorkspaces: values.repository.url
-                      ? [
-                          {
-                            name: "default",
-                            workspaceDistro: "",
-                            robotRepositories: [
-                              {
-                                name: "default",
-                                url: values.repository.url,
-                                branch: values.repository.branch,
-                              },
-                            ],
-                          },
-                        ]
-                      : undefined,
+                    robotWorkspaces:
+                      values.workspaces?.length > 0
+                        ? values.workspaces
+                        : undefined,
                   },
                 ],
               },

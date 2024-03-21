@@ -1,16 +1,16 @@
 "use client";
 
 import React, { ReactElement, createContext, useEffect, useState } from "react";
-import { ISavedTemplate } from "@/interfaces/template.interface";
-import { getSavedTemplates } from "@/apis/template.api";
-import useMain from "@/hooks/useMain";
-import { FormikProps, useFormik } from "formik";
-import { IEnvironment } from "@/interfaces/environment.interface";
 import { environmentInitial } from "@/constants/environment.initial";
-import * as Yup from "yup";
+import { IEnvironment } from "@/interfaces/environment.interface";
+import { ISavedTemplate } from "@/interfaces/template.interface";
 import { createEnvironmentAPI } from "@/apis/environment.api";
-import { useRouter } from "next/navigation";
 import { IFilters } from "@/interfaces/create.interface";
+import { getSavedTemplates } from "@/apis/template.api";
+import { FormikProps, useFormik } from "formik";
+import { useRouter } from "next/navigation";
+import useMain from "@/hooks/useMain";
+import * as Yup from "yup";
 
 export const CreateContext: any = createContext<any>(null);
 
@@ -87,6 +87,19 @@ export default ({ children }: ICreateContext) => {
       sharing: Yup.object().shape({
         alias: Yup.string().required("Template Name is required."),
       }),
+
+      workspaces: Yup.array().of(
+        Yup.object().shape({
+          name: Yup.string().required("Workspace Name is required."),
+          repos: Yup.array().of(
+            Yup.object().shape({
+              name: Yup.string().required("Name is required."),
+              url: Yup.string().required("URL is required."),
+              branch: Yup.string().required("Branch is required."),
+            }),
+          ),
+        }),
+      ),
     }),
     onSubmit: async () => {
       formik.setSubmitting(true);
@@ -98,10 +111,6 @@ export default ({ children }: ICreateContext) => {
         instanceId: selectedState?.instance?.id!,
         namespaceName: selectedState?.namespace?.name!,
         appName: formik.values.details.name,
-        repository: {
-          url: undefined,
-          branch: "",
-        },
         vdiEnabled: formik.values.services.vdi.isEnabled,
         jupyterNotebookEnabled:
           formik.values.services.jupyterNotebook.isEnabled,
@@ -151,6 +160,19 @@ export default ({ children }: ICreateContext) => {
           organization: formik.values.sharing.organization,
           public: formik.values.sharing.public,
         },
+        workspaces: formik.values.workspaces.map((workspace) => {
+          return {
+            name: workspace.name,
+            workspaceDistro: "HUMBLE",
+            robotRepositories: workspace.repos.map((repo) => {
+              return {
+                name: repo.name,
+                url: repo.url,
+                branch: repo.branch,
+              };
+            }),
+          };
+        }),
       });
 
       setTimeout(() => router.push("/applications"), 1000);

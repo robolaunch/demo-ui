@@ -14,8 +14,14 @@ export default function CFRepositories({
 }: ICFRepositories): ReactElement {
   const { formik } = useCreate();
 
-  const hasErrors = false;
-  const hasValid = true;
+  const hasErrors =
+    // @ts-ignore
+    formik.errors.workspaces?.[workspaceIndex]?.repos?.length > 0
+      ? true
+      : false;
+  const hasValid = formik.values.workspaces[workspaceIndex].repos.every(
+    (repo) => repo.name && repo.url && repo.branch,
+  );
 
   return (
     <Accordion
@@ -34,7 +40,6 @@ export default function CFRepositories({
           Repositories will be cloned into the workspace. You can add multiple
           repositories.
         </p>
-
         {formik.values.workspaces?.[workspaceIndex]?.repos.map((_, index) => (
           <CFRepository
             key={index}

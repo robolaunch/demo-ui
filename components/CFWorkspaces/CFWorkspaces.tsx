@@ -11,8 +11,10 @@ interface ICFWorkspaces {
 }
 
 export default function CFWorkspaces({ formik }: ICFWorkspaces): ReactElement {
-  const hasErrors = false;
-  const hasValid = true;
+  const hasErrors = formik.errors.workspaces?.length ?? 0 > 0 ? true : false;
+  const hasValid = formik.values.workspaces.every(
+    (workspace) => workspace.name,
+  );
 
   return (
     <Accordion
@@ -43,7 +45,13 @@ export default function CFWorkspaces({ formik }: ICFWorkspaces): ReactElement {
               ...formik.values.workspaces,
               {
                 name: "",
-                repos: [],
+                repos: [
+                  {
+                    name: "",
+                    url: "",
+                    branch: "",
+                  },
+                ],
               },
             ]);
           }}

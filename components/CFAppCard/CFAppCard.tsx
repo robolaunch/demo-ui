@@ -18,7 +18,7 @@ export default function CFAppCard({ template }: ICFAppCard): ReactElement {
 
   return (
     <Card
-      className={`transition-300 col-span-1 cursor-pointer border p-4 hover:scale-[0.975] hover:shadow-sm ${!template.env ? "border-primary-200 bg-primary-100" : "border-secondary-300 bg-secondary-100"}`}
+      className={`transition-300 col-span-1 !h-fit cursor-pointer border p-4 hover:scale-[0.975] hover:shadow-sm ${!template.env ? "border-primary-200 bg-primary-100" : "border-secondary-300 bg-secondary-100"}`}
       onClick={() => {
         formik.setValues({
           ...formik.values,
@@ -72,12 +72,6 @@ export default function CFAppCard({ template }: ICFAppCard): ReactElement {
               <span className=" font-medium">Version: </span>
               {template.image.version}
             </p>
-            {template.env && (
-              <p className="flex w-full justify-between text-xs">
-                <span className=" font-medium">Template Name: </span>
-                {template.env.sharing.alias}
-              </p>
-            )}
           </div>
         </div>
       </div>

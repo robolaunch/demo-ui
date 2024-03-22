@@ -1,5 +1,7 @@
-import { Fragment, ReactElement, useState } from "react";
+"use client";
+
 import { FormikProps } from "formik";
+import { Fragment, ReactElement, useState } from "react";
 import CreateSidebarHostDirectories from "../CFHostDirectories/CFHostDirectories";
 import CFCustomPorts from "../CFCustomPorts/CFCustomPorts";
 import CFPersistentDirectories from "../CFPersistentDirectories/CFPersistentDirectories";
@@ -29,13 +31,13 @@ export default function CreateSidebarAdvancedSettings({
         </div>
       ) : (
         <div className="flex flex-col gap-2">
-          <CFWorkspaces formik={formik} />
           <CreateSidebarHostDirectories formik={formik} />
           <CFCustomPorts formik={formik} type="ide" />
           <CFCustomPorts formik={formik} type="vdi" />
           <CFCustomPorts formik={formik} type="jupyterNotebook" />
           <CFPersistentDirectories formik={formik} />
           <CFGrantedDirectories formik={formik} />
+          <CFWorkspaces formik={formik} />
         </div>
       )}
     </Fragment>

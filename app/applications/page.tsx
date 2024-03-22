@@ -6,7 +6,7 @@ import { Fragment, ReactElement } from "react";
 export default function Apps(): ReactElement {
   const router = useRouter();
 
-  router.push("/create");
+  router.push("/marketplace");
 
   return <Fragment />;
 }

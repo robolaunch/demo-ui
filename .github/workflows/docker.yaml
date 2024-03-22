@@ -1,4 +1,4 @@
-name: Docker Image
+name: Docker Image (app.robolaunch)
 
 on:
   push:
@@ -8,6 +8,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment:
+      name: public-app
 
     steps:
       - name: Checkout Code
@@ -21,11 +23,15 @@ jobs:
         run: |
           docker build \
             --file Dockerfile \
-            --tag robolaunchio/frontend-public:${{ steps.project_version.outputs.version }}-next \
+            --tag robolaunchio/frontend-public:${{ steps.project_version.outputs.version }}-app \
+            --build-arg BACKEND_URL=${{ secrets.BACKEND_URL }} \
+            --build-arg KEYCLOAK_URL=${{ secrets.KEYCLOAK_URL }} \
+            --build-arg KEYCLOAK_REALM=${{ secrets.KEYCLOAK_REALM }} \
+            --build-arg KEYCLOAK_CLIENT_ID=${{ secrets.KEYCLOAK_CLIENT_ID }} \
             .
 
       - name: Login to Docker Hub
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Push the Docker Image to Docker Hub
-        run: docker push robolaunchio/frontend-public:${{ steps.project_version.outputs.version }}-next
+        run: docker push robolaunchio/frontend-public:${{ steps.project_version.outputs.version }}-app

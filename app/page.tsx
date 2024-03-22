@@ -7,7 +7,7 @@ export default function MainPage() {
   const router = useRouter();
 
   useEffect(() => {
-    router.push("/create");
+    router.push("/marketplace");
   }, [router]);
 
   return <></>;

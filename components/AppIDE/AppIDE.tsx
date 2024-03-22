@@ -27,7 +27,7 @@ export default function AppIDE(): ReactElement {
 
   if (status !== "EnvironmentReady") {
     toast.warning("This service is not ready.");
-    router.push("/create");
+    router.push("/marketplace");
   }
 
   return (

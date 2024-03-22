@@ -63,19 +63,19 @@ export default function CFFilter(): ReactElement {
           {[
             { label: "All", value: "all" },
             {
-              label: "robolaunch",
+              label: "robolaunch Verified",
               value: "verified",
             },
             {
-              label: "Users",
+              label: "All Users",
               value: "public",
             },
             {
-              label: "Your Organization",
+              label: "My Organization",
               value: "organization",
             },
             {
-              label: "You",
+              label: "Me",
               value: "private",
             },
           ]?.map((item, index) => {

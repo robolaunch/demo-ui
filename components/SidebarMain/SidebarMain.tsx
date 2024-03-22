@@ -1,3 +1,5 @@
+"use client";
+
 import { IoAddCircleOutline, IoHelpBuoyOutline } from "react-icons/io5";
 import SidebarApplicationsItem from "../SidebarApplicationsItem/SidebarApplicationsItem";
 import SidebarItem from "../SidebarItem/SidebarItem";
@@ -14,7 +16,7 @@ export default function SidebarMain(): ReactElement {
     <div className="flex flex-col gap-4">
       {[
         {
-          label: "Create",
+          label: "Marketplace",
           icon: <IoAddCircleOutline size={22} />,
         },
         {

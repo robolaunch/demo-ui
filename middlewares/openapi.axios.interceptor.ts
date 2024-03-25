@@ -1,11 +1,11 @@
 "use client";
 
 import { axiosToastController } from "@/controller/axios.controller";
-import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
+import axios from "axios";
 
-const axiosInterceptorOpenApi: any = axios.create({});
+const axiosInterceptorOpenApi = axios.create({});
 
-axiosInterceptorOpenApi.interceptors.request.use((req: AxiosRequestConfig) => {
+axiosInterceptorOpenApi.interceptors.request.use((req) => {
   const { token } = JSON.parse(localStorage.getItem("rl-auth") || "{}");
 
   if (token) {
@@ -15,7 +15,7 @@ axiosInterceptorOpenApi.interceptors.request.use((req: AxiosRequestConfig) => {
   return req;
 });
 
-axiosInterceptorOpenApi.interceptors.response.use((res: AxiosResponse) => {
+axiosInterceptorOpenApi.interceptors.response.use((res) => {
   console.log("axios.response", res);
 
   axiosToastController(res);

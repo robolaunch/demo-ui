@@ -3,10 +3,10 @@ import {
   MdOutlineKeyboardArrowDown,
   MdOutlineKeyboardArrowUp,
 } from "react-icons/md";
-import FileManager from "../app.service.controlbar.filemanager/app.service.controlbar.filemanager.comp";
+import AppServiceFileManager from "../AppServiceFileManager/AppServiceFileManager";
 import Control from "../app.service.controlbar.control/app.service.controlbar.control.comp";
-import ServiceLog from "../AppServiceControlBarLog/AppServiceControlBarLog";
-import ServiceRestart from "../app.service.controlbar.restart/app.service.controlbar.restart.comp";
+import AppServiceLog from "../AppServiceLog/AppServiceLog";
+import AppServiceRestart from "../AppServiceRestart/AppServiceRestart";
 
 interface IAppServiceControlBar {
   type: "ide" | "vdi";
@@ -27,9 +27,9 @@ export default function AppServiceControlBar({
       </button>
       {isOpen && (
         <div className="flex items-center gap-6 rounded-t-lg bg-slate-200 px-6 pb-2 pt-3">
-          <FileManager type={type} />
-          <ServiceLog type={type} />
-          <ServiceRestart type={type} />
+          <AppServiceFileManager type={type} />
+          <AppServiceLog type={type} />
+          <AppServiceRestart type={type} />
           {type === "vdi" && <Control />}
         </div>
       )}

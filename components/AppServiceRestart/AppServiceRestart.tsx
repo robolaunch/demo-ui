@@ -2,13 +2,14 @@ import { ToggleButton } from "primereact/togglebutton";
 import { Fragment, ReactElement, useState } from "react";
 import Modal from "../Modal/Modal";
 import useApp from "@/hooks/useApp";
-import { LazyLog } from "@melloware/react-logviewer";
 
-interface IServiceLog {
+interface IAppServiceRestart {
   type: "ide" | "vdi";
 }
 
-export default function ServiceLog({ type }: IServiceLog): ReactElement {
+export default function AppServiceRestart({
+  type,
+}: IAppServiceRestart): ReactElement {
   const [isOpened, setIsOpened] = useState<boolean>(false);
 
   const { appData } = useApp();
@@ -17,20 +18,16 @@ export default function ServiceLog({ type }: IServiceLog): ReactElement {
     <Fragment>
       <ToggleButton
         onClick={() => setIsOpened(!isOpened)}
-        offLabel="Logs"
+        offLabel="Restart"
         className="w-32 text-xs"
       />
       {isOpened && (
         <Modal
-          header="Logs"
+          header="Restart Service"
           onClose={() => setIsOpened(false)}
-          style={{ width: "90vw", height: "90vh" }}
+          style={{ width: "40vw", height: "30vh" }}
         >
-          <LazyLog
-            text={appData?.services?.[`${type}`]?.log}
-            height={752}
-            scrollToLine={9999999}
-          />
+          <>Dev</>
         </Modal>
       )}
     </Fragment>

@@ -9,13 +9,13 @@ import CFGrantedDirectories from "../CFGrantedDirectories/CFGrantedDirectories";
 import { IEnvironment } from "@/interfaces/environment.interface";
 import CFWorkspaces from "../CFWorkspaces/CFWorkspaces";
 
-interface ICreateSidebarAdvancedSettings {
+interface ICFAdvancedSettings {
   formik: FormikProps<IEnvironment>;
 }
 
-export default function CreateSidebarAdvancedSettings({
+export default function CFAdvancedSettings({
   formik,
-}: ICreateSidebarAdvancedSettings): ReactElement {
+}: ICFAdvancedSettings): ReactElement {
   const [isOpened, setIsOpened] = useState<boolean>(false);
 
   return (

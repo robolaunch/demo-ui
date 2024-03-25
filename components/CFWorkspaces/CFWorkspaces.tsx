@@ -12,7 +12,7 @@ interface ICFWorkspaces {
 
 export default function CFWorkspaces({ formik }: ICFWorkspaces): ReactElement {
   const hasErrors = formik.errors.workspaces?.length ?? 0 > 0 ? true : false;
-  const hasValid = formik.values.workspaces.every(
+  const hasValid = formik.values.workspaces?.every(
     (workspace) => workspace.name,
   );
 

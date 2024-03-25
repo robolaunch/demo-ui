@@ -1,6 +1,6 @@
 "use client";
 
-import CreateSidebarAdvancedSettings from "../create.sidebar.advancedsettings/create.sidebar.advancedsettings";
+import CreateSidebarAdvancedSettings from "../CFAdvancedSettings/CFAdvancedSettings";
 import InputSwitch from "../InputSwitch/InputSwitch";
 import { ReactElement } from "react";
 import InputText from "../InputText/InputText";

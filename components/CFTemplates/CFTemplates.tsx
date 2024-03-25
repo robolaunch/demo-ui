@@ -16,7 +16,7 @@ export default function CFTemplates(): ReactElement {
   return (
     <div className="hw-full relative flex gap-4">
       <CFFilter />
-      <div className="grid w-full grid-cols-3 gap-4">
+      <div className="hw-full flex flex-wrap content-start gap-4">
         {(() => {
           const filteredTemplates = [
             ...templates,

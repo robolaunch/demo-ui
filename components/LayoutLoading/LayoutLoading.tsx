@@ -2,14 +2,14 @@
 import { ReactElement } from "react";
 import Image from "next/image";
 
-export default function KeycloakLoading(): ReactElement {
+export default function LayoutLoading(): ReactElement {
   return (
     <div className="animate-fadeIn absolute inset-0 z-[99999] flex flex-col items-center justify-center bg-slate-100">
       <Image
         src="/icons/ring.svg"
         width={64}
         height={64}
-        className="bg-light-50 w-28 animate-spin rounded-full shadow"
+        className="w-28 animate-spin rounded-full bg-light-50 shadow"
         alt="ring"
         priority
       />

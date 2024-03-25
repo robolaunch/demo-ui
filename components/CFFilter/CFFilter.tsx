@@ -24,79 +24,77 @@ export default function CFFilter(): ReactElement {
   }
 
   return (
-    <Card className="!h-fit !w-80 p-6">
-      <div className="flex flex-col gap-6">
-        <CFFilterItem label="Categories">
-          <Fragment>
-            {categories?.map((category, index) => {
-              const checked: boolean =
-                formik.values.applicationConfig.domainName ===
-                category.category.toLowerCase();
+    <Card className="flex !h-fit !w-80 flex-col gap-8 p-6">
+      <CFFilterItem label="Categories">
+        <Fragment>
+          {categories?.map((category, index) => {
+            const checked: boolean =
+              formik.values.applicationConfig.domainName ===
+              category.category.toLowerCase();
 
-              return (
-                <InputRadio
-                  key={index}
-                  label={category.alias}
-                  checked={checked}
-                  onChange={() => {
-                    formik.setValues({
-                      ...formik.values,
-                      applicationConfig: {
-                        ...formik.values.applicationConfig,
-                        domainName: category.category.toLowerCase(),
-                        application: {
-                          name: "",
-                          version: "",
-                        },
-                        devspace: {
-                          desktop: "",
-                          ubuntuDistro: "",
-                          version: "",
-                        },
-                      },
-                    });
-                  }}
-                />
-              );
-            })}
-          </Fragment>
-        </CFFilterItem>
-        <CFFilterItem label="Publisher">
-          {[
-            { label: "All", value: "all" },
-            {
-              label: "robolaunch Verified",
-              value: "verified",
-            },
-            {
-              label: "All Users",
-              value: "public",
-            },
-            {
-              label: "My Organization",
-              value: "organization",
-            },
-            {
-              label: "Me",
-              value: "private",
-            },
-          ]?.map((item, index) => {
             return (
               <InputRadio
                 key={index}
-                label={item.label}
-                checked={filters.publisher === item.value}
+                label={category.alias}
+                checked={checked}
                 onChange={() => {
-                  setFilters((prev) => ({
-                    ...prev,
-                    publisher: item.value,
-                  }));
+                  formik.setValues({
+                    ...formik.values,
+                    applicationConfig: {
+                      ...formik.values.applicationConfig,
+                      domainName: category.category.toLowerCase(),
+                      application: {
+                        name: "",
+                        version: "",
+                      },
+                      devspace: {
+                        desktop: "",
+                        ubuntuDistro: "",
+                        version: "",
+                      },
+                    },
+                  });
                 }}
               />
             );
           })}
-        </CFFilterItem>
-      </div>
+        </Fragment>
+      </CFFilterItem>
+      <CFFilterItem label="Publisher">
+        {[
+          { label: "All", value: "all" },
+          {
+            label: "robolaunch Verified",
+            value: "verified",
+          },
+          {
+            label: "All Users",
+            value: "public",
+          },
+          {
+            label: "My Organization",
+            value: "organization",
+          },
+          {
+            label: "Me",
+            value: "private",
+          },
+        ]?.map((item, index) => {
+          return (
+            <InputRadio
+              key={index}
+              label={item.label}
+              checked={filters.publisher === item.value}
+              onChange={() => {
+                setFilters((prev) => ({
+                  ...prev,
+                  publisher: item.value,
+                }));
+              }}
+            />
+          );
+        })}
+      </CFFilterItem>
     </Card>
   );
 }

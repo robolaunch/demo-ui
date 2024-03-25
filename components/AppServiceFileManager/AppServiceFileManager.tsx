@@ -1,7 +1,7 @@
-import { ToggleButton } from "primereact/togglebutton";
 import { Fragment, ReactElement, useState } from "react";
 import Modal from "../Modal/Modal";
 import useApp from "@/hooks/useApp";
+import ToggleButton from "../ToggleButton/ToggleButton";
 
 interface IFileManager {
   type: "ide" | "vdi";
@@ -15,9 +15,11 @@ export default function FileManager({ type }: IFileManager): ReactElement {
   return (
     <Fragment>
       <ToggleButton
+        className="service-button"
         onClick={() => setIsOpened(!isOpened)}
         offLabel="File Manager"
-        className="w-32 text-xs"
+        onLabel="File Manager"
+        checked={false}
       />
       {isOpened && (
         <Modal

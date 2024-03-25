@@ -4,9 +4,9 @@ import {
   MdOutlineKeyboardArrowUp,
 } from "react-icons/md";
 import AppServiceFileManager from "../AppServiceFileManager/AppServiceFileManager";
-import Control from "../app.service.controlbar.control/app.service.controlbar.control.comp";
 import AppServiceLog from "../AppServiceLog/AppServiceLog";
 import AppServiceRestart from "../AppServiceRestart/AppServiceRestart";
+import AppServiceVDI from "../AppServiceVDI/AppServiceVDI";
 
 interface IAppServiceControlBar {
   type: "ide" | "vdi";
@@ -30,7 +30,7 @@ export default function AppServiceControlBar({
           <AppServiceFileManager type={type} />
           <AppServiceLog type={type} />
           <AppServiceRestart type={type} />
-          {type === "vdi" && <Control />}
+          {type === "vdi" && <AppServiceVDI />}
         </div>
       )}
     </div>

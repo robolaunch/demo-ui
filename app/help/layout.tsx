@@ -1,6 +1,6 @@
 "use client";
 
-import PageLayout from "@/layouts/page.layout";
+import PageLayout from "@/layouts/PageLayout";
 import { ReactElement } from "react";
 
 interface IHelpLayout {

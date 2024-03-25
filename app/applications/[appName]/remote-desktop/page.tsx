@@ -1,7 +1,7 @@
 "use client";
 
 import AppVDI from "@/components/AppVDI/AppVDI";
-import WEBRTCProvider from "@/contexts/vdi.context";
+import WEBRTCProvider from "@/contexts/VDIContext";
 import {
   applicationFinder,
   getApplicationStatus,

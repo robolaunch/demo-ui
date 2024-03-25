@@ -1,6 +1,6 @@
 "use client";
 
-import { AppContext } from "@/contexts/app.context";
+import { AppContext } from "@/contexts/AppContext";
 import { IAppHook } from "@/interfaces/app.hook.interface";
 import { useContext } from "react";
 

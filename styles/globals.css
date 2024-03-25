@@ -101,3 +101,7 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #64748b50;
 }
+
+.service-button .p-button-label {
+  @apply w-40 text-xs;
+}

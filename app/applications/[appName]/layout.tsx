@@ -1,6 +1,6 @@
 "use client";
 
-import AppProvider from "@/contexts/app.context";
+import AppProvider from "@/contexts/AppContext";
 import { Fragment, ReactElement } from "react";
 
 interface IAppLayout {

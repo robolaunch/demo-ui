@@ -16,7 +16,6 @@
     "axios": "^1.6.8",
     "formik": "^2.4.5",
     "jwt-decode": "^4.0.0",
-    "keycloak-js": "^24.0.2",
     "next": "14.1.4",
     "prettier": "^3.2.5",
     "prettier-plugin-tailwindcss": "^0.5.12",

@@ -1,6 +1,6 @@
 "use client";
 
-import { VDIContext } from "@/contexts/vdi.context";
+import { VDIContext } from "@/contexts/VDIContext";
 import { IVDIHook } from "@/interfaces/vdi.hook.interface";
 import { useContext } from "react";
 

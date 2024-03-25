@@ -2,7 +2,7 @@
 
 import { ReactElement } from "react";
 import PreviewFormLabels from "../PreviewFormLabels/PreviewFormLabels";
-import CreateSelectedTemplateCard from "../create.selected.template.card/create.selected.template.card";
+import CreateSelectedTemplateCard from "../CreateSelectedTemplateCard/CreateSelectedTemplateCard";
 import useCreate from "@/hooks/useCreate";
 import Button from "../Button/Button";
 import Card from "../Card/Card";
@@ -11,7 +11,7 @@ export default function PreviewForm(): ReactElement {
   const { formik } = useCreate();
 
   return (
-    <Card className="hw-full flex flex-col justify-between   p-5 text-sm">
+    <Card className="hw-full flex flex-col justify-between p-5 text-sm">
       <div className="flex flex-col gap-4">
         <CreateSelectedTemplateCard formik={formik} />
         <PreviewFormLabels formik={formik} />

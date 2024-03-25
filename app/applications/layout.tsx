@@ -1,6 +1,6 @@
 "use client";
 
-import PageLayout from "@/layouts/page.layout";
+import PageLayout from "@/layouts/PageLayout";
 import { useParams } from "next/navigation";
 import { ReactElement } from "react";
 

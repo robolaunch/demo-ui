@@ -1,6 +1,6 @@
 "use client";
 
-import { CreateContext } from "@/contexts/create.context";
+import { CreateContext } from "@/contexts/CreateContext";
 import { ICreateHook } from "@/interfaces/create.hook.interface";
 import { useContext } from "react";
 

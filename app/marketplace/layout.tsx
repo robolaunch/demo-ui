@@ -1,8 +1,8 @@
 "use client";
 
-import PageLayout from "@/layouts/page.layout";
+import PageLayout from "@/layouts/PageLayout";
 import { ReactElement } from "react";
-import CreateProvider from "@/contexts/create.context";
+import CreateProvider from "@/contexts/CreateContext";
 interface ICreateApp {
   children: ReactElement | ReactElement[];
 }

@@ -1,9 +1,9 @@
 import { ReactElement } from "react";
-import { ToggleButton } from "primereact/togglebutton";
 import useVDI from "@/hooks/useVDI";
 import { useKeycloak } from "react-keycloak-client";
+import ToggleButton from "../ToggleButton/ToggleButton";
 
-export default function Control(): ReactElement {
+export default function AppServiceVDI(): ReactElement {
   const { remoteDesktopReducer, client } = useVDI();
   const keycloak = useKeycloak();
 
@@ -21,7 +21,7 @@ export default function Control(): ReactElement {
 
   return (
     <ToggleButton
-      className="w-40 text-xs"
+      className="service-button"
       checked={
         remoteDesktopReducer?.controller?.displayname ===
         keycloak?.tokenParsed?.preferred_username

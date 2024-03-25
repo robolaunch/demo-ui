@@ -6,7 +6,7 @@ interface IKeycloakProvider {
 }
 import { KeycloakProvider as KCProvider } from "react-keycloak-client";
 import env from "./env.provider";
-import LayoutLoading from "@/components/layout.loading/layout.loading.comp";
+import LayoutLoading from "@/components/LayoutLoading/LayoutLoading";
 
 export default function KeycloakProvider({ children }: IKeycloakProvider) {
   return (

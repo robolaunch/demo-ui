@@ -1,6 +1,6 @@
 "use client";
 
-import { MainContext } from "@/contexts/main.context";
+import { MainContext } from "@/contexts/MainContext";
 import { IMainHook } from "@/interfaces/main.hook.interface";
 import { useContext } from "react";
 

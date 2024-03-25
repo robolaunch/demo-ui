@@ -2,9 +2,9 @@
 
 import Head from "next/head";
 import { Fragment, ReactElement } from "react";
-import MainLayout from "@/layouts/main.layout";
+import MainLayout from "@/layouts/MainLayout";
 import { PrimeReactProvider } from "primereact/api";
-import MainContextProvider from "@/contexts/main.context";
+import MainContextProvider from "@/contexts/MainContext";
 import { Toaster } from "sonner";
 import Version from "@/components/Version/Version";
 import KeycloakProvider from "./keycloak.provider";
@@ -21,18 +21,18 @@ export default function MainProvider({
 }: IMainProvider): ReactElement {
   return (
     <html lang="en">
-      <PrimeReactProvider>
-        <Head>
-          <meta charSet="utf-8" />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <title>Robolaunch</title>
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
-        <body
-          style={{
-            fontFamily: "Poppins, sans-serif",
-          }}
-        >
+      <Head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Robolaunch</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <body
+        style={{
+          fontFamily: "Poppins, sans-serif",
+        }}
+      >
+        <PrimeReactProvider>
           <KeycloakProvider>
             <MainContextProvider>
               <MainLayout>
@@ -43,8 +43,8 @@ export default function MainProvider({
               </MainLayout>
             </MainContextProvider>
           </KeycloakProvider>
-        </body>
-      </PrimeReactProvider>
+        </PrimeReactProvider>
+      </body>
     </html>
   );
 }

@@ -1,7 +1,6 @@
 "use client";
 
 import React, { ReactElement, createContext, useEffect, useState } from "react";
-import LayoutLoading from "@/components/layout.loading/layout.loading.comp";
 import constantSidebarState from "@/constants/sidebarstate.constant.json";
 import { ISidebarState } from "@/interfaces/sidebarstate.interface";
 import { ISelectedState } from "@/interfaces/main.hook.interface";
@@ -16,6 +15,7 @@ import {
 } from "@/functions/selectedState.function";
 import ModalCreateNS from "@/components/ModalCreateNS/ModalCreateNS";
 import ModalCreateOrg from "@/components/ModalCreateOrg/ModalCreateOrg";
+import LayoutLoading from "@/components/LayoutLoading/LayoutLoading";
 
 export const MainContext: any = createContext<any>(null);
 

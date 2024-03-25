@@ -1,8 +1,8 @@
-import { ToggleButton } from "primereact/togglebutton";
 import { Fragment, ReactElement, useState } from "react";
 import Modal from "../Modal/Modal";
 import useApp from "@/hooks/useApp";
 import { LazyLog } from "@melloware/react-logviewer";
+import ToggleButton from "../ToggleButton/ToggleButton";
 
 interface IAppServiceLog {
   type: "ide" | "vdi";
@@ -16,9 +16,11 @@ export default function AppServiceLog({ type }: IAppServiceLog): ReactElement {
   return (
     <Fragment>
       <ToggleButton
+        className="service-button"
         onClick={() => setIsOpened(!isOpened)}
         offLabel="Logs"
-        className="w-32 text-xs"
+        onLabel="Logs"
+        checked={false}
       />
       {isOpened && (
         <Modal

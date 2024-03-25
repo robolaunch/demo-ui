@@ -1,3 +1,5 @@
+"use client";
+
 import { Fragment, ReactElement, useEffect, useState } from "react";
 import Card from "../Card/Card";
 import InputRadio from "../InputRadio/InputRadio";

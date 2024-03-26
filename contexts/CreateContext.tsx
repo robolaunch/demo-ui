@@ -85,7 +85,7 @@ export default ({ children }: ICreateContext) => {
       }),
 
       sharing: Yup.object().shape({
-        alias: Yup.string().required("Template Name is required."),
+        // alias: Yup.string().required("Template Name is required."),
       }),
 
       workspaces: Yup.array().of(

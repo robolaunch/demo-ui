@@ -1,7 +1,11 @@
 "use client";
 
+import { applicationFinder } from "@/functions/environment.function";
+import useMain from "@/hooks/useMain";
+import { IEnvironment } from "@/interfaces/environment.interface";
 // @ts-ignore
 import GuacamoleKeyboard from "@/utils/vdi.keyboard/guacamole-keyboard.ts";
+import { useParams } from "next/navigation";
 import { useEffect, createContext, useRef, useReducer } from "react";
 import { useKeycloak } from "react-keycloak-client";
 import { toast } from "sonner";
@@ -24,6 +28,14 @@ export default ({ children, socketEndpoint }: IVDIContext) => {
   const overlay = useRef<any>(null);
 
   const keycloak = useKeycloak();
+
+  const { applications } = useMain();
+  const params = useParams();
+
+  const app: IEnvironment = applicationFinder(
+    applications,
+    params.appName as string,
+  );
 
   const [remoteDesktopReducer, dispatcher] = useReducer(handleReducer, {
     members: [],
@@ -154,7 +166,8 @@ export default ({ children, socketEndpoint }: IVDIContext) => {
 
     client.current = new WebSocket(
       //   appData.services.vdi.socketEndpoint + "ws?password=admin",
-      "ws://localhost:8080/ws?password=admin",
+      app.services.vdi.socketEndpoint + "ws?password=admin" ||
+        "ws://localhost:8080/ws?password=admin",
     );
 
     client.current.onmessage = (e: any) => {
@@ -268,7 +281,11 @@ export default ({ children, socketEndpoint }: IVDIContext) => {
       }
       client.current.close();
     };
-  }, [socketEndpoint, keycloak?.tokenParsed?.preferred_username]);
+  }, [
+    socketEndpoint,
+    keycloak?.tokenParsed?.preferred_username,
+    app.services.vdi.socketEndpoint,
+  ]);
 
   useEffect(() => {
     var buffer: ArrayBuffer;

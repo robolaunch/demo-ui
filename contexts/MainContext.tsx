@@ -84,7 +84,7 @@ export default ({ children }: IMainContext) => {
   useEffect(() => {
     const timer = setInterval(() => {
       selectedState?.namespace?.name && handleGetApplications();
-    }, 5000);
+    }, 10000);
 
     return () => clearInterval(timer);
 
